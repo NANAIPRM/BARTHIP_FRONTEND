@@ -14,6 +14,7 @@ function SupportUs() {
           </button>
           <h3 className="font-bold text-lg">Thank you for using!</h3>
           <p className="py-4">Buy us a Drinks</p>
+          <p className="py-4">via Bank Transfer</p>
           <img src="src/assets/iQRcode.svg" />
         </form>
       </dialog>
