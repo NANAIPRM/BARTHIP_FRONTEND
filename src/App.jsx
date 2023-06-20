@@ -1,9 +1,10 @@
 import SearchMusic from "./features/spotify/searchMusic";
+import Chatroom from "./features/chatroom/ChatRoom";
 
 function App() {
   return (
     <>
-      <SearchMusic />
+      {/* <SearchMusic />
       <iframe
         title="Spotify Playlist"
         src="https://open.spotify.com/embed/playlist/2DQu4yw3Bx58eNEZYIevDl?utm_source=generator"
@@ -12,7 +13,8 @@ function App() {
         allowFullScreen={true}
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-      ></iframe>
+      ></iframe> */}
+      <Chatroom />
     </>
   );
 }
