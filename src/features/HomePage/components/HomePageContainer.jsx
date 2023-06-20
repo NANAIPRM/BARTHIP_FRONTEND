@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../../../layouts/Container";
+import Login from "../../../layouts/Modals/Login";
 
 function HomePageContainer() {
   return (
@@ -22,6 +23,7 @@ function HomePageContainer() {
           <img src="src/assets/iBtn.svg" alt="chatbox" />
         </div>
       </div>
+      <Login />
 
       <Layout />
     </div>

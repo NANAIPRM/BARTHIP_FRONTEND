@@ -9,9 +9,12 @@ function SupportUs() {
       </button>
       <dialog id="SupportUs" className="modal">
         <form method="dialog" className="modal-box">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            <img src="src/assets/iX.svg" />
+          </button>
           <h3 className="font-bold text-lg">Thank you for using!</h3>
           <p className="py-4">Buy us a Drinks</p>
+          <img src="src/assets/iQRcode.svg" />
         </form>
       </dialog>
     </div>
