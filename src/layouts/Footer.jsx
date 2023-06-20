@@ -1,11 +1,18 @@
 import React from "react";
+import AboutUs from "./Modals/AboutUs";
+import SupportUs from "./Modals/SupportUs";
 
 function Footer() {
   return (
-    <footer className="py-3 flex justify-center bg-slate-300 w-screen">
-      <p>
-        <span className="underline cursor-pointer ">About Us</span> |{" "}
-        <span className=" underline cursor-pointer">Support Us</span>
+    <footer className="py-3 flex justify-center items-center bg-slate-300 w-screen">
+      <p className="flex justify-center items-center">
+        <span className="underline cursor-pointer ">
+          <AboutUs />
+        </span>{" "}
+        |{" "}
+        <span className=" underline cursor-pointer">
+          <SupportUs />
+        </span>
       </p>
       <div className="flex justify-center mx-1 ">
         <a href="#" className="cursor-pointer px-1 w-9">

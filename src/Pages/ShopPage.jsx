@@ -1,7 +1,5 @@
-import React from "react";
+import ShopPageContainer from "../features/ShopPage/components/ShopPageContainer";
 
-function ShopPage() {
-  return <div>ShopPage</div>;
+export default function ShopPage() {
+  return <ShopPageContainer />;
 }
-
-export default ShopPage;
