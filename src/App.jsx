@@ -1,5 +1,6 @@
 import SearchMusic from "./features/spotify/searchMusic";
 import Chatroom from "./features/chatroom/ChatRoom";
+import Home from "./features/home/home";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
       ></iframe> */}
-      <Chatroom />
+      {/* <Chatroom /> */}
+      <Home />
     </>
   );
 }
