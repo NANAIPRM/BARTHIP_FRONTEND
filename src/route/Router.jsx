@@ -4,8 +4,13 @@ import LoginPage from '../Pages/Login'
 import RegisterPage from '../Pages/Register'
 import HomePage from '../Pages/HomePage'
 import ChatPage from '../Pages/ChatPage'
+import ChatroomPage from '../features/ChatPage/ChatroomPage'
 
 const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <HomePage />,
+    },
     {
         path: '/login',
 
@@ -15,19 +20,15 @@ const router = createBrowserRouter([
         path: '/register',
         element: <RegisterPage />,
     },
-    {
-        path: '/',
-        element: <HomePage />,
 
-        // children: [
-        //   { path: "/home", element: <HomePage /> },
-        // { path: "/shop", element: <ShopPage /> },
-        // { path: "/payment", element: <PaymentPage /> },
-        // ],
-    },
+    // children: [
+    //   { path: "/home", element: <HomePage /> },
+    // { path: "/shop", element: <ShopPage /> },
+    // { path: "/payment", element: <PaymentPage /> },
+    // ],
     {
         path: '/chat',
-        element: <ChatPage />,
+        element: <ChatroomPage />,
     },
 ])
 
