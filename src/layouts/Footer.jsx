@@ -4,8 +4,9 @@ import SupportUs from './Modals/SupportUs'
 
 function Footer() {
     return (
-        <footer className="py-3 flex justify-center items-center bg-slate-300 w-screen">
-            <p className="flex justify-center items-center">
+
+        <footer className="py-3 flex justify-center items-center bg-slate-100 w-screen">
+            <div className="flex justify-center items-center">
                 <span className="underline cursor-pointer ">
                     <AboutUs />
                 </span>{' '}
@@ -13,7 +14,11 @@ function Footer() {
                 <span className=" underline cursor-pointer">
                     <SupportUs />
                 </span>
-            </p>
+
+   
+
+            </div>
+
             <div className="flex justify-center mx-1 ">
                 <a href="#" className="cursor-pointer px-1 w-9">
                     <img src="src/assets/iGoogle.svg" alt="google" />
