@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import Button from '../../../components/button'
 
 export default function Home() {
+    const [drink, setDrink] = useState(0)
+    function ChooseDrink(idx) {
+        setDrink(idx)
+    }
     const drinks = [
         {
             name: 'Beer',
@@ -19,7 +24,7 @@ export default function Home() {
         },
         {
             name: 'Magarita',
-            desciption: 'ซิญอริต้า มาการิต้้า กิกี้กาก้า',
+            desciption: 'ซิญญอริต้า มาการิต้้า กิกี้กาก้า',
             image: 'src/assets/iLemon.svg',
         },
         {
@@ -71,7 +76,9 @@ export default function Home() {
                                     </p>
                                     <div className="grid grid-rows-1 grid-flow-col w-80 sm:w-96 mx-auto lg:w-[400px] overflow-x-scroll">
                                         {drinks.map((el, idx) => (
-                                            <button>
+                                            <button
+                                                onClick={() => ChooseDrink(idx)}
+                                            >
                                                 <img
                                                     src={el.image}
                                                     alt={el.name}
@@ -84,11 +91,10 @@ export default function Home() {
                                 </div>
                                 <div className="px-3 py-3">
                                     <p className="text-xl underline">
-                                        Open Mindjito
+                                        {drinks[drink].name}
                                     </p>
                                     <p className="mt-2">
-                                        รู้สึกชิวชิว สบาย ๆ พร้อมรับสิ่งใหม่ ๆ
-                                        ซัพพอร์ตทุก ๆ คน
+                                        {drinks[drink].desciption}
                                     </p>
                                 </div>
                             </div>
@@ -108,8 +114,8 @@ export default function Home() {
                                     </div>
                                     <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
                                         <img
-                                            src="src/assets/iBeer.svg"
-                                            alt="beer"
+                                            src={drinks[drink].image}
+                                            alt={drinks[drink].name}
                                             className="w-[40px] "
                                         />
                                     </div>
@@ -142,7 +148,7 @@ export default function Home() {
                                         อยากทำอะไร
                                     </p>
                                     <img
-                                        src="https://ikuzbipnfkbymlctljcv.supabase.co/storage/v1/object/public/public-web-app/images/lobby/chatbox-greet.png"
+                                        src="src/assets/iBG.svg"
                                         alt="ิbartender"
                                     />
 

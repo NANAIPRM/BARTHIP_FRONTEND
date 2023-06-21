@@ -1,6 +1,7 @@
 import Login from './Modals/Login'
 import Boost from './Modals/Boost'
 import { Link } from 'react-router-dom'
+import Music from './Modals/Music'
 
 export default function Navbar() {
     return (
@@ -20,6 +21,7 @@ export default function Navbar() {
 
             <div className="flex fixed top-5 right-5 z-50 cursor-pointer gap-x-1 ">
                 <Boost />
+                <Music />
                 {/* <img
                     className="w-12 h-12 cursor-pointer z-40"
                     src="src/assets/iBoost.svg"
