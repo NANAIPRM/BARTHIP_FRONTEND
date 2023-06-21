@@ -1,11 +1,12 @@
 import React from 'react'
 import ModalsReuse from './ModalsReuse'
+import Button from '../../components/button'
 
 const handleClick = () => {}
 
 function Boost() {
     return (
-        <div className="w-20" onClick={handleClick}>
+        <div className="w-20 " onClick={handleClick}>
             <ModalsReuse
                 title={<img src="src/assets/iBoost.svg" />}
                 header={'BarTip Boost'}
@@ -35,6 +36,7 @@ function Boost() {
                         <div>(ยูสเซอร์ปกติได้ 1 ครั้ง/วัน)</div>
                     </div>
                 </div>
+                <Button text="ไปหน้าซื้อบูส" />
             </ModalsReuse>
         </div>
     )

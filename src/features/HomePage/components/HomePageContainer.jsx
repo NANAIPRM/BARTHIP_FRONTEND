@@ -1,6 +1,6 @@
 import Button from '../../../components/button'
-import Footer from '../../../layouts/Footer'
-export default function Home() {
+
+export default function HomePageContainer() {
     return (
         <>
             <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
@@ -120,7 +120,7 @@ export default function Home() {
                             </div>
                             <div className=" justify-center mt-0 lg:mt-4">
                                 {/* <img
-                                    className="-z-1 absolute "
+                                    className="-z-1 absolute w-[550px] top-4"
                                     src="src/assets/iChatBox.svg"
                                     alt="chatbox"
                                 /> */}
@@ -129,8 +129,8 @@ export default function Home() {
                                         อยากทำอะไร
                                     </p>
                                     <img
-                                        src="https://ikuzbipnfkbymlctljcv.supabase.co/storage/v1/object/public/public-web-app/images/lobby/chatbox-greet.png"
-                                        alt="ิbartender"
+                                        src="src/assets/iBG.svg"
+                                        alt="bartender"
                                     />
 
                                     <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" />

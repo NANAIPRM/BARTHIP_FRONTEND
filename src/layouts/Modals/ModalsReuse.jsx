@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function ModalsReuse({ title, header, children }) {
+function ModalsReuse({ title, header, children, className = '' }) {
     const [show, setShow] = useState(false)
 
     useEffect(() => {
@@ -11,7 +11,7 @@ function ModalsReuse({ title, header, children }) {
     return (
         <div>
             <div
-                className="btn border-none bg-slate-50"
+                className={`btn border-none bg-transparent ${className}`}
                 onClick={() => setShow(true)}
             >
                 {title}
