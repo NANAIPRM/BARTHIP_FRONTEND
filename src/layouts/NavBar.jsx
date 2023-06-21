@@ -1,4 +1,5 @@
-
+import Login from './Modals/Login'
+import Boost from './Modals/Boost'
 export default function Navbar() {
     return (
         <>
@@ -14,23 +15,24 @@ export default function Navbar() {
             </button> */}
 
             <div className="flex fixed top-5 right-5 z-50 cursor-pointer gap-x-1 ">
-                <img
+                <Boost />
+                {/* <img
                     className="w-12 h-12 cursor-pointer z-40"
                     src="src/assets/iBoost.svg"
                     alt="boost-logo"
-                />
+                /> */}
                 {/* <img
                     className="w-14 cursor-pointer z-40"
                     src="https://drinksonme.live/counter-page/sound.gif"
                     alt="music-logo"
                 /> */}
-                <img
+                {/* <img
                     className="w-20 cursor-pointer z-40"
                     src="src/assets/iLogin.svg"
                     alt="login"
-                />
+                /> */}
+                <Login />
             </div>
         </>
     )
 }
-

@@ -7,9 +7,9 @@ export default function Home() {
                 <div className="max-w-7xl w-full mt-7  mx-auto">
                     <div className="flex justify-center mb-3 relative">
                         <img
-                            className="w-52 "
-                            src="https://drinksonme.live/logo.png"
-                            alt="Drinks On Me"
+                            className="w-40 "
+                            src="src/assets/iLogo.svg"
+                            alt="BarTrip"
                         />
                     </div>
                     <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
