@@ -1,5 +1,6 @@
 import React from 'react'
 import ModalsReuse from './ModalsReuse'
+import Button from '../../components/button'
 
 const handleClick = () => {}
 
@@ -35,6 +36,7 @@ function Boost() {
                         <div>(ยูสเซอร์ปกติได้ 1 ครั้ง/วัน)</div>
                     </div>
                 </div>
+                <Button text="ไปหน้าซื้อบูส" />
             </ModalsReuse>
         </div>
     )

@@ -105,7 +105,11 @@ export default function Home() {
                                     href="#"
                                     className="absolute bottom-5 right-4 "
                                 >
-                                    <img className="w-28" src="" alt="shop" />
+                                    <img
+                                        className="w-28"
+                                        src="src/assets/iShopping.svg"
+                                        alt="shop"
+                                    />
                                 </a>
                             </div>
                         </div>
@@ -116,7 +120,7 @@ export default function Home() {
                             </div>
                             <div className=" justify-center mt-0 lg:mt-4">
                                 {/* <img
-                                    className="-z-1 absolute "
+                                    className="-z-1 absolute w-[550px] top-4"
                                     src="src/assets/iChatBox.svg"
                                     alt="chatbox"
                                 /> */}

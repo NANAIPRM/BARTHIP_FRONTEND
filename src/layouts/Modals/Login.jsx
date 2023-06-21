@@ -5,7 +5,7 @@ const handleClick = () => {}
 
 function Login() {
     return (
-        <div className="w-20" onClick={handleClick}>
+        <div className="w-28" onClick={handleClick}>
             <ModalsReuse
                 title={<img src="src/assets/iLogin.svg" />}
                 header={'ล็อคอินกัน!!'}

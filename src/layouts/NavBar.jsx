@@ -1,14 +1,18 @@
 import Login from './Modals/Login'
 import Boost from './Modals/Boost'
+import { Link } from 'react-router-dom'
+
 export default function Navbar() {
     return (
         <>
             <button>
-                <img
-                    className="w-12 fixed top-5 left-5"
-                    src="src/assets/iHome.svg"
-                    alt="home"
-                />
+                <Link to="/">
+                    <img
+                        className="w-12 fixed top-5 left-5"
+                        src="src/assets/iHome.svg"
+                        alt="home"
+                    />
+                </Link>
             </button>
             {/* <button className="cursor-pointer flex justify-center items-center p-3 w-32 z-50 fixed top-5 left-20">
                 <p className="font-semibold">ออกจากโต๊ะ</p>
