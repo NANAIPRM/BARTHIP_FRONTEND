@@ -1,10 +1,8 @@
-import React from 'react'
-import Header from '../../../layouts/Navbar'
-export default function ChatPageContainer() {
+import Footer from '../../../layouts/Footer'
+export default function Home() {
     return (
         <>
-            <Header />
-            <div className="flex justify-center items-center py-14 lg:py-4 px-0 bg-slate-200 ">
+            <div className="flex justify-center items-center py-14 lg:py-0 px-0 bg-slate-200 ">
                 <div className="max-w-7xl w-full mt-7 bg-blue-400 mx-auto">
                     <div className="flex justify-center mb-3 relative">
                         <img
@@ -165,7 +163,7 @@ export default function ChatPageContainer() {
             {/* </div> */}
 
             {/* footer */}
-            <footer className="py-3 flex justify-center bg-slate-300 ">
+            {/* <footer className="py-3 flex justify-center bg-slate-300 ">
                 <p>
                     <span className="underline cursor-pointer ">About Us</span>{' '}
                     |{' '}
@@ -193,7 +191,8 @@ export default function ChatPageContainer() {
                         />
                     </a>
                 </div>
-            </footer>
+            </footer> */}
+            <Footer />
         </>
     )
 }
