@@ -1,27 +1,36 @@
-import React from 'react'
-import Boost from './Modals/Boost'
-import Login from './Modals/Login'
 
-function NavBar() {
+export default function Navbar() {
     return (
-        <div>
-            <div className="navbar bg-base-100 flex justify-between mx-1 w-screen">
-                <button className="w-10">
-                    <img src="src/assets/iHome.svg" alt="Home" />
-                </button>
-                <div>
-                    {/* <button className="w-10">
-                        <img src="src/assets/iBoost.svg" alt="Boost" />
-                    </button> */}
-                    {/* <button className="w-20">
-            <img src="src/assets/iLogin.svg" alt="Login" />
-          </button> */}
-                    <Boost />
-                    <Login />
-                </div>
+        <>
+            <button>
+                <img
+                    className="w-12 fixed top-5 left-5"
+                    src="src/assets/iHome.svg"
+                    alt="home"
+                />
+            </button>
+            {/* <button className="cursor-pointer flex justify-center items-center p-3 w-32 z-50 fixed top-5 left-20">
+                <p className="font-semibold">ออกจากโต๊ะ</p>
+            </button> */}
+
+            <div className="flex fixed top-5 right-5 z-50 cursor-pointer gap-x-1 ">
+                <img
+                    className="w-12 h-12 cursor-pointer z-40"
+                    src="src/assets/iBoost.svg"
+                    alt="boost-logo"
+                />
+                {/* <img
+                    className="w-14 cursor-pointer z-40"
+                    src="https://drinksonme.live/counter-page/sound.gif"
+                    alt="music-logo"
+                /> */}
+                <img
+                    className="w-20 cursor-pointer z-40"
+                    src="src/assets/iLogin.svg"
+                    alt="login"
+                />
             </div>
-        </div>
+        </>
     )
 }
 
-export default NavBar

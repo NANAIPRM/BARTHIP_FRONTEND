@@ -4,6 +4,7 @@ import SupportUs from './Modals/SupportUs'
 
 function Footer() {
     return (
+
         <footer className="py-3 flex justify-center items-center bg-slate-100 w-screen">
             <div className="flex justify-center items-center">
                 <span className="underline cursor-pointer ">
@@ -13,6 +14,9 @@ function Footer() {
                 <span className=" underline cursor-pointer">
                     <SupportUs />
                 </span>
+
+   
+
             </div>
 
             <div className="flex justify-center mx-1 ">
