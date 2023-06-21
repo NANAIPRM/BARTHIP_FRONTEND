@@ -22,7 +22,7 @@ export default function Home() {
                                         placeholder="บอกชื่อเราหน่อยนะ"
                                         maxLength="20"
                                         autoComplete="off"
-                                        className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden   "
+                                        className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
                                     />
                                     <button>
                                         <img
@@ -37,36 +37,48 @@ export default function Home() {
                                         เลือกเครื่องดื่มที่บ่งบอกตัวคุณ
                                     </p>
                                     <div className="grid grid-rows-1 grid-flow-col w-80 sm:w-96 mx-auto lg:w-[400px] overflow-x-scroll">
-                                        <img
-                                            src="src/assets/iBeer.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iRedwine.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iCherry.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iLemon.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iOntherock.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iPineapple.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
+                                        <button>
+                                            <img
+                                                src="src/assets/iBeer.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
+                                        <button>
+                                            <img
+                                                src="src/assets/iRedwine.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
+                                        <button>
+                                            <img
+                                                src="src/assets/iCherry.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
+                                        <button>
+                                            <img
+                                                src="src/assets/iLemon.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
+                                        <button>
+                                            <img
+                                                src="src/assets/iOntherock.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
+                                        <button>
+                                            <img
+                                                src="src/assets/iPineapple.svg"
+                                                alt="drink"
+                                                className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                            />
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="px-3 py-3">
