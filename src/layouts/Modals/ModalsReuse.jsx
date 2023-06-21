@@ -10,12 +10,12 @@ function ModalsReuse({ title, header, children }) {
     }, [show])
     return (
         <div>
-            <button
+            <div
                 className="btn border-none bg-slate-50"
                 onClick={() => setShow(true)}
             >
                 {title}
-            </button>
+            </div>
             {show ? (
                 <dialog
                     id={title}

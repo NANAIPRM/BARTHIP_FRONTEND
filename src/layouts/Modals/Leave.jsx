@@ -7,7 +7,17 @@ function Leave() {
             title={'ออกจากโต๊ะ?'}
             header={'แน่ใจนะว่าจะออกจากห้อง เปลี่ยนใจไหม'}
         >
-            <img src="src/assets/iBoy.svg" />
+            <div className="w-40 mx-auto">
+                <img src="src/assets/iBoy.svg" />
+            </div>
+            <div className="flex">
+                <div className="w-20 mx-auto">
+                    <img src="src/assets/iCorrect.svg" />
+                </div>
+                <div className="w-20 mx-auto">
+                    <img src="src/assets/iNo.svg" />
+                </div>
+            </div>
         </ModalsReuse>
     )
 }

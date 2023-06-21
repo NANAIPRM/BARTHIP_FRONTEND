@@ -5,7 +5,7 @@ const handleClick = () => {}
 
 function Login() {
     return (
-        <button className="w-20" onClick={handleClick}>
+        <div className="w-20" onClick={handleClick}>
             <ModalsReuse
                 title={<img src="src/assets/iLogin.svg" />}
                 header={'ล็อคอินกัน!!'}
@@ -25,7 +25,7 @@ function Login() {
                     <p>JOIN WITH GOOGLE</p>
                 </div>
             </ModalsReuse>
-        </button>
+        </div>
 
         ///เพิ่มปุ่มลิ้งค์ ไปที่ google Login
     )

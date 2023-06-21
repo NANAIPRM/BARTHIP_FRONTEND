@@ -1,8 +1,10 @@
 import React from 'react'
 import Layout from '../../../layouts/Container'
+import BoostFriend from '../../../layouts/Modals/BoostFriend'
 import Leave from '../../../layouts/Modals/Leave'
 import Login from '../../../layouts/Modals/Login'
 import Report from '../../../layouts/Modals/Report'
+import Boost from '../../../layouts/Modals/Boost'
 
 function HomePageContainer() {
     return (
@@ -28,6 +30,8 @@ function HomePageContainer() {
             <Login />
             <Report />
             <Leave />
+            <Boost />
+            <BoostFriend />
 
             <Layout />
         </div>

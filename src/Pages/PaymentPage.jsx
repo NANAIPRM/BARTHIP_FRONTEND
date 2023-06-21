@@ -1,7 +1,4 @@
-import React from 'react'
-
-function PaymentPage() {
-    return <div>PaymentPage</div>
+import PaymentPageContainer from '../features/PaymentPage/components/PaymentPageContainer'
+export default function PaymentPage() {
+    return <PaymentPageContainer />
 }
-
-export default PaymentPage
