@@ -105,7 +105,11 @@ export default function Home() {
                                     href="#"
                                     className="absolute bottom-5 right-4 "
                                 >
-                                    <img className="w-28" src="" alt="shop" />
+                                    <img
+                                        className="w-28"
+                                        src="src/assets/iShopping.svg"
+                                        alt="shop"
+                                    />
                                 </a>
                             </div>
                         </div>
