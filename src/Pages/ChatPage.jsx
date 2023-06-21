@@ -1,5 +1,5 @@
-import ChatPageContainer from "../features/ChatPage/components/ChatPageContainer";
+import ChatroomPage from '../features/ChatPage/ChatroomPage'
 
 export default function ChatPage() {
-  return <ChatPageContainer />;
+    return <ChatroomPage />
 }

@@ -2,29 +2,6 @@ export default function ChatroomPage() {
     return (
         <>
             <div className="flex justify-center items-center py-14 lg:py-4 px-0 bg-slate-200 ">
-                {/* header navbar */}
-                <img
-                    className="w-12 fixed top-5 left-5"
-                    src="https://drinksonme.live/nav/nav-home.png"
-                    alt="home"
-                />
-                <button className="cursor-pointer flex justify-center items-center p-3 w-32 z-50 fixed top-5 left-20">
-                    <p className="font-semibold">ออกจากโต๊ะ</p>
-                </button>
-
-                <div className="flex fixed top-5 right-5 z-50 cursor-pointer gap-x-1 ">
-                    <img
-                        className="w-12 h-12 cursor-pointer z-40"
-                        src="https://drinksonme.live/boost/boost-logo.png"
-                        alt="boost-logo"
-                    />
-                    <img
-                        className="w-14 cursor-pointer z-40"
-                        src="https://drinksonme.live/counter-page/sound.gif"
-                        alt="music-logo"
-                    />
-                </div>
-                {/* --------------------------- */}
                 <div className="max-w-7xl w-full mt-7 bg-blue-400">
                     <div className="flex justify-center mb-3 relative">
                         <img
@@ -126,37 +103,6 @@ export default function ChatroomPage() {
                 <p className="text-center lg:text-right">สนใจเป็น sponsors</p>
             </div>
             {/* </div> */}
-
-            {/* footer */}
-            <footer className="py-3 flex justify-center bg-slate-300 ">
-                <p>
-                    <span className="underline cursor-pointer ">About Us</span>{' '}
-                    |{' '}
-                    <span className=" underline cursor-pointer">
-                        Support Us
-                    </span>
-                </p>
-                <div className="flex justify-center mx-1 ">
-                    <a href="#" className="cursor-pointer px-1 w-9">
-                        <img
-                            src="https://drinksonme.live/_nuxt/img/discord.5e1a431.png"
-                            alt="discord"
-                        />
-                    </a>
-                    <a href="#" className="cursor-pointer px-1 w-9">
-                        <img
-                            src="https://drinksonme.live/_nuxt/img/ig.0164ff9.png"
-                            alt="instagram"
-                        />
-                    </a>
-                    <a href="#" className="cursor-pointer px-1 w-9">
-                        <img
-                            src="https://drinksonme.live/_nuxt/img/tiktok.210dc3e.png"
-                            alt="discord"
-                        />
-                    </a>
-                </div>
-            </footer>
         </>
     )
 }
