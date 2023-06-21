@@ -1,6 +1,39 @@
 import Button from '../../../components/button'
 
 export default function Home() {
+    const drinks = [
+        {
+            name: 'Beer',
+            desciption: 'รู้สึกคอแห้ง เยี่ยวแตกก็ไม่เป็นไร',
+            image: 'src/assets/iBeer.svg',
+        },
+        {
+            name: 'Red wine',
+            desciption: 'ลงรูปดื่มไวน์ ชีวิตจริงแดกเอ็มร้อย',
+            image: 'src/assets/iRedwine.svg',
+        },
+        {
+            name: 'Midori Sour',
+            desciption: 'เปรี้ยวจี๊ด ปี๊ดซ่า',
+            image: 'src/assets/iCherry.svg',
+        },
+        {
+            name: 'Magarita',
+            desciption: 'ซิญอริต้า มาการิต้้า กิกี้กาก้า',
+            image: 'src/assets/iLemon.svg',
+        },
+        {
+            name: 'Ontherock',
+            desciption: 'ออนเดอะล็อค น็อคเดอะสเตจ',
+            image: 'src/assets/iOntherock.svg',
+        },
+
+        {
+            name: 'Blue Hawaii',
+            desciption: 'บลูฮาวาย จบ',
+            image: 'src/assets/iPineapple.svg',
+        },
+    ]
     return (
         <>
             <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
@@ -22,7 +55,7 @@ export default function Home() {
                                         placeholder="บอกชื่อเราหน่อยนะ"
                                         maxLength="20"
                                         autoComplete="off"
-                                        className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden   "
+                                        className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
                                     />
                                     <button>
                                         <img
@@ -37,36 +70,16 @@ export default function Home() {
                                         เลือกเครื่องดื่มที่บ่งบอกตัวคุณ
                                     </p>
                                     <div className="grid grid-rows-1 grid-flow-col w-80 sm:w-96 mx-auto lg:w-[400px] overflow-x-scroll">
-                                        <img
-                                            src="src/assets/iBeer.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iRedwine.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iCherry.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iLemon.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iOntherock.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
-                                        <img
-                                            src="src/assets/iPineapple.svg"
-                                            alt="drink"
-                                            className="w-[40px] h-[52px] py-1"
-                                        />
+                                        {drinks.map((el, idx) => (
+                                            <button>
+                                                <img
+                                                    src={el.image}
+                                                    alt={el.name}
+                                                    key={idx}
+                                                    className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
+                                                />
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="px-3 py-3">
@@ -120,7 +133,7 @@ export default function Home() {
                             </div>
                             <div className=" justify-center mt-0 lg:mt-4">
                                 {/* <img
-                                    className="-z-1 absolute "
+                                    className="-z-1 absolute w-[550px] top-4"
                                     src="src/assets/iChatBox.svg"
                                     alt="chatbox"
                                 /> */}
