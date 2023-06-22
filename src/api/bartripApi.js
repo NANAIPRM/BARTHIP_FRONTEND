@@ -29,3 +29,7 @@ export const getMessage = (id) => {
 export const createMessage = (input, id) => {
   return bartripApi.post(`/messages/${id}`,input)
 }
+
+export const createRoom = () => {
+  return bartripApi.post(`/room`)
+}

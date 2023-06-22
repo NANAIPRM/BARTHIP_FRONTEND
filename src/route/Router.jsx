@@ -5,7 +5,7 @@ import RegisterPage from '../Pages/Register'
 import HomePage from '../Pages/HomePage'
 import ChatroomPage from '../Pages/ChatroomPage'
 import BoostPage from '../Pages/BoostPage'
-import { useAuth } from '../contexts/AuthContext'
+// import { useAuth } from '../contexts/AuthContext'
 
 // import ShopPage from '../Pages/ShopPage'
 // import Payment from '../Pages/'
@@ -15,7 +15,7 @@ import Layout from '../layouts/Container'
 
 
 export default function Router() {
-    const { user } = useAuth()
+    // const { user } = useAuth()
     const router = createBrowserRouter([
         {
             path: '/login',

@@ -1,11 +1,28 @@
 import { useState } from 'react'
 import Button from '../../../components/button'
+import { createRoom } from '../../../api/bartripApi'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
+   
     const [drink, setDrink] = useState(0)
+    const navigate = useNavigate()
     function ChooseDrink(idx) {
         setDrink(idx)
     }
+
+    const handleClickCreateRoom = e => {
+        console.log("555555555555555555555555")
+        e.preventDefault()
+        createRoom().then((rs) => {
+            console.log(rs)
+            navigate(`/chat/${rs.data.id}`)
+        })
+
+        
+
+    }
+
     const drinks = [
         {
             name: 'Beer',
@@ -153,7 +170,8 @@ export default function Home() {
                                     />
 
                                     <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" />
-                                    <Button text="สร้างห้องใหม่คุยกับเพื่อน" />
+                                    {/* <Button text="สร้างห้องใหม่คุยกับเพื่อน" onClick={e => handleClickCreateRoom(e)}/> */}
+                                    <button onClick={e => handleClickCreateRoom(e)}>555555555555555555555555</button>
                                     {/* <Link className='btn btn-circle  hover:text-white' to={`/chat/${el.id}`}>Edit</Link> */}
                                     <div className="flex justify-center">
                                         <p className="font-semibold">หรือ</p>

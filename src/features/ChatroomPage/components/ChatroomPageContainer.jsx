@@ -54,25 +54,32 @@ export default function ChatroomPage() {
     }
 
     const sendChat = (event) => {
-        console.log()
+        console.log(msg)
+
         event.preventDefault();
         if (msg.length > 0) {
             handleSendMsg(msg);
+
             setMsg("");
         }
     };
 
-    
+
     useEffect(() => {
-        socket.on("msg-recieve", (input) => {
-            console.log(input)
-            setMessages([...messages, { roomId: input.to, userId: input.from, message: input.message }])
-        });
         // ดึง message จาก db
         getMessage(id).then(rs => {
             setMessages(rs.data)
         })
-    }, []);
+    }, [])
+
+
+    // useEffect(() => {
+        socket.on("msg-recieve", (input) => {
+            console.log(input)
+            setMessages([...messages, { roomId: input.to, userId: input.from, message: input.message }])
+        });
+
+    // }, []);
 
 
     return (
