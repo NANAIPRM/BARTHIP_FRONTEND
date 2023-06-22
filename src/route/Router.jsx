@@ -6,7 +6,7 @@ import HomePage from '../Pages/HomePage'
 import ChatroomPage from '../Pages/ChatroomPage'
 import BoostPage from '../Pages/BoostPage'
 
-// import ShopPage from '../Pages/ShopPage'
+import ShopPage from '../Pages/ShopPage'
 // import Payment from '../Pages/'
 
 import Layout from '../layouts/Container'
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             { path: '/', element: <HomePage /> },
             { path: '/chat', element: <ChatroomPage /> },
             { path: '/Boost', element: <BoostPage /> },
-            // { path: '/shop', element: <ShopPage /> }
+            { path: '/shop', element: <ShopPage /> },
             // { path: '/chat', element: <ChatPage /> },
             // { path: '/payment', element: <PaymentPage /> },
         ],

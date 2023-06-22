@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react'
+import BuyCard from '../../../components/buyCard'
 
 function ShopPageContainer() {
-  return <div>ShopPageContainer</div>;
+    return <BuyCard />
 }
 
-export default ShopPageContainer;
+export default ShopPageContainer
