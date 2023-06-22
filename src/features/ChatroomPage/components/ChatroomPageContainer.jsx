@@ -1,8 +1,10 @@
+import Button from '../../../components/button'
+
 export default function ChatroomPage() {
     return (
         <>
-            <div className="flex justify-center lg:px-0 bg-slate-200 ">
-                <div className="max-w-7xl w-full mt-7 bg-blue-400">
+            <div className="flex justify-center lg:px-0 ">
+                <div className="max-w-7xl w-full mt-7">
                     <div className="flex justify-center mb-3 relative">
                         <img
                             className="w-40"
@@ -10,9 +12,23 @@ export default function ChatroomPage() {
                             alt="Logo"
                         />
                     </div>
-                    <div className="flex max-w-5xl flex-col lg:flex-row w-full bg-green-400 mx-auto">
-                        <div className="bg-red-300 w-full flex flex-col justify-center px-0 sm:px-10 relative ">
-                            <div className="relative">
+                    <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto relative">
+                        <div className="left-4 top-0 flex items-center absolute">
+                            <p>รหัสโต๊ะ : priv-926e</p>
+                            <img
+                                src="src/assets/iFace.svg"
+                                className="h-5 ml-2"
+                            />
+                        </div>
+                        <div className=" w-full flex flex-col  px-0 sm:px-10 justify-center  ">
+                            <div className="mt-8">
+                                <img
+                                    src="src/assets/iShopping.svg"
+                                    className="w-24"
+                                />
+                            </div>
+
+                            <div className="relative ">
                                 <img
                                     src="https://drinksonme.live/counter-page/counter.png"
                                     alt="counter"
@@ -34,22 +50,29 @@ export default function ChatroomPage() {
                                         />
                                     </div>
                                 </div>
-                                <a
-                                    href="#"
-                                    className="absolute bottom-5 right-4 "
-                                >
-                                    <img className="w-28" src="" alt="shop" />
-                                </a>
+                            </div>
+
+                            <div className="hidden lg:block mb-4 mt-2 text-center">
+                                <p className="text-sm">
+                                    👋หากไม่มีการส่งข้อความนานเกิน 5 นาที
+                                    อาจโดนผู้เล่นคนอื่นเตะออกได้
+                                </p>
                             </div>
                         </div>
-                        <div className="bg-yellow-300  mx-auto relative">
+                        <div className="mx-auto relative">
                             <div className="flex justify-between items-center mx-6 mt-0">
                                 <div className="flex justify-center my-1"></div>
                                 <div className="flex items-center">
-                                    <div className="cursor-pointer ">icon1</div>
-                                    <div className="mr-2 cursor-pointer">
-                                        icon2
-                                    </div>
+                                    <img
+                                        className="h-9 mr-2"
+                                        src="src/assets/iReport.svg"
+                                    />
+                                    <button className="mr-2">
+                                        <img
+                                            className="h-9"
+                                            src="src/assets/iHelp.svg"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                             <div className="py-2 relative">
@@ -76,9 +99,11 @@ export default function ChatroomPage() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="h-4 mt-2">is texting</div>
+                                    <div className="h-4 mt-2 px-2">
+                                        is texting
+                                    </div>
                                     <div className="flex mt-5 mr-2 items-center">
-                                        <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4">
+                                        <div className="cursor-pointer flex justify-center items-center w-full py-2 px-2">
                                             <img
                                                 src="src/assets/iMessageBox.svg"
                                                 alt="chatbox"
@@ -111,8 +136,14 @@ export default function ChatroomPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center">line</div>
-                    <div className="flex flex-col items-center mt-3">sync</div>
+                    <div className="flex flex-col items-center mt-3">
+                        <p className="text-sm mb-1">
+                            หากระบบก่งก๊ง กดปุ่ม Sync เล้ย
+                        </p>
+                        <div className="w-40">
+                            <Button text="Sync" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="mt-6 lg:mt-0 mb-6">
@@ -120,9 +151,33 @@ export default function ChatroomPage() {
                     Sponsors
                 </p>
                 <div className="flex flex-col lg:flex-row justify-evenly">
-                    <div>sponsor1</div>
-                    <div>sponsor2</div>
-                    <div>sponsor3</div>
+                    <div>
+                        <img
+                            src="/src/assets/iBigBox.svg"
+                            className="w-[360px]"
+                        />
+                    </div>
+                    <div>
+                        {' '}
+                        <img
+                            src="/src/assets/iBigBox.svg"
+                            className="w-[360px]"
+                        />
+                    </div>
+                    <div>
+                        {' '}
+                        <img
+                            src="/src/assets/iBigBox.svg"
+                            className="w-[360px]"
+                        />
+                    </div>
+                    <div>
+                        {' '}
+                        <img
+                            src="/src/assets/iBigBox.svg"
+                            className="w-[360px]"
+                        />
+                    </div>
                 </div>
                 <p className="text-center lg:text-right">สนใจเป็น sponsors</p>
             </div>

@@ -8,10 +8,10 @@ export default function Layout() {
             <div className="fixed top-0 z-50">
                 <NavBar />
             </div>
-            <div className="py-20">
+            <div>
                 <Outlet />
             </div>
-            <div className="fixed bottom-0 z-50">
+            <div className="bottom-0 z-50">
                 <Footer />
             </div>
         </div>
