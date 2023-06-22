@@ -9,77 +9,72 @@ export default function ChatroomPage() {
     const { id } = useParams();
     const [messages, setMessages] = useState([]);
     const [msg, setMsg] = useState("");
-    
 
-    
-      const eiei = user?.id
-      socket.auth = {eiei} 
-      socket.connect();
-    
+
+
+    socket.connect();
+    const eiei = user?.id
+    socket.auth = { eiei }
     // useEffect(() => {
     //     // const id = user?.id
     //     // if (id) {
     //     //   socket.auth = {id} 
     //     //   socket.connect();
     //     // }
-       
+
     //   }, [id,socket])
 
-    socket.emit("room",id)
+    socket.emit("room", id)
 
-  
+
 
     const handleSendMsg = (message) => {
-        // setMessages([...messages,{roomId:message.to, userId:message.from, message:message.message}])
-        setMessages((prev)=>[...prev,msg])
+
+        const newMessage = structuredClone(messages)
+        newMessage.push({ message })
+        setMessages(newMessage)
         socket.emit("send-msg", {
             room: id,
             from: user.id,
             message,
-        });
 
-        
-       
-        
+        });
         /// เก็บ message เข้า db
-         
         createMessage(
-            {message, userId:user?.id},id
+            { message, userId: user?.id }, id
         ).then(rs => {
-            // console.log(rs)
-                
+            console.log(rs)
+
         }).catch(err => console.log(err))
     }
 
     const handleChangeMsg = (e) => {
         // setMsg({ ...msg, [e.target.name]: e.target.value })
         setMsg(e.target.value)
-       
     }
 
     const sendChat = (event) => {
-
+        console.log()
         event.preventDefault();
-        
-        console.log(messages)
         if (msg.length > 0) {
             handleSendMsg(msg);
             setMsg("");
         }
     };
 
-    // ดึง message จาก db
+    
     useEffect(() => {
         socket.on("msg-recieve", (input) => {
-            setMessages([...messages,{roomId:input.to, userId:input.from, message:input.message}])
-          });
-    
+            console.log(input)
+            setMessages([...messages, { roomId: input.to, userId: input.from, message: input.message }])
+        });
+        // ดึง message จาก db
         getMessage(id).then(rs => {
             setMessages(rs.data)
         })
     }, []);
 
-    
+
     return (
         <>
             <div className="flex justify-center items-center py-14 lg:py-4 px-0 bg-slate-200 ">
@@ -161,7 +156,7 @@ export default function ChatroomPage() {
                                 <div className="h-4 mt-2">is texting</div>
                                 <form className="flex mt-5 mr-2 items-center" onSubmit={(event) => sendChat(event)}>
                                     <input
-                                    value={msg}
+                                        value={msg}
                                         onChange={handleChangeMsg}
                                         className="w-full"
                                         type="text"

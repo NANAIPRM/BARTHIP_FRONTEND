@@ -154,7 +154,7 @@ export default function Home() {
 
                                     <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" />
                                     <Button text="สร้างห้องใหม่คุยกับเพื่อน" />
-
+                                    {/* <Link className='btn btn-circle  hover:text-white' to={`/chat/${el.id}`}>Edit</Link> */}
                                     <div className="flex justify-center">
                                         <p className="font-semibold">หรือ</p>
                                     </div>
