@@ -11,7 +11,7 @@ function Boost() {
   return (
     <div className="w-20 ">
       <ModalsReuse
-        title={<img src="src/assets/iBoost.svg" />}
+        title={<img src="src/assets/iBoostS.svg" />}
         header={'BarTip Boost'}
       >
         <div className="w-40 mx-auto">

@@ -7,35 +7,34 @@ import ChatroomPage from '../Pages/ChatroomPage'
 import BoostPage from '../Pages/BoostPage'
 
 import ShopPage from '../Pages/ShopPage'
-// import Payment from '../Pages/'
+import PaymentPage from '../Pages/PaymentPage'
 
 import Layout from '../layouts/Container'
 
 const router = createBrowserRouter([
-    {
-        path: '/login',
+  {
+    path: '/login',
 
-        element: <LoginPage />,
-    },
-    {
-        path: '/register',
-        element: <RegisterPage />,
-    },
-    {
-        path: '/',
-        element: <Layout />,
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/',
+    element: <Layout />,
 
-        children: [
-            { path: '/', element: <HomePage /> },
-            { path: '/chat', element: <ChatroomPage /> },
-            { path: '/Boost', element: <BoostPage /> },
-            { path: '/shop', element: <ShopPage /> },
-            // { path: '/chat', element: <ChatPage /> },
-            // { path: '/payment', element: <PaymentPage /> },
-        ],
-    },
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/chat', element: <ChatroomPage /> },
+      { path: '/Boost', element: <BoostPage /> },
+      { path: '/shop', element: <ShopPage /> },
+      { path: '/payment', element: <PaymentPage /> },
+    ],
+  },
 ])
 
 export default function Router() {
-    return <RouterProvider router={router} />
+  return <RouterProvider router={router} />
 }
