@@ -1,4 +1,85 @@
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { getMessage, createMessage } from "../../../api/bartripApi";
+import socket from '../../../configs/socket';
+import { useAuth } from "../../../contexts/AuthContext";
+
 export default function ChatroomPage() {
+    const { user } = useAuth();
+    const { id } = useParams();
+    const [messages, setMessages] = useState([]);
+    const [msg, setMsg] = useState("");
+    
+
+    
+      const eiei = user?.id
+      socket.auth = {eiei} 
+      socket.connect();
+    
+    // useEffect(() => {
+    //     // const id = user?.id
+    //     // if (id) {
+    //     //   socket.auth = {id} 
+    //     //   socket.connect();
+    //     // }
+       
+    //   }, [id,socket])
+
+    socket.emit("room",id)
+
+  
+
+    const handleSendMsg = (message) => {
+        // setMessages([...messages,{roomId:message.to, userId:message.from, message:message.message}])
+        setMessages((prev)=>[...prev,msg])
+        socket.emit("send-msg", {
+            room: id,
+            from: user.id,
+            message,
+        });
+
+        
+       
+        
+        /// เก็บ message เข้า db
+         
+        createMessage(
+            {message, userId:user?.id},id
+        ).then(rs => {
+            // console.log(rs)
+                
+        }).catch(err => console.log(err))
+    }
+
+    const handleChangeMsg = (e) => {
+        // setMsg({ ...msg, [e.target.name]: e.target.value })
+        setMsg(e.target.value)
+       
+    }
+
+    const sendChat = (event) => {
+
+        event.preventDefault();
+        
+        console.log(messages)
+        if (msg.length > 0) {
+            handleSendMsg(msg);
+            setMsg("");
+        }
+    };
+
+    // ดึง message จาก db
+    useEffect(() => {
+        socket.on("msg-recieve", (input) => {
+            setMessages([...messages,{roomId:input.to, userId:input.from, message:input.message}])
+          });
+    
+        getMessage(id).then(rs => {
+            setMessages(rs.data)
+        })
+    }, []);
+
+    
     return (
         <>
             <div className="flex justify-center items-center py-14 lg:py-4 px-0 bg-slate-200 ">
@@ -69,18 +150,27 @@ export default function ChatroomPage() {
                                             สามารถกดปุ่มไล่ผีได้เลย !"
                                         </p>
                                     </div>
+                                    {
+                                        messages.map((el) => (
+                                            <>
+                                                <h2>{el.message}</h2>
+                                            </>
+                                        ))
+                                    }
                                 </div>
                                 <div className="h-4 mt-2">is texting</div>
-                                <div className="flex mt-5 mr-2 items-center">
+                                <form className="flex mt-5 mr-2 items-center" onSubmit={(event) => sendChat(event)}>
                                     <input
+                                    value={msg}
+                                        onChange={handleChangeMsg}
                                         className="w-full"
                                         type="text"
                                         placeholder="คุยเลย..."
                                     />
-                                    <button className="ิborder-2 border-black w-16 rounded-md">
+                                    <button className="ิborder-2 border-black w-16 rounded-md" type="submit">
                                         ส่ง
                                     </button>
-                                </div>
+                                </form>
                             </div>
                             <div className="hidden lg:flex lg:justify-end w-[356px] pr-4 ">
                                 suggestion text
@@ -106,3 +196,4 @@ export default function ChatroomPage() {
         </>
     )
 }
+

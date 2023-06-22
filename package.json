@@ -12,13 +12,16 @@
     "dependencies": {
         "@svgr/cli": "^8.0.1",
         "add": "^2.0.6",
+        "axios": "^1.4.0",
         "daisyui": "^3.1.1",
         "git": "^0.1.5",
         "group3-frontend": "link:",
+        "io": "^1.4.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.11.2",
-        "react-spotify-web-playback": "^0.14.0"
+        "react-spotify-web-playback": "^0.14.0",
+        "socket.io-client": "^4.6.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.37",
