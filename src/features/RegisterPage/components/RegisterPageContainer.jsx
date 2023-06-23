@@ -8,16 +8,34 @@ import {
   IiX,
 } from '../../../icons'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+
+import validateRegister from './validate/ValidateRegister'
 
 function RegisterPageContainer() {
   const [registerInput, SetRegisterInput] = useState({})
+  const [error, setError] = useState('')
 
   const hdlChangeInput = (e) => {
     SetRegisterInput({ ...registerInput, [e.target.name]: e.target.value })
     console.log(registerInput)
   }
-  const hdlSumbit = (e) => {
-    e.preventDefault()
+  const hdlSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      const result = validateRegister(input)
+      console.log('-------input', input)
+      console.log('-----result', result)
+      if (result) {
+        return setError(result)
+      }
+      setError({})
+      // await register(input)
+      await toast.success('register successfully')
+    } catch (err) {
+      toast.error(err.message)
+      console.log(err)
+    }
   }
   return (
     <div className="flex justify-center items-center h-screen ">
@@ -83,7 +101,7 @@ function RegisterPageContainer() {
         </div>
         <div
           className="cursor-pointer flex justify-center items-center w-32 py-2 px-4 relative"
-          onSubmit={hdlSumbit}
+          onClick={() => hdlSubmit()}
         >
           <IiBtnNew />
           <p className="absolute top-3 z-10">register</p>
