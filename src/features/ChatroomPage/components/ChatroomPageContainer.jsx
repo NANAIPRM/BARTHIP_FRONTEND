@@ -1,16 +1,14 @@
 import Button from '../../../components/button'
-import {
-  IiLogin,
-  IiFace,
-  IiShopping,
-  IiBoy,
-  IiBeer,
-  IiLogo,
-} from '../../../icons'
+import { IiFace, IiShopping, IiBoy, IiBeer, IiLogo } from '../../../icons'
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
+import { useContext } from 'react'
+import { DrinkContext } from '../../../context/DrinkContextComponent'
+import UserAvatar from '../../../components/UserAvatar'
 
 export default function ChatroomPage() {
+  const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+
   return (
     <>
       <div className="flex justify-center lg:px-0 ">
@@ -35,16 +33,22 @@ export default function ChatroomPage() {
                   className="relative top-36 "
                 />
                 <div>
-                  <div className="relative w-24 top-14 mx-auto self-end  ">
+                  {/* <div className="relative w-24 top-14 mx-auto self-end  ">
                     <IiBoy className="w-24" />
                   </div>
                   <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
-                    <IiBeer className="w-[40px] " />
-                  </div>
+                    <img
+                      src={userDrink.image}
+                      alt={userDrink.name}
+                      className="absolute top-0 w-[40px] "
+                    />
+                  </div> */}
+                  <UserAvatar drink={userDrink} />
                 </div>
               </div>
 
-              <div className="hidden lg:block mb-4 mt-2 text-center">
+              <div className="hidden lg:block mb-4 mt-8 text-center">
+                <br />
                 <p className="text-sm">
                   👋หากไม่มีการส่งข้อความนานเกิน 5 นาที
                   อาจโดนผู้เล่นคนอื่นเตะออกได้

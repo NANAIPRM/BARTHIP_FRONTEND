@@ -1,55 +1,18 @@
-import { useState } from 'react'
-import Button from '../../../components/button'
-import {
-  IiBeer,
-  IiBG,
-  IiBoy,
-  IiEdit,
-  IiLogo,
-  IiMessageBox,
-  IiShopping,
-} from '../../../icons'
+import { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { DrinkContext } from '../../../context/DrinkContextComponent'
+
+import { IiBoy, IiEdit, IiLogo, IiShopping } from '../../../icons'
 
 import JoinChatContainer from '../../ChatroomPage/components/JoinChatContainer'
+import DrinkBar from './DrinkBar'
 
 export default function Home() {
-  const [drink, setDrink] = useState(0)
-  function ChooseDrink(idx) {
-    setDrink(idx)
+  const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  function ChooseDrink(item) {
+    setUserDrink(item)
   }
-  const drinks = [
-    {
-      name: 'Beer',
-      desciption: 'รู้สึกคอแห้ง เยี่ยวแตกก็ไม่เป็นไร',
-      image: 'src/assets/iBeer.svg',
-    },
-    {
-      name: 'Red wine',
-      desciption: 'ลงรูปดื่มไวน์ ชีวิตจริงแดกเอ็มร้อย',
-      image: 'src/assets/iRedwine.svg',
-    },
-    {
-      name: 'Midori Sour',
-      desciption: 'เปรี้ยวจี๊ด ปี๊ดซ่า',
-      image: 'src/assets/iCherry.svg',
-    },
-    {
-      name: 'Magarita',
-      desciption: 'ซิญญอริต้า มาการิต้้า กิกี้กาก้า',
-      image: 'src/assets/iLemon.svg',
-    },
-    {
-      name: 'Ontherock',
-      desciption: 'ออนเดอะล็อค น็อคเดอะสเตจ',
-      image: 'src/assets/iOntherock.svg',
-    },
 
-    {
-      name: 'Blue Hawaii',
-      desciption: 'บลูฮาวาย จบ',
-      image: 'src/assets/iPineapple.svg',
-    },
-  ]
   return (
     <>
       <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
@@ -76,21 +39,18 @@ export default function Home() {
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
                   <p className="text-xl">เลือกเครื่องดื่มที่บ่งบอกตัวคุณ</p>
                   <div className="grid grid-rows-1 grid-flow-col w-80 sm:w-96 mx-auto lg:w-[400px] overflow-x-scroll">
-                    {drinks.map((el, idx) => (
-                      <button onClick={() => ChooseDrink(idx)}>
-                        <img
-                          src={el.image}
-                          alt={el.name}
-                          key={idx}
-                          className="w-[40px] h-[52px] py-1 hover:bg-gray-300"
-                        />
-                      </button>
+                    {allDrinks.map((el, idx) => (
+                      <DrinkBar
+                        key={idx}
+                        item={el}
+                        onClick={() => ChooseDrink(el)}
+                      />
                     ))}
                   </div>
                 </div>
                 <div className="px-3 py-3">
-                  <p className="text-xl underline">{drinks[drink].name}</p>
-                  <p className="mt-2">{drinks[drink].desciption}</p>
+                  <p className="text-xl underline">{userDrink.name}</p>
+                  <p className="mt-2">{userDrink.desciption}</p>
                 </div>
               </div>
               <div className="relative">
@@ -105,15 +65,15 @@ export default function Home() {
                   </div>
                   <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
                     <img
-                      src={drinks[drink].image}
-                      alt={drinks[drink].name}
-                      className="w-[40px] "
+                      src={userDrink.image}
+                      alt={userDrink.name}
+                      className="absolute top-0 w-[40px] "
                     />
                   </div>
                 </div>
-                <a href="#" className="absolute bottom-5 right-4 ">
+                <Link to="/shop" className="absolute bottom-5 right-4 ">
                   <IiShopping className="w-28" />
-                </a>
+                </Link>
               </div>
             </div>
             <JoinChatContainer />
