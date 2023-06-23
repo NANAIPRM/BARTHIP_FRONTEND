@@ -1,5 +1,12 @@
 import Button from '../../../components/button'
-import { IiLogin, IiFace, IiShopping, IiBoy, IiBeer } from '../../../icons'
+import {
+  IiLogin,
+  IiFace,
+  IiShopping,
+  IiBoy,
+  IiBeer,
+  IiLogo,
+} from '../../../icons'
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
 
@@ -9,7 +16,7 @@ export default function ChatroomPage() {
       <div className="flex justify-center lg:px-0 ">
         <div className="max-w-7xl w-full mt-7">
           <div className="flex justify-center mb-3 relative">
-            <IiLogin className="w-40" />
+            <IiLogo className="w-40" />
           </div>
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto relative">
             <div className="left-4 top-0 flex items-center absolute">
