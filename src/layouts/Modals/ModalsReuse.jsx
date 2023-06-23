@@ -11,10 +11,7 @@ function ModalsReuse({ title, header, children, className = '' }) {
   }, [show])
   return (
     <div>
-      <div
-        className={`btn border-none bg-transparent ${className}`}
-        onClick={() => setShow(true)}
-      >
+      <div className={` ${className}`} onClick={() => setShow(true)}>
         {title}
       </div>
       {show ? (

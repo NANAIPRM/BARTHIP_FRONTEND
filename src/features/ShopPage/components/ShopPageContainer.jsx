@@ -31,7 +31,6 @@ function ShopPageContainer() {
         {product.map((el, id) => (
           <BuyCard image={el.image} name={el.name} price={el.price} />
         ))}
-        <Random />
       </div>
     </div>
   )
