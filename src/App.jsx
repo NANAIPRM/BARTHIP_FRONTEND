@@ -1,16 +1,43 @@
+import { useEffect, useState } from "react";
+import useGoogle from "./hooks/useGoogle";
+
 function App() {
+  const { user, glogin } = useGoogle();
+
+  const handleCallbackResponse = (response) => {
+    console.log(response.credential);
+    glogin(response.credential);
+  };
+
+  useEffect(() => {
+    // global google
+    window.google?.accounts.id.initialize({
+      client_id:
+        "177252823585-l9q3h51ok9bashd10qnhp03dd83e76ff.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    window.google?.accounts.id.renderButton(document.getElementById("signin"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Hello there</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button className="btn btn-primary">Get Started</button>
+            <p className="py-6">This is google login</p>
+            {user ? (
+              <>
+                <img className="mx-auto" src={user.picture} />
+                <div>{user.name}</div>
+                <button onClick={handleLogout}>logout</button>
+              </>
+            ) : (
+              <button id="signin" className="btn btn-primary"></button>
+            )}
           </div>
         </div>
       </div>
