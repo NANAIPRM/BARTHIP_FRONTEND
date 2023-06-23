@@ -7,8 +7,18 @@ import {
   IiTee,
   IiX,
 } from '../../../icons'
+import { useState } from 'react'
 
 function RegisterPageContainer() {
+  const [registerInput, SetRegisterInput] = useState({})
+
+  const hdlChangeInput = (e) => {
+    SetRegisterInput({ ...registerInput, [e.target.name]: e.target.value })
+    console.log(registerInput)
+  }
+  const hdlSumbit = (e) => {
+    e.preventDefault()
+  }
   return (
     <div className="flex justify-center items-center h-screen ">
       <IiChatBoxNew className="relative mx-auto w-[328px]" />
@@ -21,13 +31,27 @@ function RegisterPageContainer() {
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
             <IiMessageBox className="w-full" />
             <div className="w-full py-4 px-6 absolute flex">
-              <input type="text" placeholder="Nickname" className="w-full" />
+              <input
+                type="text"
+                placeholder="Nickname"
+                className="w-full"
+                value={registerInput.nickname}
+                name="nickname"
+                onChange={hdlChangeInput}
+              />
             </div>
           </div>
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
             <IiMessageBox className="w-full" />
             <div className="w-full py-6 px-6 absolute flex">
-              <input type="email" placeholder="email" className="w-full" />
+              <input
+                type="email"
+                placeholder="email"
+                className="w-full"
+                value={registerInput.email}
+                name="email"
+                onChange={hdlChangeInput}
+              />
             </div>
           </div>
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
@@ -37,6 +61,9 @@ function RegisterPageContainer() {
                 type="password"
                 placeholder="password"
                 className="w-full"
+                value={registerInput.password}
+                name="password"
+                onChange={hdlChangeInput}
               />
             </div>
           </div>
@@ -44,14 +71,20 @@ function RegisterPageContainer() {
             <IiMessageBox className="w-full" />
             <div className="w-full py-6 px-6 absolute flex">
               <input
-                type="confirmPassword"
+                type="password"
                 placeholder="confirm password"
                 className="w-full"
+                value={registerInput.confirmPassword}
+                name="confirmPassword"
+                onChange={hdlChangeInput}
               />
             </div>
           </div>
         </div>
-        <div className="cursor-pointer flex justify-center items-center w-32 py-2 px-4 relative ">
+        <div
+          className="cursor-pointer flex justify-center items-center w-32 py-2 px-4 relative"
+          onSubmit={hdlSumbit}
+        >
           <IiBtnNew />
           <p className="absolute top-3 z-10">register</p>
         </div>
