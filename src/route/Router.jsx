@@ -28,6 +28,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/chat', element: <ChatroomPage /> },
+      { path: '/chat/:id', element: <ChatroomPage /> },
       { path: '/Boost', element: <BoostPage /> },
       { path: '/shop', element: <ShopPage /> },
       { path: '/payment', element: <PaymentPage /> },

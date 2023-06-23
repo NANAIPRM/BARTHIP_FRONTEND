@@ -3,10 +3,36 @@ import BuyCard from '../../../components/buyCard'
 import Random from '../../../layouts/Modals/Random'
 
 function ShopPageContainer() {
+  const product = [
+    {
+      image: '',
+      name: 'ชานม',
+      price: 30,
+    },
+    {
+      image: '',
+      name: 'ชาไทย',
+      price: 35,
+    },
+    {
+      image: '',
+      name: 'ชาเขียว',
+      price: 30,
+    },
+    {
+      image: '',
+      name: 'ชาชัก',
+      price: 30,
+    },
+  ]
   return (
-    <div>
-      <BuyCard />
-      <Random />
+    <div className="h-screen flex justify-center items-center ">
+      <div className="flex">
+        {product.map((el, id) => (
+          <BuyCard image={el.image} name={el.name} price={el.price} />
+        ))}
+        <Random />
+      </div>
     </div>
   )
 }

@@ -1,5 +1,14 @@
 import { useState } from 'react'
 import Button from '../../../components/button'
+import {
+  IiBeer,
+  IiBG,
+  IiBoy,
+  IiEdit,
+  IiLogo,
+  IiMessageBox,
+  IiShopping,
+} from '../../../icons'
 
 export default function Home() {
   const [drink, setDrink] = useState(0)
@@ -44,7 +53,7 @@ export default function Home() {
       <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
         <div className="max-w-7xl w-full mt-7  mx-auto">
           <div className="flex justify-center mb-3 relative">
-            <img className="w-40 " src="src/assets/iLogo.svg" alt="BarTrip" />
+            <IiLogo className="w-40 " />
           </div>
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
             <div className=" w-full flex flex-col justify-center px-0 sm:px-10 relative mb-4">
@@ -59,11 +68,7 @@ export default function Home() {
                     className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
                   />
                   <button>
-                    <img
-                      className="w-[38px] h-[38px] mx-1"
-                      src="src/assets/iEdit.svg"
-                      alt="pencil"
-                    />
+                    <IiEdit className="w-[38px] h-[38px] mx-1" />
                   </button>
                 </div>
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
@@ -94,7 +99,7 @@ export default function Home() {
                 />
                 <div>
                   <div className="relative w-24 top-14 mx-auto self-end  ">
-                    <img className="w-24" src="src/assets/iBoy.svg" alt="boy" />
+                    <IiBoy className="w-24" />
                   </div>
                   <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
                     <img
@@ -105,16 +110,12 @@ export default function Home() {
                   </div>
                 </div>
                 <a href="#" className="absolute bottom-5 right-4 ">
-                  <img
-                    className="w-28"
-                    src="src/assets/iShopping.svg"
-                    alt="shop"
-                  />
+                  <IiShopping className="w-28" />
                 </a>
               </div>
             </div>
 
-            <div className="bg-yellow-300  mx-auto relative rounded-md">
+            <div className="  mx-auto relative rounded-md">
               <div className="flex justify-center mt-0 lg:mt-4">
                 <p className="text-xl">72 Users are Online</p>
               </div>
@@ -126,7 +127,7 @@ export default function Home() {
                                 /> */}
                 <div className="px-8 py-2">
                   <p className="mt-3 text-xl px-4">อยากทำอะไร</p>
-                  <img src="src/assets/iBG.svg" alt="ิbartender" />
+                  <IiBG />
 
                   <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" />
                   <Button text="สร้างห้องใหม่คุยกับเพื่อน" />
@@ -136,11 +137,7 @@ export default function Home() {
                   </div>
                   <div className="flex mt-5">
                     <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4">
-                      <img
-                        src="src/assets/iMessageBox.svg"
-                        alt="chatbox"
-                        className="w-full "
-                      />
+                      <IiMessageBox className="w-full " />
                       <div className="w-full py-6 px-16 absolute flex">
                         <input
                           type="text"

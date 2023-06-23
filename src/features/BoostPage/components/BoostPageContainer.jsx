@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { IiBartender, IiChatBoxNew, IiLogo, IiTick } from '../../../icons'
 
 function BoostPageContainer() {
   const navigate = useNavigate()
@@ -12,35 +13,35 @@ function BoostPageContainer() {
       <div className="max-w-5xl flex flex-col justify-center mx-auto">
         <div className="flex justify-center">
           <div className="w-44 flex">
-            <img src="src/assets/iLogo.svg" alt="bartrip" />
+            <IiLogo />
           </div>
           <div>
             <div className="py-2 relative w-[80%]">
-              <img
-                src="src/assets/iChatBoxNew.svg"
-                className="relative w-full "
-              />
+              <IiChatBoxNew className="relative w-full " />
               <div className="absolute z-20 top-6 px-10 py-2">
                 <div className="w-36 mx-auto">
-                  <img src="src/assets/iBartender.svg" />
+                  <IiBartender />
                 </div>
                 <div className="flex">
-                  <img src="src/assets/iTick.svg" className="w-6" />
+                  <IiTick className="w-6" />
                   <p className="py-4">เครื่องดื่มที่เหมาะกับคุณ</p>
                 </div>
                 <div className="flex">
-                  <img src="src/assets/iTick.svg" className="w-6" />
+                  <IiTick className="w-6" />
+
                   <p>หมวกที่บ่งบอกสไตล์ของคุณ</p>
                 </div>
                 <div className="flex items-start">
-                  <img src="src/assets/iTick.svg" className="w-6" />
+                  <IiTick className="w-6" />
+
                   <div>
                     ลดการดีเลย์ส่งข้อความตอนคุยกับเพื่อน
                     <div>เพื่อนในห้องได้ผลพลอยได้ไปด้วย</div>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <img src="src/assets/iTick.svg" className="w-6" />
+                  <IiTick className="w-6" />
+
                   <div>
                     รีพอร์ตได้ 3 ครั้ง/วัน
                     <div>(ยูสเซอร์ปกติได้ 1 ครั้ง/วัน)</div>

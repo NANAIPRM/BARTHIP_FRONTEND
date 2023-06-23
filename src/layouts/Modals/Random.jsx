@@ -1,6 +1,7 @@
 import React from 'react'
 import ModalsReuse from './ModalsReuse'
 import { useNavigate } from 'react-router-dom'
+import { IiHead, IiRandom2, IiRandom5 } from '../../icons'
 
 function Random() {
   const navigate = useNavigate()
@@ -10,23 +11,20 @@ function Random() {
 
   return (
     <div className="w-28">
-      <ModalsReuse
-        title={<img src="src/assets/iHead.svg" />}
-        header={'อยากเลือกคุยกับเพื่อนแบบไหนดี'}
-      >
+      <ModalsReuse title={<IiHead />} header={'อยากเลือกคุยกับเพื่อนแบบไหนดี'}>
         <div className="flex justify-center space-x-4 ">
           <div
             className="flex flex-col items-center mt-2"
             onClick={handleClick}
           >
-            <img src="src/assets/iRandom2.svg" className="w-56" />
+            <IiRandom2 className="w-56" />
             <p>เลือกสองต่อสอง</p>
           </div>
           <div
             className="flex flex-col items-center mt-2 "
             onClick={handleClick}
           >
-            <img src="src/assets/iRandom5.svg" className="w-56" />
+            <IiRandom5 className="w-56" />
             <p>เลือกเปิดตี้หมู่</p>
           </div>
         </div>
