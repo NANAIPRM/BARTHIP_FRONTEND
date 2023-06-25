@@ -1,22 +1,41 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { login } from '../../../api/auth-api'
 import { IiBoxbuy, IiLogin, IiMessageBox, IiTee, IiX } from '../../../icons'
+import validateLogin from './validate/validate-login'
+const loginInput = {
+  email: '',
+  password: '',
+}
 
 function LoginPageContainer() {
-  const [loginInput, setLoginInput] = useState({ email: '', password: '' })
+  const [input, setInput] = useState(loginInput)
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (loginInput.email && loginInput.password) {
-      await loginFn(loginInput)
+    try {
+      e.preventDefault()
+      const result = validateLogin(input)
+      if (result) {
+        return setError(result)
+      }
+      setError('')
+      await login(input)
+      toast.success('Login successfully')
       navigate('/')
+    } catch (err) {
+      toast.error(err.response.data.message)
     }
   }
-  const handleOnchangeLogin = (e) =>
-    setLoginInput({ ...loginInput, [e.target.name]: e.target.value })
+
+  const handleChangeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value })
+  }
+
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen">
       <IiBoxbuy className="relative mx-auto w-[500px]" />
       <div className="w-[20vw] mx-auto flex flex-col justify-center items-center py-8 absolute">
         <Link to="/">
@@ -33,8 +52,8 @@ function LoginPageContainer() {
                 name="email"
                 required
                 className="w-full"
-                value={loginInput.email}
-                onChange={(e) => handleOnchangeLogin(e)}
+                value={input.email}
+                onChange={handleChangeInput}
               />
             </div>
           </div>
@@ -47,8 +66,8 @@ function LoginPageContainer() {
                 placeholder="password"
                 name="password"
                 className="w-full"
-                value={loginInput.password}
-                onChange={(e) => handleOnchangeLogin(e)}
+                value={input.password}
+                onChange={handleChangeInput}
               />
             </div>
           </div>
@@ -57,10 +76,11 @@ function LoginPageContainer() {
               sign up?
             </Link>
           </label>
+          {error && <p className="text-red-500">{error}</p>}
+          <button className="cursor-pointer flex justify-center items-center w-40 py-2 px-4">
+            <IiLogin />
+          </button>
         </form>
-        <button className="cursor-pointer flex justify-center items-center w-40 py-2 px-4  ">
-          <IiLogin />
-        </button>
       </div>
     </div>
   )

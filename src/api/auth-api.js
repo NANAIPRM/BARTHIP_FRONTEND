@@ -1,9 +1,4 @@
-// import axios from './axios'
+import axios from './axios'
 
-// const appApi = axios.create({
-//   baseURL: 'http://localhost:8080',
-// })
-
-// export const register = (input) => {
-//   return appApi.post('/auth/register', input)
-// }
+export const register = (input) => axios.post('/auth/register', input)
+export const login = (input) => axios.post('/auth/login', input)

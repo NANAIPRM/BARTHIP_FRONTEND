@@ -9,38 +9,46 @@ import {
 } from '../../../icons'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { register } from '../../../api/auth-api'
+import validateRegister from './validate/validate-registor'
 
-import validateRegister from './validate/ValidateRegister'
+const registerInput = {
+  nickname: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
 
 function RegisterPageContainer() {
-  const [registerInput, SetRegisterInput] = useState({})
+  const [input, setInput] = useState(registerInput)
   const [error, setError] = useState('')
 
   const hdlChangeInput = (e) => {
-    SetRegisterInput({ ...registerInput, [e.target.name]: e.target.value })
-    console.log(registerInput)
+    setInput({ ...input, [e.target.name]: e.target.value })
   }
+
   const hdlSubmit = async (e) => {
     try {
       e.preventDefault()
       const result = validateRegister(input)
-      console.log('-------input', input)
-      console.log('-----result', result)
       if (result) {
         return setError(result)
       }
       setError({})
-      // await register(input)
-      await toast.success('register successfully')
+      await register(input)
+      toast.success('register successfully')
     } catch (err) {
-      toast.error(err.message)
-      console.log(err)
+      toast.error(err.response.data.message)
     }
   }
+
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen">
       <IiChatBoxNew className="relative mx-auto w-[328px]" />
-      <div className="w-[20vw] mx-auto flex flex-col justify-center items-center py-8 absolute">
+      <form
+        className="w-[20vw] mx-auto flex flex-col justify-center items-center py-8 absolute"
+        onSubmit={hdlSubmit}
+      >
         <Link to="/">
           <IiX className="absolute top-4 right-4 w-8 cursor-pointer" />
         </Link>
@@ -53,12 +61,13 @@ function RegisterPageContainer() {
                 type="text"
                 placeholder="Nickname"
                 className="w-full"
-                value={registerInput.nickname}
+                value={input.nickname}
                 name="nickname"
                 onChange={hdlChangeInput}
               />
             </div>
           </div>
+          {error.nickname && <p className="text-red-500">{error.nickname}</p>}
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
             <IiMessageBox className="w-full" />
             <div className="w-full py-6 px-6 absolute flex">
@@ -66,12 +75,13 @@ function RegisterPageContainer() {
                 type="email"
                 placeholder="email"
                 className="w-full"
-                value={registerInput.email}
+                value={input.email}
                 name="email"
                 onChange={hdlChangeInput}
               />
             </div>
           </div>
+          {error.email && <p className="text-red-500">{error.email}</p>}
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
             <IiMessageBox className="w-full" />
             <div className="w-full py-6 px-6 absolute flex">
@@ -79,12 +89,13 @@ function RegisterPageContainer() {
                 type="password"
                 placeholder="password"
                 className="w-full"
-                value={registerInput.password}
+                value={input.password}
                 name="password"
                 onChange={hdlChangeInput}
               />
             </div>
           </div>
+          {error.password && <p className="text-red-500">{error.password}</p>}
           <div className="cursor-pointer flex justify-center items-center w-full py-2 px-4 relative">
             <IiMessageBox className="w-full" />
             <div className="w-full py-6 px-6 absolute flex">
@@ -92,21 +103,24 @@ function RegisterPageContainer() {
                 type="password"
                 placeholder="confirm password"
                 className="w-full"
-                value={registerInput.confirmPassword}
+                value={input.confirmPassword}
                 name="confirmPassword"
                 onChange={hdlChangeInput}
               />
             </div>
           </div>
+          {error.confirmPassword && (
+            <p className="text-red-500">{error.confirmPassword}</p>
+          )}
         </div>
-        <div
+        <button
           className="cursor-pointer flex justify-center items-center w-32 py-2 px-4 relative"
-          onClick={() => hdlSubmit()}
+          type="submit"
         >
           <IiBtnNew />
-          <p className="absolute top-3 z-10">register</p>
-        </div>
-      </div>
+          <span className="absolute top-3 z-10">register</span>
+        </button>
+      </form>
     </div>
   )
 }
