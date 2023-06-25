@@ -3,7 +3,7 @@ import { IiFace, IiShopping, IiBoy, IiBeer, IiLogo } from '../../../icons'
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
 import { useContext } from 'react'
-import { DrinkContext } from '../../../context/DrinkContextComponent'
+import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import UserAvatar from '../../../components/UserAvatar'
 
 export default function ChatroomPage() {

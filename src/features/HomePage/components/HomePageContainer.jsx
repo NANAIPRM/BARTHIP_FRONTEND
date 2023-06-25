@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DrinkContext } from '../../../context/DrinkContextComponent'
+import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 
 import { IiBoy, IiEdit, IiLogo, IiShopping } from '../../../icons'
 
