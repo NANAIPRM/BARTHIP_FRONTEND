@@ -6,13 +6,15 @@ import useGoogle from '../../hooks/useGoogle'
 
 function Login() {
   const { user, glogin } = useGoogle()
+  console.log(user)
+
   const handleCallbackResponse = (response) => {
-    console.log(response.credential)
     glogin(response.credential)
   }
 
   useEffect(() => {
     // global google
+
     window.google?.accounts.id.initialize({
       client_id:
         '177252823585-l9q3h51ok9bashd10qnhp03dd83e76ff.apps.googleusercontent.com',
@@ -35,6 +37,10 @@ function Login() {
     navigate('/register')
   }
 
+  const handleLogout = () => {
+    logout()
+  }
+
   return (
     <div className="w-28">
       <ModalsReuse title={<IiLogin />} header={'ล็อคอินกัน!!'}>
@@ -49,7 +55,14 @@ function Login() {
         <hr />
         <div className="flex flex-col items-center mt-2">
           <IiGoogle className="w-20" />
-          <div id="signin"></div>
+          {user ? (
+            <>
+              <img className="mx-auto" src={user.picture} alt={user.name} />
+              <div>{user.name}</div>
+            </>
+          ) : (
+            <div id="signin" className="btn btn-primary"></div>
+          )}
         </div>
         <div
           className="flex flex-col items-center mt-2"
