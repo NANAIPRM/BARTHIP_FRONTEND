@@ -1,7 +1,50 @@
 import React from 'react'
 import { IiChatBox, IiHelp, IiMessageBox, IiReport } from '../../../icons'
+import socket from '../../../configs/socket'
+import useAuth from '../../../hooks/useAuth'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Chatbox() {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const room = location.state?.room
+  const [message, setMessage] = useState('')
+  const [messageList, setMessageList] = useState([])
+
+  useEffect(() => {
+    socket.on('messageReturn', (data) => {
+      setMessageList((prev) => [...prev, data])
+    })
+
+    return () => {
+      socket.off('messageReturn')
+      socket.off('occupantLeft')
+    }
+  }, [])
+
+  const sendMessage = async () => {
+    const now = new Date()
+    const messageContent = {
+      id: user.id,
+      nickname: user.nickname,
+      message: message,
+      room: room,
+      date: now.getHours() + ':' + now.getMinutes(),
+    }
+
+    await socket.emit('message', messageContent)
+    setMessageList((prev) => [...prev, messageContent])
+    setMessage('')
+  }
+
+  const leaveRoom = () => {
+    socket.emit('leaveRoom', room)
+    navigate('/')
+  }
+
   return (
     <div className="mx-auto relative">
       <div className="flex justify-between items-center mx-6 mt-0">
@@ -31,14 +74,41 @@ function Chatbox() {
                 สามารถกดปุ่มไล่ผีได้เลย !"
               </p>
             </div>
+            <div className="overflow-y-scroll h-[428px]">
+              {messageList.map((message, index) =>
+                message.id === user.id ? (
+                  <div key={index} className="my-1 px-2 flex justify-end">
+                    <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                      {message.message}
+                    </p>
+                  </div>
+                ) : (
+                  <div key={index} className="my-1 px-2 flex justify-start">
+                    <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                      {message.message}
+                    </p>
+                  </div>
+                )
+              )}
+            </div>
           </div>
+
           <div className="h-4 mt-2 px-2">is texting</div>
           <div className="flex mt-5 mr-2 items-center">
             <div className="cursor-pointer flex justify-center items-center w-full py-2 px-2">
               <IiMessageBox className="w-full " />
               <div className="w-full py-6 px-16 absolute flex">
-                <input className="w-full" type="text" placeholder="คุยเลย..." />
-                <button className="ิ border-2 border-black w-16 rounded-md">
+                <input
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full"
+                  type="text"
+                  placeholder="คุยเลย..."
+                />
+                <button
+                  onClick={sendMessage}
+                  className="ิ border-2 border-black w-16 rounded-md"
+                >
                   ส่ง
                 </button>
               </div>
@@ -52,6 +122,9 @@ function Chatbox() {
           <p>แจ้งปัญหาหรือตามหาเพื่อนที่หายไปได้ที่</p>
         </div>
       </div>
+      <button className=" rounded bg-red-500 text-white" onClick={leaveRoom}>
+        ออกจากห้อง
+      </button>
     </div>
   )
 }

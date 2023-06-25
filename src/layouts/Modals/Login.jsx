@@ -6,9 +6,9 @@ import useGoogle from '../../hooks/useGoogle'
 
 function Login() {
   const { user, glogin } = useGoogle()
-  console.log(user)
 
   const handleCallbackResponse = (response) => {
+    console.log(response)
     glogin(response.credential)
   }
 
@@ -35,10 +35,6 @@ function Login() {
 
   const handleClickRegister = () => {
     navigate('/register')
-  }
-
-  const handleLogout = () => {
-    logout()
   }
 
   return (

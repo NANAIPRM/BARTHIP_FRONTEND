@@ -2,8 +2,79 @@ import React from 'react'
 import Random from '../../../layouts/Modals/Random'
 import { Link } from 'react-router-dom'
 import { IiBG, IiMessageBox } from '../../../icons'
+import { useState } from 'react'
+import socket from '../../../configs/socket'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import useAuth from '../../../hooks/useAuth'
+import { toast } from 'react-toastify'
 
 function JoinChatContainer() {
+  const { user } = useAuth()
+  const id = user?.id
+
+  useEffect(() => {
+    if (id) {
+      socket.auth = { id }
+      socket.connect()
+    }
+  }, [id, socket])
+
+  const [room, setRoom] = useState('')
+  const navigate = useNavigate()
+  const handleChangeRoom = (e) => {
+    setRoom(e.target.value)
+  }
+
+  const sendRoom = () => {
+    socket.emit('room', room)
+    socket.on('roomJoined', (data) => {
+      if (data.occupants > 2) {
+        navigate('/')
+      }
+      navigate('/chat', { state: { room } })
+    })
+  }
+
+  const randRoom = () => {
+    socket.emit('randRoom')
+    socket.on('roomJoined', (data) => {
+      const room = data.room
+      if (data.occupants > 2) {
+        navigate('/')
+      }
+
+      navigate('/chat', { state: { room } })
+    })
+  }
+
+  useEffect(() => {
+    socket.on('roomFull', (data) => {
+      toast.error('room is full')
+    })
+
+    return () => {
+      socket.off('roomFull') // ยกเลิกการติดตามเหตุการณ์เมื่อคอมโพเนนต์ถูกทำลาย
+    }
+  }, [room])
+
+  const createRoom = async () => {
+    const newRoom = Math.random().toString(36).substring(7) // สุ่มเลขห้อง
+
+    socket.emit('room', newRoom)
+
+    socket.on('roomJoined', (data) => {
+      if (data.occupants > 2 || !newRoom) {
+        navigate('/')
+      }
+      navigate('/chat', { state: { room: newRoom } })
+    })
+
+    socket.on('roomFull', (data) => {
+      toast.error('room is full')
+    })
+  }
+
   return (
     <div className="bg-yellow-300  mx-auto relative rounded-md">
       <div className="flex justify-center mt-0 lg:mt-4">
@@ -20,12 +91,15 @@ function JoinChatContainer() {
           <IiBG />
 
           {/* <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" /> */}
-          <Random />
+          <Random socket={socket} randRoom={randRoom} />
           {/* <Button text="สร้างห้องใหม่คุยกับเพื่อน" /> */}
           <Link to="/chat">
             <div className="cursor-pointer flex justify-center items-center ">
               <IiMessageBox className="w-[369px]" />
-              <div className="w-full py-2 px-16 absolute text-lg flex justify-center">
+              <div
+                className="w-full py-2 px-16 absolute text-lg flex justify-center"
+                onClick={createRoom}
+              >
                 สร้างห้องใหม่คุยกับเพื่อน
               </div>
             </div>
@@ -42,8 +116,12 @@ function JoinChatContainer() {
                   type="text"
                   placeholder="ใส่รหัสโต๊ะ..."
                   className="w-full"
+                  onChange={handleChangeRoom}
                 />
-                <button className=" border-2 border-black w-16 rounded-md">
+                <button
+                  className=" border-2 border-black w-16 rounded-md"
+                  onClick={sendRoom}
+                >
                   จอย
                 </button>
               </div>

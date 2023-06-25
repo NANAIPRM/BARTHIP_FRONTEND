@@ -5,9 +5,12 @@ import Chatbox from './Chatbox'
 import { useContext } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import UserAvatar from '../../../components/UserAvatar'
+import { useLocation } from 'react-router-dom'
 
 export default function ChatroomPage() {
   const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  const location = useLocation()
+  const room = location?.state?.room
 
   return (
     <>
@@ -18,7 +21,7 @@ export default function ChatroomPage() {
           </div>
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto relative">
             <div className="left-4 top-0 flex items-center absolute">
-              <p>รหัสโต๊ะ : priv-926e</p>
+              {room}
               <IiFace className="h-5 ml-2" />
             </div>
             <div className=" w-full flex flex-col  px-0 sm:px-10 justify-center  ">

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { BACKEND_URL } from '../configs/env'
-import { getAccessToken } from '../../utils/localstorage'
-
+import { getAccessToken } from '../utils/localStorage'
 axios.defaults.baseURL = BACKEND_URL
 
 axios.interceptors.request.use(

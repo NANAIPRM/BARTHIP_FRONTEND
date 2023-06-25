@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login } from '../../../api/auth-api'
+import { login, getMe } from '../../../api/auth-api'
 import { IiBoxbuy, IiLogin, IiMessageBox, IiTee, IiX } from '../../../icons'
 import validateLogin from './validate/validate-login'
+import { addAccessToken } from '../../../utils/localStorage'
+import useAuth from '../../../hooks/useAuth'
 const loginInput = {
   email: '',
   password: '',
@@ -13,6 +15,7 @@ function LoginPageContainer() {
   const [input, setInput] = useState(loginInput)
   const navigate = useNavigate()
   const [error, setError] = useState('')
+  const { user, setUser } = useAuth()
 
   const handleSubmit = async (e) => {
     try {
@@ -22,7 +25,10 @@ function LoginPageContainer() {
         return setError(result)
       }
       setError('')
-      await login(input)
+      const loginResult = await login(input)
+      addAccessToken(loginResult.data.accessToken)
+      const meResult = await getMe(loginResult.data.token)
+      setUser(meResult.data.user)
       toast.success('Login successfully')
       navigate('/')
     } catch (err) {
