@@ -8,3 +8,6 @@ body {
   background-color: rgb(248 250 252);
   font-family: "Mali", cursive;
 }
+.hidscroll::-webkit-scrollbar {
+  display: none;
+}
