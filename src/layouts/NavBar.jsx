@@ -11,6 +11,7 @@ export default function Navbar() {
   const { user, logout } = useAuth()
   const handleLogout = () => {
     logout()
+    socket.disconnect()
   }
 
   const handleDisconnect = () => {

@@ -12,6 +12,8 @@ import { toast } from 'react-toastify'
 function JoinChatContainer() {
   const { user } = useAuth()
   const id = user?.id
+  const [onlineUser, setOnlineUser] = useState([])
+  console.log(onlineUser)
 
   useEffect(() => {
     if (id) {
@@ -52,11 +54,16 @@ function JoinChatContainer() {
     socket.on('roomFull', (data) => {
       toast.error('room is full')
     })
+    socket.on('onlinefriends', (data) => {
+      const count = Object.keys(data)
+      setOnlineUser(count)
+    })
 
     return () => {
-      socket.off('roomFull') // ยกเลิกการติดตามเหตุการณ์เมื่อคอมโพเนนต์ถูกทำลาย
+      socket.off('roomFull')
+      socket.off('onlinefriends')
     }
-  }, [room])
+  }, [room, onlineUser])
 
   const createRoom = async () => {
     const newRoom = Math.random().toString(36).substring(7) // สุ่มเลขห้อง
@@ -78,7 +85,7 @@ function JoinChatContainer() {
   return (
     <div className="bg-yellow-300  mx-auto relative rounded-md">
       <div className="flex justify-center mt-0 lg:mt-4">
-        <p className="text-xl">72 Users are Online</p>
+        <p className="text-xl">{onlineUser.length} Users are Online</p>
       </div>
       <div className=" justify-center mt-0 lg:mt-4">
         {/* <img
