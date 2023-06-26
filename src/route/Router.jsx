@@ -5,7 +5,7 @@ import RegisterPage from '../Pages/Register'
 import HomePage from '../Pages/HomePage'
 import ChatroomPage from '../Pages/ChatroomPage'
 import BoostPage from '../Pages/BoostPage'
-
+import AdminPage from '../Pages/AdminPage'
 import ShopPage from '../Pages/ShopPage'
 import PaymentPage from '../Pages/PaymentPage'
 
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/admin',
+    element: <AdminPage />,
   },
   {
     path: '/',

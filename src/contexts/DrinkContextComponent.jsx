@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
+import { getPostApi } from '../api/post-api'
 
 const DrinkContext = createContext()
 
@@ -38,11 +39,20 @@ function DrinkContextComponent({ children }) {
   ]
   const [allDrinks, setDrinks] = useState([])
   const [userDrink, setUserDrink] = useState(drinks[0])
+  console.log(allDrinks)
+
+  const getDrinks = async () => {
+    const res = await getPostApi()
+    console.log(res.data.drinks)
+    setDrinks(res.data.drinks)
+  }
   useEffect(() => {
-    setDrinks(drinks)
+    getDrinks()
   }, [])
   return (
-    <DrinkContext.Provider value={{ allDrinks, userDrink, setUserDrink }}>
+    <DrinkContext.Provider
+      value={{ allDrinks, userDrink, setUserDrink, getDrinks }}
+    >
       {children}
     </DrinkContext.Provider>
   )
