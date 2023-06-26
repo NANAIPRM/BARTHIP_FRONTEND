@@ -13,7 +13,7 @@ function JoinChatContainer() {
   const { user } = useAuth()
   const id = user?.id
   const [onlineUser, setOnlineUser] = useState([])
-  console.log(onlineUser)
+  // console.log(onlineUser)
 
   useEffect(() => {
     if (id) {
@@ -29,25 +29,36 @@ function JoinChatContainer() {
   }
 
   const sendRoom = () => {
-    socket.emit('room', room)
-    socket.on('roomJoined', (data) => {
-      if (data.occupants > 2) {
-        navigate('/')
-      }
-      navigate('/chat', { state: { room } })
-    })
+    if (user) {
+      socket.emit('room', room)
+      socket.on('roomJoined', (data) => {
+        if (data.occupants > 2) {
+          navigate('/')
+        }
+        navigate('/chat', { state: { room } })
+      })
+    } else {
+      navigate('/login')
+      toast.error('Please Login')
+    }
   }
 
   const randRoom = () => {
-    socket.emit('randRoom')
-    socket.on('roomJoined', (data) => {
-      const room = data.room
-      if (data.occupants > 2) {
-        navigate('/')
-      }
-
-      navigate('/chat', { state: { room } })
-    })
+    if (user) {
+      socket.emit('randRoom')
+      socket.on('roomJoined', (data) => {
+        const room = data.room
+        if (data.occupants > 2) {
+          navigate('/')
+        } else if (data.occupants < 2) {
+          // navigate('/chat', { state: { room } })
+        }
+      })
+    } else {
+      console.log('login')
+      navigate('/login')
+      toast.error('Please Login')
+    }
   }
 
   useEffect(() => {
@@ -66,20 +77,23 @@ function JoinChatContainer() {
   }, [room, onlineUser])
 
   const createRoom = async () => {
-    const newRoom = Math.random().toString(36).substring(7) // สุ่มเลขห้อง
+    console.log('first', user)
+    if (user) {
+      console.log('user')
+      const newRoom = Math.random().toString(36).substring(7)
 
-    socket.emit('room', newRoom)
+      socket.emit('room', newRoom)
 
-    socket.on('roomJoined', (data) => {
-      if (data.occupants > 2 || !newRoom) {
-        navigate('/')
-      }
-      navigate('/chat', { state: { room: newRoom } })
-    })
-
-    socket.on('roomFull', (data) => {
-      toast.error('room is full')
-    })
+      socket.on('roomJoined', (data) => {
+        if (data.occupants > 2 || !newRoom) {
+          navigate('/')
+        } else {
+          navigate('/chat', { state: { room: newRoom } })
+        }
+      })
+    } else {
+      navigate('/login')
+    }
   }
 
   return (
@@ -100,17 +114,16 @@ function JoinChatContainer() {
           {/* <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" /> */}
           <Random socket={socket} randRoom={randRoom} />
           {/* <Button text="สร้างห้องใหม่คุยกับเพื่อน" /> */}
-          <Link to="/chat">
-            <div className="cursor-pointer flex justify-center items-center ">
-              <IiMessageBox className="w-[369px]" />
-              <div
-                className="w-full py-2 px-16 absolute text-lg flex justify-center"
-                onClick={createRoom}
-              >
-                สร้างห้องใหม่คุยกับเพื่อน
-              </div>
+
+          <div className="cursor-pointer flex justify-center items-center ">
+            <IiMessageBox className="w-[369px]" />
+            <div
+              className="w-full py-2 px-16 absolute text-lg flex justify-center"
+              onClick={createRoom}
+            >
+              สร้างห้องใหม่คุยกับเพื่อน
             </div>
-          </Link>
+          </div>
 
           <div className="flex justify-center">
             <p className="font-semibold">หรือ</p>

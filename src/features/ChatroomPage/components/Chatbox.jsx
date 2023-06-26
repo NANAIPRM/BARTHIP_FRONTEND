@@ -2,7 +2,7 @@ import React from 'react'
 import { IiChatBox, IiHelp, IiMessageBox, IiReport } from '../../../icons'
 import socket from '../../../configs/socket'
 import useAuth from '../../../hooks/useAuth'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,9 +14,18 @@ function Chatbox() {
   const [message, setMessage] = useState('')
   const [messageList, setMessageList] = useState([])
 
+  const chatElement = useRef()
+  useEffect(() => {
+    // chatElement.current?.lastChild?.scrollIntoView()
+    console.dir(chatElement.current.lastChild)
+  }, [messageList])
   useEffect(() => {
     socket.on('messageReturn', (data) => {
       setMessageList((prev) => [...prev, data])
+      // chatElement.current.scroll({
+      //   top: chatElement.current.scrollHeight
+      //   , behavior: "smooth"
+      // })
     })
 
     return () => {
@@ -25,19 +34,31 @@ function Chatbox() {
     }
   }, [])
 
-  const sendMessage = async () => {
-    const now = new Date()
-    const messageContent = {
-      id: user.id,
-      nickname: user.nickname,
-      message: message,
-      room: room,
-      date: now.getHours() + ':' + now.getMinutes(),
-    }
+  const sendMessage = async (e) => {
+    e.preventDefault()
+    if (message) {
+      const now = new Date()
+      const messageContent = {
+        id: user.id,
+        nickname: user.nickname,
+        message: message,
+        room: room,
+        date: now.getHours() + ':' + now.getMinutes(),
+      }
 
-    await socket.emit('message', messageContent)
-    setMessageList((prev) => [...prev, messageContent])
-    setMessage('')
+      await socket.emit('message', messageContent)
+      setMessageList((prev) => [...prev, messageContent])
+      chatElement.current?.scrollTo({
+        top: chatElement.current.scrollHeight + 300,
+      })
+      console.log(chatElement.current)
+      // chatElement.current.scrollTop = chatElement.current?.scrollHeight
+      // chatElement.current.scroll({
+      //   top: chatElement.current.scrollHeight
+      //   , behavior: "smooth"
+      // })
+      setMessage('')
+    }
   }
 
   const leaveRoom = () => {
@@ -56,29 +77,33 @@ function Chatbox() {
           </button>
         </div>
       </div>
+
       <div className="py-2 relative">
         <IiChatBox className="relative w-full " />
         <div className="absolute z-20 top-6 px-10 py-2">
-          <div className="overflow-y-scroll h-[428px] ">
-            <div className="my-1 px-2">
-              <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
-                "🤟 เพื่อความปลอดภัยในการใช้งาน
-                เราขอแนะนำให้งดส่งข้อมูลส่วนตัวให้กับคนแปลกหน้า
-                ทางเว็บขอสงวนสิทธิ์ในการรับผิดชอบใด ๆ
-                อันเกิดจากการเปิดเผยข้อมูลส่วนตัว"
-              </p>
-            </div>
-            <div className="my-1 px-2">
-              <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
-                "👻 หากพบตัวละครที่กลายเป็นผี จะหมายถึงยูสเซอร์ที่ไม่แอคทีฟแล้ว
-                สามารถกดปุ่มไล่ผีได้เลย !"
-              </p>
-            </div>
-            <div className="overflow-y-scroll h-[428px]">
+          <div className=" h-[428px] mt-5 ">
+            <div
+              ref={chatElement}
+              className="overflow-y-scroll h-[470px]  hidscroll pb-10"
+            >
+              <div className="my-1 px-2">
+                <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                  "🤟 เพื่อความปลอดภัยในการใช้งาน
+                  เราขอแนะนำให้งดส่งข้อมูลส่วนตัวให้กับคนแปลกหน้า
+                  ทางเว็บขอสงวนสิทธิ์ในการรับผิดชอบใด ๆ
+                  อันเกิดจากการเปิดเผยข้อมูลส่วนตัว"
+                </p>
+              </div>
+              <div className="my-1 px-2">
+                <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                  "👻 หากพบตัวละครที่กลายเป็นผี
+                  จะหมายถึงยูสเซอร์ที่ไม่แอคทีฟแล้ว สามารถกดปุ่มไล่ผีได้เลย !"
+                </p>
+              </div>
               {messageList.map((message, index) =>
                 message.id === user.id ? (
-                  <div key={index} className="my-1 px-2 flex justify-end">
-                    <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                  <div key={index} className=" my-1 px-2 flex justify-end ">
+                    <p className="bg-red-200 text-sm border rounded-lg shadow-sm ">
                       {message.message}
                     </p>
                   </div>
@@ -93,11 +118,14 @@ function Chatbox() {
             </div>
           </div>
 
-          <div className="h-4 mt-2 px-2">is texting</div>
+          {/* <div className="h-4 mt-2 px-2">is texting</div> */}
           <div className="flex mt-5 mr-2 items-center">
             <div className="cursor-pointer flex justify-center items-center w-full py-2 px-2">
               <IiMessageBox className="w-full " />
-              <div className="w-full py-6 px-16 absolute flex">
+              <form
+                className="w-full py-6 px-16 absolute  flex"
+                onSubmit={(e) => sendMessage(e)}
+              >
                 <input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -105,13 +133,10 @@ function Chatbox() {
                   type="text"
                   placeholder="คุยเลย..."
                 />
-                <button
-                  onClick={sendMessage}
-                  className="ิ border-2 border-black w-16 rounded-md"
-                >
+                <button className="ิ border-2 border-black w-16 rounded-md">
                   ส่ง
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>

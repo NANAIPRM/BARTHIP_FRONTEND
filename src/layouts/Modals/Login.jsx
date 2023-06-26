@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ModalsReuse from './ModalsReuse'
+import ModalsGoogleLogin from './ModalsGoogleLogin'
 import { useNavigate } from 'react-router-dom'
 import { IiGoogle, IiHead, IiLogin, IiTick } from '../../icons'
 import useGoogle from '../../hooks/useGoogle'
@@ -8,23 +8,31 @@ function Login() {
   const { user, glogin } = useGoogle()
 
   const handleCallbackResponse = (response) => {
-    console.log(response)
     glogin(response.credential)
   }
 
   useEffect(() => {
-    // global google
+    const initializeGoogleAPI = () => {
+      if (window.google?.accounts?.id) {
+        window.google.accounts.id.initialize({
+          client_id:
+            '177252823585-l9q3h51ok9bashd10qnhp03dd83e76ff.apps.googleusercontent.com',
+          callback: handleCallbackResponse,
+        })
 
-    window.google?.accounts.id.initialize({
-      client_id:
-        '177252823585-l9q3h51ok9bashd10qnhp03dd83e76ff.apps.googleusercontent.com',
-      callback: handleCallbackResponse,
-    })
+        window.google.accounts.id.renderButton(
+          document.getElementById('signin'),
+          {
+            theme: 'outline',
+            size: 'large',
+          }
+        )
+      } else {
+        setTimeout(initializeGoogleAPI, 100)
+      }
+    }
 
-    window.google?.accounts.id.renderButton(document.getElementById('signin'), {
-      theme: 'outline',
-      size: 'large',
-    })
+    initializeGoogleAPI()
   }, [])
 
   const navigate = useNavigate()
@@ -39,7 +47,11 @@ function Login() {
 
   return (
     <div className="w-28">
-      <ModalsReuse title={<IiLogin />} header={'ล็อคอินกัน!!'}>
+      <ModalsGoogleLogin
+        title={<IiLogin />}
+        header={'ล็อคอินกัน!!'}
+        id={'signin'}
+      >
         <div className="flex">
           <IiTick className="w-10" />
           <p className="py-4">ได้เครื่องดื่มฟรี คนละแก้ว</p>
@@ -51,14 +63,7 @@ function Login() {
         <hr />
         <div className="flex flex-col items-center mt-2">
           <IiGoogle className="w-20" />
-          {user ? (
-            <>
-              <img className="mx-auto" src={user.picture} alt={user.name} />
-              <div>{user.name}</div>
-            </>
-          ) : (
-            <div id="signin" className="btn btn-primary"></div>
-          )}
+          <div id="signin"></div>
         </div>
         <div
           className="flex flex-col items-center mt-2"
@@ -74,7 +79,7 @@ function Login() {
           <IiHead className="w-20" />
           <p>REGISTER</p>
         </div>
-      </ModalsReuse>
+      </ModalsGoogleLogin>
     </div>
   )
 }
