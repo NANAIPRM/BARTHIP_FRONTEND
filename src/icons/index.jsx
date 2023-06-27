@@ -18,6 +18,10 @@ import iBeer from '../assets/iBeer.svg'
 export function IiBeer({ className }) {
   return <img src={iBeer} className={className} alt="" />
 }
+import iBeerN from '../assets/iBeerN.svg'
+export function IiBeerN({ className }) {
+  return <img src={iBeerN} className={className} alt="" />
+}
 import iBG from '../assets/iBG.svg'
 export function IiBG({ className }) {
   return <img src={iBG} className={className} alt="" />
@@ -105,6 +109,10 @@ export function IiChatBoxNew({ className }) {
 import iCherry from '../assets/iCherry.svg'
 export function IiCherry({ className }) {
   return <img src={iCherry} className={className} alt="" />
+}
+import iCherryN from '../assets/iCherryN.svg'
+export function IiCherryN({ className }) {
+  return <img src={iCherryN} className={className} alt="" />
 }
 import iCircle from '../assets/iCircle.svg'
 export function IiCircle({ className }) {
@@ -258,9 +266,17 @@ import iOntherock from '../assets/iOntherock.svg'
 export function IiOntherock({ className }) {
   return <img src={iOntherock} className={className} alt="" />
 }
+import iOntherockN from '../assets/iOntherockN.svg'
+export function IiOntherockN({ className }) {
+  return <img src={iOntherockN} className={className} alt="" />
+}
 import iPineapple from '../assets/iPineapple.svg'
 export function IiPineapple({ className }) {
   return <img src={iPineapple} className={className} alt="" />
+}
+import iPineappleN from '../assets/iPineappleN.svg'
+export function IiPineappleN({ className }) {
+  return <img src={iPineappleN} className={className} alt="" />
 }
 import iQRcode from '../assets/iQRcode.svg'
 export function IiQRcode({ className }) {
@@ -277,6 +293,10 @@ export function IiRandom5({ className }) {
 import iRedwine from '../assets/iRedwine.svg'
 export function IiRedwine({ className }) {
   return <img src={iRedwine} className={className} alt="" />
+}
+import iRedwineN from '../assets/iRedwineN.svg'
+export function IiRedwineN({ className }) {
+  return <img src={iRedwineN} className={className} alt="" />
 }
 import iRegister from '../assets/iRegister.svg'
 export function IiRegister({ className }) {
@@ -322,11 +342,23 @@ import iWhiskey from '../assets/iWhiskey.svg'
 export function IiWhiskey({ className }) {
   return <img src={iWhiskey} className={className} alt="" />
 }
+import iWhiskeyN from '../assets/iWhiskeyN.svg'
+export function IiWhiskeyN({ className }) {
+  return <img src={iWhiskeyN} className={className} alt="" />
+}
 import iWhitewine from '../assets/iWhitewine.svg'
 export function IiWhitewine({ className }) {
   return <img src={iWhitewine} className={className} alt="" />
 }
+import iWhitewineN from '../assets/iWhitewineN.svg'
+export function IiWhitewineN({ className }) {
+  return <img src={iWhitewineN} className={className} alt="" />
+}
 import iX from '../assets/iX.svg'
 export function IiX({ className }) {
   return <img src={iX} className={className} alt="" />
+}
+import i5head from '../assets/i5head.svg'
+export function Ii5head({ className }) {
+  return <img src={i5head} className={className} alt="" />
 }
