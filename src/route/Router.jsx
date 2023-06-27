@@ -10,6 +10,7 @@ import ShopPage from '../Pages/ShopPage'
 import PaymentPage from '../Pages/PaymentPage'
 
 import Layout from '../layouts/Container'
+import ThankYouPage from '../Pages/ThankyouPage'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       { path: '/shop', element: <ShopPage /> },
       { path: '/payment', element: <PaymentPage /> },
     ],
+  },
+
+  {
+    path: '/thank',
+    element: <ThankYouPage />,
   },
 ])
 
