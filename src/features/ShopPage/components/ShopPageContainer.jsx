@@ -1,8 +1,11 @@
 import React from 'react'
 import BuyCard from '../../../components/buyCard'
 import Random from '../../../layouts/Modals/Random'
+import { useContext } from 'react'
+import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 
 function ShopPageContainer() {
+  const { allDrinks } = useContext(DrinkContext)
   const product = [
     {
       image: '',
@@ -27,9 +30,9 @@ function ShopPageContainer() {
   ]
   return (
     <div className="h-screen flex justify-center items-center ">
-      <div className="flex">
-        {product.map((el, id) => (
-          <BuyCard image={el.image} name={el.name} price={el.price} />
+      <div className="flex flex-wrap w-[70%]  ">
+        {allDrinks.map((el, id) => (
+          <BuyCard image={el.image} name={el.name} price={el.price} key={id} />
         ))}
       </div>
     </div>

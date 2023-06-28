@@ -5,13 +5,16 @@ import DrinkContextComponent from './contexts/DrinkContextComponent.jsx'
 import GoogleContextProvider from './contexts/GoogleContextProvider.jsx'
 import AuthContextProvider from './contexts/AuthContext.jsx'
 import './index.css'
+import PostContextProvider from './contexts/AdminPostContextProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
       <DrinkContextComponent>
         <GoogleContextProvider>
-          <App />
+          <PostContextProvider>
+            <App />
+          </PostContextProvider>
         </GoogleContextProvider>
       </DrinkContextComponent>
     </AuthContextProvider>
