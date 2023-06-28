@@ -171,8 +171,16 @@ export function IiGirlPink({ className }) {
   return <img src={iGirlPink} className={className} alt="" />
 }
 import iGoogle from '../assets/iGoogle.svg'
-export function IiGoogle({ className, onClick }) {
-  return <img src={iGoogle} className={className} onClick={onClick} alt="" />
+export function IiGoogle({ className, onClick, id }) {
+  return (
+    <img
+      src={iGoogle}
+      id={id}
+      className={className}
+      onClick={onClick}
+      alt="Google"
+    />
+  )
 }
 
 import iHatBlue from '../assets/iHatBlue.svg'

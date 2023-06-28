@@ -3,33 +3,26 @@ import ModalsGoogleLogin from './ModalsGoogleLogin'
 import { useNavigate } from 'react-router-dom'
 import { IiGoogle, IiHead, IiLogin, IiTick } from '../../icons'
 import useGoogle from '../../hooks/useGoogle'
+import { GoogleLogin } from 'react-google-login'
+import { GOOGLE_CLIENT_ID } from '../../configs/env'
+import { gapi } from 'gapi-script'
 
 function Login() {
-  const { user, glogin } = useGoogle()
+  const { glogin } = useGoogle()
 
   const handleCallbackResponse = (response) => {
-    glogin(response.credential)
+    console.log(response.tokenId)
+    glogin(response.tokenId)
   }
 
   useEffect(() => {
     const initializeGoogleAPI = () => {
-      if (window.google?.accounts?.id) {
-        window.google.accounts.id.initialize({
-          client_id:
-            '177252823585-l9q3h51ok9bashd10qnhp03dd83e76ff.apps.googleusercontent.com',
-          callback: handleCallbackResponse,
+      gapi.load('client:auth2', () => {
+        gapi.client.init({
+          clientId: GOOGLE_CLIENT_ID,
+          scope: '',
         })
-
-        window.google.accounts.id.renderButton(
-          document.getElementById('signin'),
-          {
-            theme: 'outline',
-            size: 'large',
-          }
-        )
-      } else {
-        setTimeout(initializeGoogleAPI, 100)
-      }
+      })
     }
 
     initializeGoogleAPI()
@@ -44,6 +37,10 @@ function Login() {
   const handleClickRegister = () => {
     navigate('/register')
   }
+
+  const renderCustomGoogleButton = ({ onClick }) => (
+    <IiGoogle className="w-20" onClick={onClick} />
+  )
 
   return (
     <div className="w-28">
@@ -62,8 +59,14 @@ function Login() {
         </div>
         <hr />
         <div className="flex flex-col items-center mt-2">
-          <IiGoogle className="w-20" />
-          <div id="signin"></div>
+          <GoogleLogin
+            icon="eiei"
+            clientId={GOOGLE_CLIENT_ID}
+            buttonText="login"
+            cookiePolicy="single_host_origin"
+            onSuccess={handleCallbackResponse}
+            render={renderCustomGoogleButton}
+          />
         </div>
         <div
           className="flex flex-col items-center mt-2"
