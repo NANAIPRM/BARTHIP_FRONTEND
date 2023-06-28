@@ -1,10 +1,10 @@
 import React from 'react'
-import { IiBoy, Ii5head } from '../icons'
+import { Ii5headN } from '../icons'
 
 function Loading() {
   return (
     <div>
-      <Ii5head className="loading loading-bars bg-white w-28" />
+      <Ii5headN className="loading loading-ring bg-white w-36" />
     </div>
   )
 }
