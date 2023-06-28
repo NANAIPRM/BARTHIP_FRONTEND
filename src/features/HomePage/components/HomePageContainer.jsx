@@ -11,6 +11,7 @@ import { editNameByUserId } from '../../../api/auth-api'
 export default function Home() {
   const { user } = useAuth()
   const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  // console.log(allDrinks)
   const [editName, setEditName] = useState('')
 
   useEffect(() => {

@@ -25,7 +25,7 @@ function JoinChatContainer() {
     return () => {
       socket.off('onlinefriends')
     }
-  }, [socket])
+  }, [])
   const handleChangeRoom = (e) => {
     setRoom(e.target.value)
   }
@@ -34,7 +34,7 @@ function JoinChatContainer() {
     if (user) {
       socket.emit('room', room)
       socket.on('roomJoined', (data) => {
-        if (data.occupants > 2) {
+        if (!room || data.occupants > 2) {
           navigate('/')
         } else if (data.occupants < 2) {
           navigate('/chat', { state: { room } })

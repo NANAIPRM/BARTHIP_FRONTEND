@@ -17,6 +17,7 @@ export default function ChatroomPage() {
   const leaveRoom = () => {
     socket.emit('leaveRoom', room)
     navigate('/')
+    window.location.reload()
   }
 
   return (

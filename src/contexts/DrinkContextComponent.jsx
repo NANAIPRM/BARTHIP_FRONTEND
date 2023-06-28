@@ -39,11 +39,11 @@ function DrinkContextComponent({ children }) {
   ]
   const [allDrinks, setDrinks] = useState([])
   const [userDrink, setUserDrink] = useState(drinks[0])
-  console.log(allDrinks)
+  // console.log(allDrinks)
 
   const getDrinks = async () => {
     const res = await getPostApi()
-    console.log(res.data.drinks)
+    // console.log(res.data.drinks)
     setDrinks(res.data.drinks)
   }
   useEffect(() => {

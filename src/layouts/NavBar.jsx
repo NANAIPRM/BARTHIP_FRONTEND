@@ -15,6 +15,7 @@ export default function Navbar() {
     socket.emit('leaveRoom', room)
     logout()
     navigate('/')
+    window.location.reload()
   }
   const location = useLocation()
   const room = location?.state?.room
@@ -23,6 +24,7 @@ export default function Navbar() {
     console.log(room)
     socket.emit('leaveRoom', room)
     navigate('/')
+    window.location.reload()
   }
   return (
     <>

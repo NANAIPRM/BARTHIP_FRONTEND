@@ -15,9 +15,9 @@ export default function GoogleContextProvider({ children }) {
   const glogin = async (credential) => {
     console.log(credential)
     const res = await googleLogin(credential)
-    console.log(res)
     addAccessToken(res.data.token)
     getMe(res.data.token)
+    window.location.reload()
   }
 
   useEffect(() => {
