@@ -1,16 +1,15 @@
 import React from 'react'
-import ModalsReuse from './ModalsReuse'
 import { useState, useEffect } from 'react'
 import { CLIENT_ID, CLIENT_SECRET } from '../../configs/env'
 import { IiMusicS } from '../../icons'
 
 const handleClick = () => {}
 
-function Music() {
+function DropMusic() {
   const [searchInput, setSearchInput] = useState('')
   const [accessToken, setAccessToken] = useState('')
   const [albums, setAlbums] = useState([])
-
+  const [show, setShow] = useState(false)
   const search = async () => {
     console.log('Search for ' + searchInput)
 
@@ -75,21 +74,27 @@ function Music() {
         result.json().then((data) => setAccessToken(data.access_token))
     )
   }, [])
+
   return (
-    <div className="w-20" onClick={handleClick}>
-      <ModalsReuse title={<IiMusicS />} header={'เสียง'}>
-        <iframe
-          title="Spotify Playlist"
-          src="https://open.spotify.com/embed/playlist/2DQu4yw3Bx58eNEZYIevDl?utm_source=generator"
-          width="100%"
-          height="352"
-          allowFullScreen={true}
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        ></iframe>
-      </ModalsReuse>
+    <div className=" dropdown dropdown-right relative">
+      <div className=" w-16" onClick={() => setShow((p) => !p)}>
+        <IiMusicS />
+      </div>
+
+      <iframe
+        className={`absolute top-100 right-0 w-[300px] ${
+          show ? 'visible' : 'invisible'
+        }`}
+        title="Spotify Playlist"
+        src="https://open.spotify.com/embed/playlist/2DQu4yw3Bx58eNEZYIevDl?utm_source=generator"
+        width="100%"
+        height="150"
+        allowFullScreen={true}
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
     </div>
   )
 }
 
-export default Music
+export default DropMusic
