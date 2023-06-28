@@ -42,9 +42,9 @@ export default function Home() {
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
             <div className=" w-full flex flex-col justify-center px-0 sm:px-10 relative mb-4">
               <div className="max-w-[450px] mx-auto">
-                <div className="flex w-full justify-center lg:justify-start item-center">
+                <div className="flex w-full justify-center  item-center">
                   <p className="text-3xl mr-2 ">สวัสดี...</p>
-                  <form action="" onSubmit={handleEditName}>
+                  <form action="" onSubmit={handleEditName} className="flex">
                     <input
                       defaultValue={editName}
                       onChange={(e) => setEditName(e.target.value)}
@@ -52,7 +52,7 @@ export default function Home() {
                       placeholder="บอกชื่อเราหน่อยนะ"
                       maxLength="20"
                       autoComplete="off"
-                      className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
+                      className="bg-transparent max-w-[270px] h-full text-3xl focus:ring-transparent ring-offset-transparent border-hidden   "
                     />
                     <button type="submit">
                       <IiEdit className="w-[38px] h-[38px] mx-1" />

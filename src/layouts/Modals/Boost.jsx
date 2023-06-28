@@ -10,7 +10,7 @@ function Boost() {
     navigate('/boost')
   }
   return (
-    <div className="w-20 ">
+    <div className="w-16 ">
       <ModalsReuse title={<IiBoostS />} header={'BarTip Boost'}>
         <br />
 

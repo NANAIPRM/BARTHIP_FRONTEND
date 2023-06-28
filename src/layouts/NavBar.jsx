@@ -1,7 +1,7 @@
 import Login from './Modals/Login'
 import Boost from './Modals/Boost'
 import { Link, useNavigate } from 'react-router-dom'
-import Music from './Modals/Music'
+import DropMusic from './Modals/DropMusic'
 import { IiHomeS } from '../icons'
 import { IiLogout } from '../icons'
 import useAuth from '../hooks/useAuth'
@@ -35,7 +35,7 @@ export default function Navbar() {
       </button>
       <div className="flex fixed top-5 right-2 z-50 cursor-pointer ">
         <Boost />
-        <Music />
+        <DropMusic />
         {user ? (
           <div className="w-20" onClick={handleLogout}>
             <IiLogout />
