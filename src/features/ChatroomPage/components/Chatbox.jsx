@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 
 function Chatbox() {
   const { user } = useAuth()
-  const navigate = useNavigate()
   const location = useLocation()
   const room = location.state?.room
   const [message, setMessage] = useState('')

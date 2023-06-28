@@ -25,7 +25,7 @@ function JoinChatContainer() {
     return () => {
       socket.off('onlinefriends')
     }
-  }, [])
+  }, [socket])
   const handleChangeRoom = (e) => {
     setRoom(e.target.value)
   }
@@ -98,7 +98,9 @@ function JoinChatContainer() {
   return (
     <div className="bg-yellow-300  mx-auto relative rounded-md">
       <div className="flex justify-center mt-0 lg:mt-4">
-        <p className="text-xl">{onlineUser?.length} Users are Online</p>
+        {user && (
+          <p className="text-xl">{onlineUser?.length} Users are Online</p>
+        )}
       </div>
       <div className=" justify-center mt-0 lg:mt-4">
         {/* <img

@@ -10,14 +10,13 @@ import socket from '../../../configs/socket'
 import { useNavigate } from 'react-router-dom'
 
 export default function ChatroomPage() {
-  const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  const { userDrink } = useContext(DrinkContext)
   const navigate = useNavigate()
   const location = useLocation()
   const room = location?.state?.room
   const leaveRoom = () => {
     socket.emit('leaveRoom', room)
     navigate('/')
-    window.location.reload()
   }
 
   return (

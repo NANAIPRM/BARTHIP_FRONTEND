@@ -1,6 +1,6 @@
 import Login from './Modals/Login'
 import Boost from './Modals/Boost'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Music from './Modals/Music'
 import { IiHomeS } from '../icons'
 import { IiLogout } from '../icons'
@@ -9,25 +9,25 @@ import socket from '../configs/socket'
 import { useLocation } from 'react-router-dom'
 
 export default function Navbar() {
+  const navigate = useNavigate()
   const { user, logout } = useAuth()
   const handleLogout = () => {
-    logout()
     socket.emit('leaveRoom', room)
+    logout()
     navigate('/')
-    window.location.reload()
   }
   const location = useLocation()
   const room = location?.state?.room
 
   const handleDisconnect = () => {
+    console.log(room)
     socket.emit('leaveRoom', room)
     navigate('/')
-    window.location.reload()
   }
   return (
     <>
       <button>
-        <Link to="/" onClick={handleDisconnect}>
+        <Link onClick={handleDisconnect}>
           <IiHomeS className="w-12 fixed top-5 left-5" />
         </Link>
       </button>
