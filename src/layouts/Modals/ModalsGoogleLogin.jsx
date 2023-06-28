@@ -14,7 +14,6 @@ function ModalsGoogleLogin({ id, title, header, children, className = '' }) {
         }`}
       >
         <form className="modal-box" onClick={(e) => e.stopPropagation()}>
-          {console.log('google')}
           <button
             onClick={() => setShow(false)}
             type="button"

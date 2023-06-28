@@ -17,7 +17,6 @@ function Chatbox() {
   const chatElement = useRef()
   useEffect(() => {
     // chatElement.current?.lastChild?.scrollIntoView()
-    console.dir(chatElement.current.lastChild)
   }, [messageList])
   useEffect(() => {
     socket.on('messageReturn', (data) => {
@@ -59,11 +58,6 @@ function Chatbox() {
       // })
       setMessage('')
     }
-  }
-
-  const leaveRoom = () => {
-    socket.emit('leaveRoom', room)
-    navigate('/')
   }
 
   return (
@@ -133,7 +127,7 @@ function Chatbox() {
                   type="text"
                   placeholder="คุยเลย..."
                 />
-                <button className="ิ border-2 border-black w-16 rounded-md">
+                <button className=" border-2 border-black w-16 rounded-md">
                   ส่ง
                 </button>
               </form>
@@ -147,9 +141,6 @@ function Chatbox() {
           <p>แจ้งปัญหาหรือตามหาเพื่อนที่หายไปได้ที่</p>
         </div>
       </div>
-      <button className=" rounded bg-red-500 text-white" onClick={leaveRoom}>
-        ออกจากห้อง
-      </button>
     </div>
   )
 }

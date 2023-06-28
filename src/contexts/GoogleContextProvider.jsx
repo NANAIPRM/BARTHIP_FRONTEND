@@ -11,6 +11,7 @@ export const GoogleContext = createContext()
 
 export default function GoogleContextProvider({ children }) {
   const [user, setUser] = useState(null)
+  console.log(user)
 
   const glogin = async (credential) => {
     console.log(credential)

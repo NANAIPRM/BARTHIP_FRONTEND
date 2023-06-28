@@ -15,7 +15,7 @@ function LoginPageContainer() {
   const [input, setInput] = useState(loginInput)
   const navigate = useNavigate()
   const [error, setError] = useState('')
-  const { user, setUser } = useAuth()
+  const { user, setUser, setReload } = useAuth()
 
   const handleSubmit = async (e) => {
     try {

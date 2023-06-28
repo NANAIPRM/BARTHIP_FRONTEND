@@ -1,16 +1,34 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
-
+import useAuth from '../../../hooks/useAuth'
 import { IiBoy, IiEdit, IiLogo, IiShopping } from '../../../icons'
-
 import JoinChatContainer from '../../ChatroomPage/components/JoinChatContainer'
 import DrinkBar from './DrinkBar'
+import { useEffect } from 'react'
+import { editNameByUserId } from '../../../api/auth-api'
 
 export default function Home() {
+  const { user } = useAuth()
   const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  const [editName, setEditName] = useState('')
+
+  useEffect(() => {
+    setEditName(user?.nickname || '')
+  }, [user])
+
   function ChooseDrink(item) {
     setUserDrink(item)
+  }
+
+  const handleEditName = async (e) => {
+    try {
+      e.preventDefault()
+      await editNameByUserId(user.id, editName)
+      console.log('Nickname updated successfully')
+    } catch (error) {
+      console.log('Error updating nickname:', error)
+    }
   }
 
   return (
@@ -25,16 +43,20 @@ export default function Home() {
               <div className="max-w-[450px] mx-auto">
                 <div className="flex w-full justify-center lg:justify-start item-center">
                   <p className="text-3xl mr-2 ">สวัสดี...</p>
-                  <input
-                    type="text"
-                    placeholder="บอกชื่อเราหน่อยนะ"
-                    maxLength="20"
-                    autoComplete="off"
-                    className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
-                  />
-                  <button>
-                    <IiEdit className="w-[38px] h-[38px] mx-1" />
-                  </button>
+                  <form action="" onSubmit={handleEditName}>
+                    <input
+                      defaultValue={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      type="text"
+                      placeholder="บอกชื่อเราหน่อยนะ"
+                      maxLength="20"
+                      autoComplete="off"
+                      className="bg-transparent max-w-[270px] text-3xl focus:ring-transparent ring-offset-transparent border-hidden "
+                    />
+                    <button type="submit">
+                      <IiEdit className="w-[38px] h-[38px] mx-1" />
+                    </button>
+                  </form>
                 </div>
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
                   <p className="text-xl">เลือกเครื่องดื่มที่บ่งบอกตัวคุณ</p>

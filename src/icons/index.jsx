@@ -135,8 +135,8 @@ export function Iidrinks({ className }) {
   return <img src={idrinks} className={className} alt="" />
 }
 import iEdit from '../assets/iEdit.svg'
-export function IiEdit({ className }) {
-  return <img src={iEdit} className={className} alt="" />
+export function IiEdit({ className, onClick }) {
+  return <img src={iEdit} className={className} alt="" onClick={onClick} />
 }
 import iFace from '../assets/iFace.svg'
 export function IiFace({ className }) {
@@ -163,9 +163,10 @@ export function IiGirlPink({ className }) {
   return <img src={iGirlPink} className={className} alt="" />
 }
 import iGoogle from '../assets/iGoogle.svg'
-export function IiGoogle({ className }) {
-  return <img src={iGoogle} className={className} alt="" />
+export function IiGoogle({ className, onClick }) {
+  return <img src={iGoogle} className={className} onClick={onClick} alt="" />
 }
+
 import iHatBlue from '../assets/iHatBlue.svg'
 export function IiHatBlue({ className }) {
   return <img src={iHatBlue} className={className} alt="" />

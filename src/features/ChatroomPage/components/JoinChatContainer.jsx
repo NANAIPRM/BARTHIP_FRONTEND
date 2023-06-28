@@ -11,19 +11,21 @@ import { toast } from 'react-toastify'
 
 function JoinChatContainer() {
   const { user } = useAuth()
-  const id = user?.id
   const [onlineUser, setOnlineUser] = useState([])
   // console.log(onlineUser)
 
-  useEffect(() => {
-    if (id) {
-      socket.auth = { id }
-      socket.connect()
-    }
-  }, [id, socket])
-
   const [room, setRoom] = useState('')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    socket.on('onlinefriends', (data) => {
+      const count = Object.keys(data)
+      setOnlineUser(count)
+    })
+    return () => {
+      socket.off('onlinefriends')
+    }
+  }, [])
   const handleChangeRoom = (e) => {
     setRoom(e.target.value)
   }
@@ -34,8 +36,9 @@ function JoinChatContainer() {
       socket.on('roomJoined', (data) => {
         if (data.occupants > 2) {
           navigate('/')
+        } else if (data.occupants < 2) {
+          navigate('/chat', { state: { room } })
         }
-        navigate('/chat', { state: { room } })
       })
     } else {
       navigate('/login')
@@ -48,10 +51,11 @@ function JoinChatContainer() {
       socket.emit('randRoom')
       socket.on('roomJoined', (data) => {
         const room = data.room
-        if (data.occupants > 2) {
+        if (!room) {
           navigate('/')
-        } else if (data.occupants < 2) {
-          // navigate('/chat', { state: { room } })
+          toast.error('No Any Room Empty')
+        } else if (data.occupants <= 2) {
+          navigate('/chat', { state: { room } })
         }
       })
     } else {
@@ -65,16 +69,11 @@ function JoinChatContainer() {
     socket.on('roomFull', (data) => {
       toast.error('room is full')
     })
-    socket.on('onlinefriends', (data) => {
-      const count = Object.keys(data)
-      setOnlineUser(count)
-    })
 
     return () => {
       socket.off('roomFull')
-      socket.off('onlinefriends')
     }
-  }, [room, onlineUser])
+  }, [room])
 
   const createRoom = async () => {
     console.log('first', user)
@@ -99,7 +98,7 @@ function JoinChatContainer() {
   return (
     <div className="bg-yellow-300  mx-auto relative rounded-md">
       <div className="flex justify-center mt-0 lg:mt-4">
-        <p className="text-xl">{onlineUser.length} Users are Online</p>
+        <p className="text-xl">{onlineUser?.length} Users are Online</p>
       </div>
       <div className=" justify-center mt-0 lg:mt-4">
         {/* <img

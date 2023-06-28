@@ -6,16 +6,23 @@ import { IiHomeS } from '../icons'
 import { IiLogout } from '../icons'
 import useAuth from '../hooks/useAuth'
 import socket from '../configs/socket'
+import { useLocation } from 'react-router-dom'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
   const handleLogout = () => {
     logout()
-    socket.disconnect()
+    socket.emit('leaveRoom', room)
+    navigate('/')
+    window.location.reload()
   }
+  const location = useLocation()
+  const room = location?.state?.room
 
   const handleDisconnect = () => {
-    socket.disconnect()
+    socket.emit('leaveRoom', room)
+    navigate('/')
+    window.location.reload()
   }
   return (
     <>

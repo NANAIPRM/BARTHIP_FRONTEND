@@ -6,11 +6,19 @@ import { useContext } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import UserAvatar from '../../../components/UserAvatar'
 import { useLocation } from 'react-router-dom'
+import socket from '../../../configs/socket'
+import { useNavigate } from 'react-router-dom'
 
 export default function ChatroomPage() {
   const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  const navigate = useNavigate()
   const location = useLocation()
   const room = location?.state?.room
+  const leaveRoom = () => {
+    socket.emit('leaveRoom', room)
+    navigate('/')
+    window.location.reload()
+  }
 
   return (
     <>
@@ -57,6 +65,13 @@ export default function ChatroomPage() {
                   อาจโดนผู้เล่นคนอื่นเตะออกได้
                 </p>
               </div>
+              <br />
+              <button
+                className=" border-2 border-black w-full rounded-md bg-red-400 text-white"
+                onClick={() => leaveRoom()}
+              >
+                ออกจากห้อง
+              </button>
             </div>
             <Chatbox />
           </div>

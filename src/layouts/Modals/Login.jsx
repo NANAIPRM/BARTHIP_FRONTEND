@@ -5,7 +5,7 @@ import { IiGoogle, IiHead, IiLogin, IiTick } from '../../icons'
 import useGoogle from '../../hooks/useGoogle'
 
 function Login() {
-  const { user, glogin } = useGoogle()
+  const { glogin } = useGoogle()
 
   const handleCallbackResponse = (response) => {
     glogin(response.credential)
