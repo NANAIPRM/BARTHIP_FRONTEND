@@ -252,8 +252,8 @@ export function IiMusic({ className }) {
   return <img src={iMusic} className={className} alt="" />
 }
 import iMusicS from '../assets/iMusicS.svg'
-export function IiMusicS({ className }) {
-  return <img src={iMusicS} className={className} alt="" />
+export function IiMusicS({ className, onClick }) {
+  return <img src={iMusicS} className={className} onClick={onClick} alt="" />
 }
 import iNo from '../assets/iNo.svg'
 export function IiNo({ className }) {

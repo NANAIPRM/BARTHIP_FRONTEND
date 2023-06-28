@@ -20,10 +20,9 @@ function Chatbox() {
   useEffect(() => {
     socket.on('messageReturn', (data) => {
       setMessageList((prev) => [...prev, data])
-      // chatElement.current.scroll({
-      //   top: chatElement.current.scrollHeight
-      //   , behavior: "smooth"
-      // })
+      chatElement.current?.scrollTo({
+        top: chatElement.current.scrollHeight + 300,
+      })
     })
 
     return () => {
