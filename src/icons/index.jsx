@@ -363,3 +363,11 @@ import i5head from '../assets/i5head.svg'
 export function Ii5head({ className }) {
   return <img src={i5head} className={className} alt="" />
 }
+import i5headN from '../assets/i5headN.svg'
+export function Ii5headN({ className }) {
+  return <img src={i5headN} className={className} alt="" />
+}
+import iThankYou from '../assets/iThankYou.svg'
+export function IiThankYou({ className }) {
+  return <img src={iThankYou} className={className} alt="" />
+}
