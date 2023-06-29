@@ -29,13 +29,43 @@ function ShopPageContainer() {
     },
   ]
   return (
-    <div className="h-screen flex justify-center items-center ">
-      <div className="flex flex-wrap w-[70%]  ">
-        {allDrinks.map((el, id) => (
-          <BuyCard image={el.image} name={el.name} price={el.price} key={id} />
-        ))}
+    <>
+      <div className="h-full flex flex-col justify-center items-center bg-gray-400">
+        <div className="flex flex-wrap w-[70%] bg-yellow-300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Drinks</h1>
+          {allDrinks.map((el, id) => (
+            <BuyCard
+              image={el.image}
+              name={el.name}
+              price={el.price}
+              key={id}
+            />
+          ))}
+        </div>
+        <div className="flex flex-wrap w-[70%] bg-blue-300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Avatar</h1>
+          {allDrinks.map((el, id) => (
+            <BuyCard
+              image={el.image}
+              name={el.name}
+              price={el.price}
+              key={id}
+            />
+          ))}
+        </div>
+        <div className="flex flex-wrap w-[70%] bg-pink-300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Hat</h1>
+          {allDrinks.map((el, id) => (
+            <BuyCard
+              image={el.image}
+              name={el.name}
+              price={el.price}
+              key={id}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

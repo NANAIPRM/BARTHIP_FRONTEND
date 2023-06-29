@@ -75,6 +75,12 @@ function AdminPageContainer() {
         />
         <IiHead className="w-14 h-14 " />
       </label>
+      <label for="category">Choose category</label>
+      <select name="category" id="category">
+        <option value="Avatar">Avatar</option>
+        <option value="Hat">Hat</option>
+        <option value="Drink">Drink</option>
+      </select>
       <textarea
         placeholder="Drink Name"
         name="name"
