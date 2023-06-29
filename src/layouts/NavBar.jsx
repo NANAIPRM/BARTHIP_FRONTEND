@@ -14,17 +14,20 @@ export default function Navbar() {
   const handleLogout = () => {
     socket.emit('leaveRoom', room)
     logout()
-    navigate('/')
-    window.location.reload()
+    setTimeout(() => {
+      navigate('/')
+      window.location.reload()
+    }, 1000)
   }
   const location = useLocation()
   const room = location?.state?.room
 
   const handleDisconnect = () => {
-    console.log(room)
     socket.emit('leaveRoom', room)
-    navigate('/')
-    window.location.reload()
+    setTimeout(() => {
+      navigate('/')
+      window.location.reload()
+    }, 1000)
   }
   return (
     <>

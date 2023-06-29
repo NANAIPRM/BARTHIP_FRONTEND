@@ -14,10 +14,12 @@ export default function ChatroomPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const room = location?.state?.room
-  const leaveRoom = () => {
-    socket.emit('leaveRoom', room)
-    navigate('/')
-    window.location.reload()
+  const leaveRoom = async () => {
+    await socket.emit('leaveRoom', room)
+    setTimeout(() => {
+      navigate('/')
+      window.location.reload()
+    }, 1000)
   }
 
   return (
