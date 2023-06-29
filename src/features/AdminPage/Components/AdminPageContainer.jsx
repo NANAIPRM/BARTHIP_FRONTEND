@@ -45,8 +45,18 @@ function AdminPageContainer() {
       console.log(file)
       formData.append('image', file)
     }
-    console.log(formData)
-    const res = await postApi(formData)
+    const category = document.getElementById('category').value
+    const endpoint =
+      category === 'Hat'
+        ? '/product/hat'
+        : category === 'Drink'
+        ? '/product/drink'
+        : category === 'Avatar'
+        ? '/product/avatar'
+        : ''
+    // console.log(formData)
+    const res = await postApi(formData, endpoint)
+    console.log(res)
     getDrinks()
     navigate('/shop')
   }

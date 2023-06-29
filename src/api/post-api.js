@@ -1,10 +1,8 @@
 import axios from './axios'
 
 export const editPostApi = (editInput) => axios.post('/post/edit', editInput)
-export const postApi = (postInput) =>
-  axios.post('/product/drink', postInput, {
-    // headers: { 'Content-Type': 'multipart/form-data' },
-  })
+export const postApi = (postInput, endpoint) =>
+  axios.post(`${endpoint}`, postInput)
 export const addAvatarApi = (postInput) =>
   axios.post('/product/avatar', postInput)
 export const addHatApi = (postInput) => axios.post('/product/hat', postInput)

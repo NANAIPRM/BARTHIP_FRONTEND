@@ -6,6 +6,7 @@ const PostContext = createContext()
 
 function PostContextProvider({ children }) {
   const [post, setPost] = useState(null)
+
   useEffect(() => {}, [])
   async function postFn(postInput) {
     const res = await postApi(postInput)
