@@ -61,7 +61,7 @@ export default function Home() {
                 </div>
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
                   <p className="text-xl">เลือกเครื่องดื่มที่บ่งบอกตัวคุณ</p>
-                  <div className="grid grid-rows-1 grid-flow-col w-[320px] sm:min-w-[320px] mx-auto lg:w-[400px] overflow-x-scroll">
+                  <div className="flex  w-full overflow-x-scroll">
                     {allDrinks.map((el, idx) => (
                       <DrinkBar
                         key={idx}
