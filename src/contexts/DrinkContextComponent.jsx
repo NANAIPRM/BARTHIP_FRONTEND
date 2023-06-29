@@ -4,7 +4,7 @@ import { getPostApi } from '../api/post-api'
 const DrinkContext = createContext()
 
 function DrinkContextComponent({ children }) {
-  const drinks = [
+  const defalutDrinks = [
     {
       name: 'Beer',
       desciption: 'รู้สึกคอแห้ง เยี่ยวแตกก็ไม่เป็นไร',
@@ -38,7 +38,7 @@ function DrinkContextComponent({ children }) {
     },
   ]
   const [allDrinks, setDrinks] = useState([])
-  const [userDrink, setUserDrink] = useState(drinks[0])
+  const [userDrink, setUserDrink] = useState([])
   // console.log(allDrinks)
 
   const getDrinks = async () => {
@@ -51,7 +51,7 @@ function DrinkContextComponent({ children }) {
   }, [])
   return (
     <DrinkContext.Provider
-      value={{ allDrinks, userDrink, setUserDrink, getDrinks }}
+      value={{ allDrinks, userDrink, setUserDrink, getDrinks, defalutDrinks }}
     >
       {children}
     </DrinkContext.Provider>

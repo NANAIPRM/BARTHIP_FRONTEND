@@ -10,7 +10,8 @@ import { editNameByUserId } from '../../../api/auth-api'
 
 export default function Home() {
   const { user } = useAuth()
-  const { allDrinks, userDrink, setUserDrink } = useContext(DrinkContext)
+  const { allDrinks, userDrink, setUserDrink, defalutDrinks } =
+    useContext(DrinkContext)
   // console.log(allDrinks)
   const [editName, setEditName] = useState('')
 
@@ -62,6 +63,13 @@ export default function Home() {
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
                   <p className="text-xl">เลือกเครื่องดื่มที่บ่งบอกตัวคุณ</p>
                   <div className="flex  w-full overflow-x-scroll">
+                    {defalutDrinks.map((el, idx) => (
+                      <DrinkBar
+                        key={idx}
+                        item={el}
+                        onClick={() => ChooseDrink(el)}
+                      />
+                    ))}
                     {allDrinks.map((el, idx) => (
                       <DrinkBar
                         key={idx}
