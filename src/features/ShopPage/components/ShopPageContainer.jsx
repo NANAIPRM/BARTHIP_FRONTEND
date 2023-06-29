@@ -1,12 +1,15 @@
 import React from 'react'
 import BuyCard from '../../../components/buyCard'
-
+import Random from '../../../layouts/Modals/Random'
 import { useContext } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
-import { IiBoy } from '../../../icons'
+import { AvatarContext } from '../../../contexts/AvatarContextComponents'
+import { HatContext } from '../../../contexts/HatContextComponet'
 
 function ShopPageContainer() {
   const { allDrinks } = useContext(DrinkContext)
+  const { Avatar } = useContext(AvatarContext)
+  const { hat } = useContext(HatContext)
   const product = [
     {
       image: '',
@@ -16,7 +19,7 @@ function ShopPageContainer() {
     {
       image: '',
       name: 'ชาไทย',
-      price: 30,
+      price: 35,
     },
     {
       image: '',
@@ -30,15 +33,33 @@ function ShopPageContainer() {
     },
   ]
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="flex w-36 mt-10">
-        <IiBoy />
-      </div>
-      <div>
-        {' '}
-        <p className="text-xl underline">Drinks</p>
-        <div className="flex w-[100%]">
-          {product.map((el, id) => (
+    <>
+      <div className="h-full flex flex-col justify-center items-center bg-gray-400">
+        <div className="flex flex-wrap w-[70%] bg-yellow-300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Drinks</h1>
+          {allDrinks.map((el, id) => (
+            <BuyCard
+              image={el.image}
+              name={el.name}
+              price={el.price}
+              key={id}
+            />
+          ))}
+        </div>
+        <div className="flex flex-wrap w-[70%] bg-blue-300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Avatar</h1>
+          {Avatar.map((el, id) => (
+            <BuyCard
+              image={el.image}
+              name={el.name}
+              price={el.price}
+              key={id}
+            />
+          ))}
+        </div>
+        <div className="flex flex-wrap w-[70%] bg--300 justify-center">
+          <h1 className="w-full m-4 font-semibold text-2xl">Hat</h1>
+          {hat.map((el, id) => (
             <BuyCard
               image={el.image}
               name={el.name}
@@ -48,38 +69,7 @@ function ShopPageContainer() {
           ))}
         </div>
       </div>
-      <br />
-      <div>
-        {' '}
-        <p className="text-xl underline">Hats</p>
-        <div className="flex w-[100%]">
-          {product.map((el, id) => (
-            <BuyCard
-              image={el.image}
-              name={el.name}
-              price={el.price}
-              key={id}
-            />
-          ))}
-        </div>
-      </div>
-      <br />
-
-      <div>
-        {' '}
-        <p className="text-xl underline">Avatars</p>
-        <div className="flex w-[100%]">
-          {product.map((el, id) => (
-            <BuyCard
-              image={el.image}
-              name={el.name}
-              price={el.price}
-              key={id}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

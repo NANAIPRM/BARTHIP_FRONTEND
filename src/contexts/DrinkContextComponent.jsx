@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { getPostApi } from '../api/post-api'
+import { getPostApi, getDrinkByUserId } from '../api/post-api'
 
 const DrinkContext = createContext()
 
@@ -39,19 +39,35 @@ function DrinkContextComponent({ children }) {
   ]
   const [allDrinks, setDrinks] = useState([])
   const [userDrink, setUserDrink] = useState([])
+  const [drinksOfUser, setDrinksOfUser] = useState([])
   // console.log(allDrinks)
 
   const getDrinks = async () => {
     const res = await getPostApi()
     // console.log(res.data.drinks)
-    setDrinks(res.data.drinks)
+    setDrinksOfUser(res.data)
   }
+
+  const getDrinksByUserId = async () => {
+    const res = await getDrinkByUserId()
+    setDrinksOfUser(res.data.drinks)
+  }
+
   useEffect(() => {
     getDrinks()
+    getDrinksByUserId()
   }, [])
+
   return (
     <DrinkContext.Provider
-      value={{ allDrinks, userDrink, setUserDrink, getDrinks, defalutDrinks }}
+      value={{
+        allDrinks,
+        userDrink,
+        setUserDrink,
+        getDrinks,
+        defalutDrinks,
+        drinksOfUser,
+      }}
     >
       {children}
     </DrinkContext.Provider>
