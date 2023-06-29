@@ -10,7 +10,7 @@ function AvatarContextComponent({ children }) {
 
   const getAvatars = async () => {
     const res = await getAvatarApi()
-    setAvatar(res.data.avatar)
+    setAvatar(res.data.avatars)
   }
   useEffect(() => {
     getAvatars()

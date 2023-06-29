@@ -3,9 +3,13 @@ import BuyCard from '../../../components/buyCard'
 import Random from '../../../layouts/Modals/Random'
 import { useContext } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
+import { AvatarContext } from '../../../contexts/AvatarContextComponents'
+import { HatContext } from '../../../contexts/HatContextComponet'
 
 function ShopPageContainer() {
   const { allDrinks } = useContext(DrinkContext)
+  const { Avatar } = useContext(AvatarContext)
+  const { hat } = useContext(HatContext)
   const product = [
     {
       image: '',
@@ -44,7 +48,7 @@ function ShopPageContainer() {
         </div>
         <div className="flex flex-wrap w-[70%] bg-blue-300 justify-center">
           <h1 className="w-full m-4 font-semibold text-2xl">Avatar</h1>
-          {allDrinks.map((el, id) => (
+          {Avatar.map((el, id) => (
             <BuyCard
               image={el.image}
               name={el.name}
@@ -53,9 +57,9 @@ function ShopPageContainer() {
             />
           ))}
         </div>
-        <div className="flex flex-wrap w-[70%] bg-pink-300 justify-center">
+        <div className="flex flex-wrap w-[70%] bg--300 justify-center">
           <h1 className="w-full m-4 font-semibold text-2xl">Hat</h1>
-          {allDrinks.map((el, id) => (
+          {hat.map((el, id) => (
             <BuyCard
               image={el.image}
               name={el.name}
