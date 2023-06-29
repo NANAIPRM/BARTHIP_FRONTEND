@@ -8,15 +8,15 @@ import './index.css'
 import PostContextProvider from './contexts/AdminPostContextProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AuthContextProvider>
-      <DrinkContextComponent>
-        <GoogleContextProvider>
-          <PostContextProvider>
-            <App />
-          </PostContextProvider>
-        </GoogleContextProvider>
-      </DrinkContextComponent>
-    </AuthContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <AuthContextProvider>
+    <DrinkContextComponent>
+      <GoogleContextProvider>
+        <PostContextProvider>
+          <App />
+        </PostContextProvider>
+      </GoogleContextProvider>
+    </DrinkContextComponent>
+  </AuthContextProvider>
+  // </React.StrictMode>
 )
