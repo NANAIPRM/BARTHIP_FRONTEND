@@ -14,6 +14,12 @@ export const postApi = (postInput, endpoint) =>
 
 export const getDrinkByUserId = () =>
   axios.get('product/userDrink', configWithAuthorization)
+
+export const getHatByUserId = () =>
+  axios.get('product/userHat', configWithAuthorization)
+
+export const getAvatarByUserId = () =>
+  axios.get('product/userAvatar', configWithAuthorization)
 export const getPostApi = () => axios.get('/product/drink')
 export const getAvatarApi = () => axios.get('/product/avatar')
 export const gethatApi = () => axios.get('/product/hat')

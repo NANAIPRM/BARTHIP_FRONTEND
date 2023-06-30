@@ -7,12 +7,18 @@ import JoinChatContainer from '../../ChatroomPage/components/JoinChatContainer'
 import DrinkBar from './DrinkBar'
 import { useEffect } from 'react'
 import { editNameByUserId } from '../../../api/auth-api'
+import { HatContext } from '../../../contexts/HatContextComponet'
+import { AvatarContext } from '../../../contexts/AvatarContextComponents'
+import HatBar from './HatBar'
+import AvatarBar from './AvatarBar'
 
 export default function Home() {
   const { user } = useAuth()
   const { userDrink, setUserDrink, defalutDrinks, drinksOfUser } =
     useContext(DrinkContext)
-  console.log(drinksOfUser)
+  const { userHat, setUserHat, hatsOfUser } = useContext(HatContext)
+  const { userAvatar, setUserAvatar, AvatarsOfUser } = useContext(AvatarContext)
+
   const [editName, setEditName] = useState('')
 
   useEffect(() => {
@@ -21,6 +27,14 @@ export default function Home() {
 
   function ChooseDrink(item) {
     setUserDrink(item)
+  }
+
+  function ChooseHat(item) {
+    setUserHat(item)
+  }
+
+  function ChooseAvatar(item) {
+    setUserAvatar(item)
   }
 
   const handleEditName = async (e) => {
@@ -60,8 +74,9 @@ export default function Home() {
                     </button>
                   </form>
                 </div>
+
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
-                  <p className="text-xl">เลือกเครื่องดื่มที่บ่งบอกตัวคุณ</p>
+                  <p className="text-xl">เลือกเครื่องดื่มของคุณ</p>
                   <div className="flex  w-full overflow-x-scroll">
                     {defalutDrinks.map((el, idx) => (
                       <DrinkBar
@@ -70,13 +85,42 @@ export default function Home() {
                         onClick={() => ChooseDrink(el)}
                       />
                     ))}
-                    {drinksOfUser?.map((el, idx) => (
-                      <DrinkBar
-                        key={idx}
-                        item={el}
-                        onClick={() => ChooseDrink(el)}
-                      />
-                    ))}
+                    {Array.isArray(drinksOfUser) &&
+                      drinksOfUser?.map((el, idx) => (
+                        <DrinkBar
+                          key={idx}
+                          item={el}
+                          onClick={() => ChooseDrink(el)}
+                        />
+                      ))}
+                  </div>
+                  <div className="flex  w-full overflow-x-scroll">
+                    <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
+                      <p className="text-xl">เลือกหมวกของคุณ</p>
+                      <div className="flex">
+                        {hatsOfUser?.map((el, idx) => (
+                          <HatBar
+                            key={idx}
+                            item={el}
+                            onClick={() => ChooseHat(el)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex  w-full overflow-x-scroll">
+                    <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
+                      <p className="text-xl">เลือกอวตารของคุณ</p>
+                      <div className="flex">
+                        {AvatarsOfUser?.map((el, idx) => (
+                          <AvatarBar
+                            key={idx}
+                            item={el}
+                            onClick={() => ChooseAvatar(el)}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="px-3 py-3">
@@ -95,14 +139,27 @@ export default function Home() {
                   className="relative top-36 "
                 />
                 <div>
+                  <div className="relative w-24 top-1 mx-auto self-end  ">
+                    <img
+                      src={userHat?.image || userHat?.Hat?.image}
+                      alt={userHat?.name || userHat?.Hat?.name}
+                      className="absolute top-5 left-5 w-[50px] z-10"
+                    />
+                    {/* <IiBoy className="w-24" /> */}
+                  </div>
                   <div className="relative w-24 top-14 mx-auto self-end  ">
-                    <IiBoy className="w-24" />
+                    <img
+                      src={userAvatar?.image || userAvatar?.Avatar?.image}
+                      alt={userAvatar?.name || userAvatar?.Avatar?.name}
+                      className="absolute top-0 w-[100px] z-[0] "
+                    />
+                    {/* <IiBoy className="w-24" /> */}
                   </div>
                   <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
                     <img
-                      src={userDrink.image}
-                      alt={userDrink.name}
-                      className="absolute top-0 w-[40px] "
+                      src={userDrink?.image || userDrink?.Drink?.image}
+                      alt={userDrink?.name || userDrink?.Drink?.name}
+                      className="absolute top-20 w-[40px] "
                     />
                   </div>
                 </div>

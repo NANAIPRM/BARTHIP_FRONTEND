@@ -8,6 +8,7 @@ import UserAvatar from '../../../components/UserAvatar'
 import { useLocation } from 'react-router-dom'
 import socket from '../../../configs/socket'
 import { useNavigate } from 'react-router-dom'
+import Leave from '../../../layouts/Modals/Leave'
 
 export default function ChatroomPage() {
   const { userDrink } = useContext(DrinkContext)
@@ -68,12 +69,7 @@ export default function ChatroomPage() {
                 </p>
               </div>
               <br />
-              <button
-                className=" border-2 border-black w-full rounded-md bg-red-400 text-white"
-                onClick={() => leaveRoom()}
-              >
-                ออกจากห้อง
-              </button>
+              <Leave leaveRoom={leaveRoom} />
             </div>
             <Chatbox />
           </div>
