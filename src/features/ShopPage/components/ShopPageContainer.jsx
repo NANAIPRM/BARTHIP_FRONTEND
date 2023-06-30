@@ -1,6 +1,6 @@
 import React from 'react'
 import BuyCard from '../../../components/buyCard'
-import Random from '../../../layouts/Modals/Random'
+
 import { useContext } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import { AvatarContext } from '../../../contexts/AvatarContextComponents'
@@ -21,7 +21,7 @@ function ShopPageContainer() {
             <BuyCard
               image={el.image}
               name={el.name}
-              desciption={el.desciption}
+              desrciption={el.desrciption}
               price={el.price}
               key={id}
             />
@@ -33,7 +33,7 @@ function ShopPageContainer() {
             <BuyCard
               image={el.image}
               name={el.name}
-              desciption={el.desciption}
+              desrciption={el.desrciption}
               price={el.price}
               key={id}
             />
@@ -45,7 +45,7 @@ function ShopPageContainer() {
             <BuyCard
               image={el.image}
               name={el.name}
-              desciption={el.desciption}
+              desrciption={el.desrciption}
               price={el.price}
               key={id}
             />

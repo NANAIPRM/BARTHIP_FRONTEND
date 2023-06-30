@@ -128,7 +128,7 @@ export default function Home() {
                     {userDrink?.name || userDrink?.Drink?.name}
                   </p>
                   <p className="mt-2">
-                    {userDrink?.desciption || userDrink?.Drink?.desciption}
+                    {userDrink?.description || userDrink?.Drink?.description}
                   </p>
                 </div>
               </div>

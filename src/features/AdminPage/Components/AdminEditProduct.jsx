@@ -1,14 +1,53 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { usePostContext } from '../../../hooks/usePostContext'
 import { IiHead } from '../../../icons'
-import { postApi } from '../../../api/post-api'
-import { useDrinkContext } from '../../../hooks/useDrinkContext'
+import {
+  editPostApi,
+  getHatByHatId,
+  getAvatarByAvatarId,
+  getDrinkByDrinkId,
+} from '../../../api/post-api'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
-function AdminPageContainer() {
+function AdminEditProduct() {
   const [noPic, setNopic] = useState(true)
   const [file, setFile] = useState(null)
   const [fileUrl, setFileUrl] = useState('')
+  const { productId } = useParams()
+
+  console.log(productId)
+
+  const [product, setProduct] = useState(null)
+
+  useEffect(() => {
+    const path = window.location.pathname
+    console.log(productId)
+    const fetchData = async () => {
+      try {
+        let response = null
+        if (path.includes('hat')) {
+          response = await getHatByHatId(productId)
+          console.log(response)
+        } else if (path.includes('avatar')) {
+          response = await getAvatarByAvatarId(productId)
+          console.log(response)
+        } else if (path.includes('drink')) {
+          response = await getDrinkByDrinkId(productId)
+          console.log(response)
+        }
+        if (response) {
+          setProduct(
+            response.data.hat || response.data.avatar || response.data.drink
+          )
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData()
+  }, [productId])
 
   const chooseFileFn = (e) => {
     if (e.target.files[0]) {
@@ -17,15 +56,26 @@ function AdminPageContainer() {
       setNopic(false)
     }
   }
-  const [postInput, setPost] = useState({})
+  const [editInput, setPost] = useState({})
 
-  const { postFn } = usePostContext()
-  const { getDrinks } = useDrinkContext()
   const navigate = useNavigate()
 
-  const handlePostInput = (e) =>
-    setPost({ ...postInput, [e.target.name]: e.target.value })
-  console.log(postInput)
+  useEffect(() => {
+    const path = window.location.pathname
+    if (path.includes('hat')) {
+      document.getElementById('category').value = 'Hat'
+    }
+    if (path.includes('avatar')) {
+      document.getElementById('category').value = 'Avatar'
+    }
+    if (path.includes('drink')) {
+      document.getElementById('category').value = 'Drink'
+    }
+  }, [])
+
+  const handleEditInput = (e) =>
+    setPost({ ...editInput, [e.target.name]: e.target.value })
+  console.log(editInput)
 
   const handleBack = (e) => {
     e.preventDefault()
@@ -35,14 +85,14 @@ function AdminPageContainer() {
   const handleUpload = async (e) => {
     e.preventDefault()
     const formData = new FormData()
-    if (postInput.name) {
-      formData.append('name', postInput.name)
+    if (editInput.name) {
+      formData.append('name', editInput.name)
     }
-    if (postInput.description) {
-      formData.append('description', postInput.description)
+    if (editInput.description) {
+      formData.append('description', editInput.description)
     }
-    if (postInput.price) {
-      formData.append('price', +postInput.price)
+    if (editInput.price) {
+      formData.append('price', +editInput.price)
     }
     if (file) {
       console.log(file)
@@ -51,16 +101,15 @@ function AdminPageContainer() {
     const category = document.getElementById('category').value
     const endpoint =
       category === 'Hat'
-        ? '/product/hat'
+        ? `/product/hat/${productId}`
         : category === 'Drink'
-        ? '/product/drink'
+        ? `/product/drink/${productId}`
         : category === 'Avatar'
-        ? '/product/avatar'
+        ? `/product/avatar/${productId}`
         : ''
-    // console.log(formData)
-    const res = await postApi(formData, endpoint)
+
+    const res = await editPostApi(formData, endpoint)
     console.log(res)
-    getDrinks()
     navigate('/adminproduct')
     window.location.reload()
   }
@@ -81,7 +130,7 @@ function AdminPageContainer() {
       >
         <img
           className={`absolute w-full h-full object-cover ${
-            noPic ? 'hidden' : ''
+            product?.image ? 'hidden' : ''
           }`}
           src={fileUrl}
           alt="upload picture"
@@ -96,25 +145,25 @@ function AdminPageContainer() {
         <option value="Drink">Drink</option>
       </select>
       <textarea
-        placeholder="Name"
+        placeholder={product?.name}
         name="name"
-        value={postInput.name}
+        value={editInput.name}
         className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"
-        onChange={handlePostInput}
+        onChange={handleEditInput}
       ></textarea>
       <textarea
-        placeholder="Description"
+        placeholder={product?.description}
         name="description"
-        value={postInput.description}
+        value={editInput.description}
         className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"
-        onChange={handlePostInput}
+        onChange={handleEditInput}
       ></textarea>
       <textarea
-        placeholder="Price"
+        placeholder={product?.price}
         name="price"
-        value={postInput.price}
+        value={editInput.price}
         className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"
-        onChange={handlePostInput}
+        onChange={handleEditInput}
       ></textarea>
       <div className="flex gap-5">
         <button className="btn btn-outline" onClick={handleBack}>
@@ -128,4 +177,4 @@ function AdminPageContainer() {
   )
 }
 
-export default AdminPageContainer
+export default AdminEditProduct

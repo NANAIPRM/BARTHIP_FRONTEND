@@ -3,19 +3,52 @@ import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import { useContext } from 'react'
 import { AvatarContext } from '../../../contexts/AvatarContextComponents'
 import { HatContext } from '../../../contexts/HatContextComponet'
+import { useNavigate } from 'react-router-dom'
+import {
+  DeleteAvatarByAvatarId,
+  DeleteDrinkByDrinkId,
+  DeleteHatByHatId,
+} from '../../../api/post-api'
 export default function AdminAllProduct() {
   const { allDrinks } = useContext(DrinkContext)
   const { Avatar } = useContext(AvatarContext)
   const { hat } = useContext(HatContext)
+  const navigate = useNavigate()
+
+  const handleClickEditDrink = (id) => {
+    navigate(`/admin/editdrink/${id}`)
+  }
+  const handleClickEditHat = (id) => {
+    navigate(`/admin/edithat/${id}`)
+  }
+  const handleClickEditAvatar = (id) => {
+    navigate(`/admin/editavatar/${id}`)
+  }
+
+  const handleDeleteDrink = (id) => {
+    DeleteAvatarByAvatarId(id)
+    window.location.reload()
+  }
+
+  const handleDeleteHat = (id) => {
+    DeleteHatByHatId(id)
+    window.location.reload()
+  }
+
+  const handleDeleteAvatar = (id) => {
+    DeleteAvatarByAvatarId(id)
+    window.location.reload()
+  }
+
   return (
     <div className="border-solid border-2 border-black">
       <div className="w-full grid grid-cols-6  text-center p-4">
         <p className=" font-semibold">Image</p>
         <p className=" font-semibold">Name</p>
-        <p className=" font-semibold">Desciption</p>
+        <p className=" font-semibold">Description</p>
         <p className=" font-semibold">Price</p>
       </div>
-      <div className="text-2xl">Drinks</div>
+      <div className="text-2xl w-full bg-yellow-300">Drinks</div>
       <div className="w-full  bg-yellow-300 text-center p-4">
         {allDrinks?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
@@ -23,14 +56,24 @@ export default function AdminAllProduct() {
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
             <div>{el.name}</div>
-            <div>{el.desciption}</div>
+            <div>{el.description}</div>
             <div>{el.price}</div>
-            <button className="bg-green-300">Edit</button>
-            <button>Delete</button>
+            <button
+              className="bg-green-300 rounded-full m-4"
+              onClick={() => handleClickEditDrink(el.id)}
+            >
+              Edit
+            </button>
+            <button
+              className="bg-red-300 rounded-full"
+              onClick={() => handleDeleteDrink(el.id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
-      <div className="text-2xl">Avatars</div>
+      <div className="text-2xl w-full  bg-blue-300">Avatars</div>
       <div className="w-full  bg-blue-300 text-center p-4">
         {Avatar?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
@@ -38,14 +81,24 @@ export default function AdminAllProduct() {
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
             <div>{el.name}</div>
-            <div>{el.desciption}</div>
+            <div>{el.description}</div>
             <div>{el.price}</div>
-            <button className="bg-green-300">Edit</button>
-            <button>Delete</button>
+            <button
+              className="bg-green-300 rounded-full m-4"
+              onClick={() => handleClickEditAvatar(el.id)}
+            >
+              Edit
+            </button>
+            <button
+              className="bg-red-300 rounded-full"
+              onClick={() => handleDeleteAvatar(el.id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
-      <div className="text-2xl">Hats</div>
+      <div className="text-2xl w-full bg-pink-300">Hats</div>
       <div className="w-full  bg-pink-300 text-center p-4">
         {hat?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
@@ -53,10 +106,20 @@ export default function AdminAllProduct() {
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
             <div>{el.name}</div>
-            <div>{el.desciption}</div>
+            <div>{el.description}</div>
             <div>{el.price}</div>
-            <button className="bg-green-300">Edit</button>
-            <button>Delete</button>
+            <button
+              className="bg-green-300 rounded-full m-4"
+              onClick={() => handleClickEditHat(el.id)}
+            >
+              Edit
+            </button>
+            <button
+              className="bg-red-300 rounded-full"
+              onClick={() => handleDeleteHat(el.id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>

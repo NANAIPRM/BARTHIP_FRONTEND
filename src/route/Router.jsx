@@ -12,6 +12,7 @@ import PaymentPage from '../Pages/PaymentPage'
 import Layout from '../layouts/Container'
 import ThankYouPage from '../Pages/ThankyouPage'
 import AdminAllProduct from '../features/AdminPage/Components/AdminAllProduct'
+import AdminEditProduct from '../features/AdminPage/Components/AdminEditProduct'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,18 @@ const router = createBrowserRouter([
   {
     path: '/adminproduct',
     element: <AdminAllProduct />,
+  },
+  {
+    path: '/admin/editdrink/:productId',
+    element: <AdminEditProduct />,
+  },
+  {
+    path: '/admin/editavatar/:productId',
+    element: <AdminEditProduct />,
+  },
+  {
+    path: '/admin/edithat/:productId',
+    element: <AdminEditProduct />,
   },
   {
     path: '/',

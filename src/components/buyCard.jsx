@@ -1,6 +1,6 @@
 import { IiBuyitem, IiMilktea } from '../icons'
 
-export default function BuyCard({ image, name, price, desciption, id }) {
+export default function BuyCard({ image, name, price, description, id }) {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative w-40 gap-4">
@@ -10,7 +10,7 @@ export default function BuyCard({ image, name, price, desciption, id }) {
           <img src={image} className="w-[60px]" />
         </div>
         <div>{name}</div>
-        <div>{desciption}</div>
+        <div>{description}</div>
         <div>ราคา {price} บาท</div>
         <button className="w-20 cursor-pointer">
           <IiBuyitem />
