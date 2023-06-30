@@ -44,8 +44,8 @@ function DrinkContextComponent({ children }) {
 
   const getDrinks = async () => {
     const res = await getPostApi()
-    // console.log(res.data.drinks)
-    setDrinksOfUser(res.data)
+
+    setDrinks(res.data.drinks)
   }
 
   const getDrinksByUserId = async () => {

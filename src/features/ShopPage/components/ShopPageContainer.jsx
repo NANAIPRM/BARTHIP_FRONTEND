@@ -8,39 +8,20 @@ import { HatContext } from '../../../contexts/HatContextComponet'
 
 function ShopPageContainer() {
   const { allDrinks } = useContext(DrinkContext)
+  console.log(allDrinks)
   const { Avatar } = useContext(AvatarContext)
   const { hat } = useContext(HatContext)
-  const product = [
-    {
-      image: '',
-      name: 'ชานม',
-      price: 30,
-    },
-    {
-      image: '',
-      name: 'ชาไทย',
-      price: 35,
-    },
-    {
-      image: '',
-      name: 'ชาเขียว',
-      price: 30,
-    },
-    {
-      image: '',
-      name: 'ชาชัก',
-      price: 30,
-    },
-  ]
+
   return (
     <>
       <div className="h-full flex flex-col justify-center items-center bg-gray-400">
         <div className="flex flex-wrap w-[70%] bg-yellow-300 justify-center">
           <h1 className="w-full m-4 font-semibold text-2xl">Drinks</h1>
-          {allDrinks.map((el, id) => (
+          {allDrinks?.map((el, id) => (
             <BuyCard
               image={el.image}
               name={el.name}
+              desciption={el.desciption}
               price={el.price}
               key={id}
             />
@@ -52,6 +33,7 @@ function ShopPageContainer() {
             <BuyCard
               image={el.image}
               name={el.name}
+              desciption={el.desciption}
               price={el.price}
               key={id}
             />
@@ -63,6 +45,7 @@ function ShopPageContainer() {
             <BuyCard
               image={el.image}
               name={el.name}
+              desciption={el.desciption}
               price={el.price}
               key={id}
             />
