@@ -14,8 +14,8 @@ function ShopPageContainer() {
 
   return (
     <>
-      <div className="h-full flex flex-col justify-center items-center bg-gray-400">
-        <div className="flex flex-wrap w-[70%] bg-yellow-300 justify-center">
+      <div className="h-full flex flex-col justify-center items-center">
+        <div className="flex flex-wrap  bg-yellow-300 justify-center w-full mt-20">
           <h1 className="w-full m-4 font-semibold text-2xl">Drinks</h1>
           {allDrinks?.map((el, id) => (
             <BuyCard
@@ -27,7 +27,7 @@ function ShopPageContainer() {
             />
           ))}
         </div>
-        <div className="flex flex-wrap w-[70%] bg-blue-300 justify-center">
+        <div className="flex flex-wrap  bg-blue-300 justify-center w-full">
           <h1 className="w-full m-4 font-semibold text-2xl">Avatar</h1>
           {Avatar.map((el, id) => (
             <BuyCard
@@ -39,7 +39,7 @@ function ShopPageContainer() {
             />
           ))}
         </div>
-        <div className="flex flex-wrap w-[70%] bg--300 justify-center">
+        <div className="flex flex-wrap  bg-pink-300 justify-center w-full">
           <h1 className="w-full m-4 font-semibold text-2xl">Hat</h1>
           {hat.map((el, id) => (
             <BuyCard

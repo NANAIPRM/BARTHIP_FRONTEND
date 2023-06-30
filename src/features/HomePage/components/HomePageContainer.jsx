@@ -132,6 +132,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+
               <div className="relative">
                 <img
                   src="https://drinksonme.live/counter-page/counter.png"

@@ -106,7 +106,10 @@ function Chatbox() {
                     </div>
                   </div>
                 ) : (
-                  <div key={index} className="my-1 px-2 flex justify-start">
+                  <div
+                    key={index}
+                    className="my-1 px-2 flex flex-col items-start justify-start gap-1"
+                  >
                     <p className="bg-green-200 text-sm border rounded-lg shadow-sm ">
                       {message.message}
                     </p>

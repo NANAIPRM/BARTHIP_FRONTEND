@@ -65,7 +65,7 @@ function AdminPageContainer() {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-[100vh] justify-center">
       <input
         id="uploadPic"
         type="file"

@@ -11,6 +11,7 @@ import PaymentPage from '../Pages/PaymentPage'
 
 import Layout from '../layouts/Container'
 import ThankYouPage from '../Pages/ThankyouPage'
+import AdminAllProduct from '../features/AdminPage/Components/AdminAllProduct'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <AdminPage />,
+  },
+  {
+    path: '/adminproduct',
+    element: <AdminAllProduct />,
   },
   {
     path: '/',

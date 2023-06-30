@@ -1,6 +1,6 @@
 import { IiBuyitem, IiMilktea } from '../icons'
 
-export default function BuyCard({ image, name, price, desciption }) {
+export default function BuyCard({ image, name, price, desciption, id }) {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative w-40 gap-4">
