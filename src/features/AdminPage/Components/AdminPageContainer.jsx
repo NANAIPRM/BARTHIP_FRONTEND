@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { usePostContext } from '../../../hooks/usePostContext'
 import { IiHead } from '../../../icons'
 import { postApi } from '../../../api/post-api'
-import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import { useDrinkContext } from '../../../hooks/useDrinkContext'
 
 function AdminPageContainer() {
@@ -31,12 +30,16 @@ function AdminPageContainer() {
   const handleBack = (e) => {
     e.preventDefault()
     navigate('/shop')
+    window.location.reload()
   }
   const handleUpload = async (e) => {
     e.preventDefault()
     const formData = new FormData()
     if (postInput.name) {
       formData.append('name', postInput.name)
+    }
+    if (postInput.desciption) {
+      formData.append('desciption', postInput.desciption)
     }
     if (postInput.price) {
       formData.append('price', +postInput.price)
@@ -45,8 +48,18 @@ function AdminPageContainer() {
       console.log(file)
       formData.append('image', file)
     }
-    console.log(formData)
-    const res = await postApi(formData)
+    const category = document.getElementById('category').value
+    const endpoint =
+      category === 'Hat'
+        ? '/product/hat'
+        : category === 'Drink'
+        ? '/product/drink'
+        : category === 'Avatar'
+        ? '/product/avatar'
+        : ''
+    // console.log(formData)
+    const res = await postApi(formData, endpoint)
+    console.log(res)
     getDrinks()
     navigate('/shop')
   }
@@ -75,15 +88,28 @@ function AdminPageContainer() {
         />
         <IiHead className="w-14 h-14 " />
       </label>
+      <label for="category">Choose category</label>
+      <select name="category" id="category">
+        <option value="Avatar">Avatar</option>
+        <option value="Hat">Hat</option>
+        <option value="Drink">Drink</option>
+      </select>
       <textarea
-        placeholder="Drink Name"
+        placeholder="Name"
         name="name"
         value={postInput.name}
         className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"
         onChange={handlePostInput}
       ></textarea>
       <textarea
-        placeholder="Drink Price"
+        placeholder="Desciption"
+        name="desciption"
+        value={postInput.desciption}
+        className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"
+        onChange={handlePostInput}
+      ></textarea>
+      <textarea
+        placeholder="Price"
         name="price"
         value={postInput.price}
         className="w-[40%] h-[100px] text-xl border border-slate-200 shadow-md my-4 p-4"

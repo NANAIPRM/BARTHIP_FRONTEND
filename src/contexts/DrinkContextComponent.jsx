@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { getPostApi } from '../api/post-api'
+import { getPostApi, getDrinkByUserId } from '../api/post-api'
 
 const DrinkContext = createContext()
 
 function DrinkContextComponent({ children }) {
-  const drinks = [
+  const defalutDrinks = [
     {
       name: 'Beer',
       desciption: 'รู้สึกคอแห้ง เยี่ยวแตกก็ไม่เป็นไร',
@@ -38,20 +38,36 @@ function DrinkContextComponent({ children }) {
     },
   ]
   const [allDrinks, setDrinks] = useState([])
-  const [userDrink, setUserDrink] = useState(drinks[0])
+  const [userDrink, setUserDrink] = useState([])
+  const [drinksOfUser, setDrinksOfUser] = useState([])
   // console.log(allDrinks)
 
   const getDrinks = async () => {
     const res = await getPostApi()
-    // console.log(res.data.drinks)
+
     setDrinks(res.data.drinks)
   }
+
+  const getDrinksByUserId = async () => {
+    const res = await getDrinkByUserId()
+    setDrinksOfUser(res.data.drinks)
+  }
+
   useEffect(() => {
     getDrinks()
+    getDrinksByUserId()
   }, [])
+
   return (
     <DrinkContext.Provider
-      value={{ allDrinks, userDrink, setUserDrink, getDrinks }}
+      value={{
+        allDrinks,
+        userDrink,
+        setUserDrink,
+        getDrinks,
+        defalutDrinks,
+        drinksOfUser,
+      }}
     >
       {children}
     </DrinkContext.Provider>

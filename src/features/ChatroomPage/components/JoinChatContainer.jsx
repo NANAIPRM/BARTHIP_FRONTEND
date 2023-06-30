@@ -109,7 +109,7 @@ function JoinChatContainer() {
             alt="chatbox"
             /> */}
         <div className="px-8 py-2">
-          <p className="mt-3 text-xl px-4">อยากทำอะไร</p>
+          <p className="mt-3 text-xl px-4 text-center m-4">อยากทำอะไร?</p>
           <IiBG />
 
           {/* <Button text="แรนด้อมไปคุยกับเพื่อนใหม่" /> */}

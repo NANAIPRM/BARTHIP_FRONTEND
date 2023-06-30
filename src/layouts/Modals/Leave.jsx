@@ -1,25 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IiCorrect, IiNo } from '../../icons'
 import ModalsReuse from './ModalsReuse'
 
-function Leave() {
+function Leave({ leaveRoom }) {
+  const [show, setShow] = useState(true)
+
+  const handleCloseModal = () => {
+    setShow(false)
+    window.location.reload()
+  }
+
   return (
-    <ModalsReuse
-      title={'ออกจากโต๊ะ?'}
-      header={'แน่ใจนะว่าจะออกจากห้อง เปลี่ยนใจไหม'}
-    >
-      <div className="w-40 mx-auto">
-        <IBoy />
-      </div>
-      <div className="flex">
-        <div className="w-20 mx-auto">
-          <IiCorrect />
+    show && (
+      <ModalsReuse
+        title={'ออกจากโต๊ะ?'}
+        header={'แน่ใจนะว่าจะออกจากห้อง เปลี่ยนใจไหม'}
+        className="cursor-pointer"
+      >
+        <div className="w-40 mx-auto"></div>
+        <div className="flex">
+          <div className="w-20 mx-auto cursor-pointer">
+            <IiCorrect onClick={() => leaveRoom()} />
+          </div>
+          <div className="w-20 mx-auto cursor-pointer">
+            <IiNo onClick={handleCloseModal} />
+          </div>
         </div>
-        <div className="w-20 mx-auto">
-          <IiNo />
-        </div>
-      </div>
-    </ModalsReuse>
+      </ModalsReuse>
+    )
   )
 }
 

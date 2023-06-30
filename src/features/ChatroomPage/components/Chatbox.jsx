@@ -4,7 +4,6 @@ import socket from '../../../configs/socket'
 import useAuth from '../../../hooks/useAuth'
 import { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 function Chatbox() {
   const { user } = useAuth()
@@ -94,16 +93,27 @@ function Chatbox() {
               </div>
               {messageList.map((message, index) =>
                 message.id === user.id ? (
-                  <div key={index} className=" my-1 px-2 flex justify-end ">
+                  <div
+                    key={index}
+                    className=" my-1 px-2 flex flex-col items-end justify-end gap-1"
+                  >
                     <p className="bg-red-200 text-sm border rounded-lg shadow-sm ">
                       {message.message}
                     </p>
+                    <div className="flex gap-2 ">
+                      <p>{message.nickname}</p>
+                      <p>{message.date}</p>
+                    </div>
                   </div>
                 ) : (
                   <div key={index} className="my-1 px-2 flex justify-start">
-                    <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
+                    <p className="bg-green-200 text-sm border rounded-lg shadow-sm ">
                       {message.message}
                     </p>
+                    <div className="flex gap-2 ">
+                      <p>{message.nickname}</p>
+                      <p>{message.date}</p>
+                    </div>
                   </div>
                 )
               )}

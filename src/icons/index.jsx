@@ -95,8 +95,8 @@ export function IiBuybox({ className }) {
   return <img src={iBuybox} className={className} alt="" />
 }
 import iBuyitem from '../assets/iBuyitem.svg'
-export function IiBuyitem({ className }) {
-  return <img src={iBuyitem} className={className} alt="" />
+export function IiBuyitem({ className, id }) {
+  return <img src={iBuyitem} className={className} alt="" id={id} />
 }
 import iChatBox from '../assets/iChatBox.svg'
 export function IiChatBox({ className }) {
@@ -123,8 +123,8 @@ export function IiCocoa({ className }) {
   return <img src={iCocoa} className={className} alt="" />
 }
 import iCorrect from '../assets/iCorrect.svg'
-export function IiCorrect({ className }) {
-  return <img src={iCorrect} className={className} alt="" />
+export function IiCorrect({ className, onClick }) {
+  return <img src={iCorrect} onClick={onClick} className={className} alt="" />
 }
 import iCounter from '../assets/iCounter.svg'
 export function IiCounter({ className }) {
@@ -264,8 +264,8 @@ export function IiMusicS({ className, onClick }) {
   return <img src={iMusicS} className={className} onClick={onClick} alt="" />
 }
 import iNo from '../assets/iNo.svg'
-export function IiNo({ className }) {
-  return <img src={iNo} className={className} alt="" />
+export function IiNo({ className, onClick }) {
+  return <img src={iNo} className={className} alt="" onClick={onClick} />
 }
 import iNomyen from '../assets/iNomyen.svg'
 export function IiNomyen({ className }) {
