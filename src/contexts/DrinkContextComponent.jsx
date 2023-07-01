@@ -4,7 +4,7 @@ import { getPostApi, getDrinkByUserId } from '../api/post-api'
 const DrinkContext = createContext()
 
 function DrinkContextComponent({ children }) {
-  const defalutDrinks = [
+  const defaultDrinks = [
     {
       name: 'Beer',
       description: 'รู้สึกคอแห้ง เยี่ยวแตกก็ไม่เป็นไร',
@@ -30,21 +30,20 @@ function DrinkContextComponent({ children }) {
       description: 'ออนเดอะล็อค น็อคเดอะสเตจ',
       image: 'src/assets/iOntherock.svg',
     },
-
     {
       name: 'Blue Hawaii',
       description: 'บลูฮาวาย จบ',
       image: 'src/assets/iPineapple.svg',
     },
   ]
+
   const [allDrinks, setDrinks] = useState([])
   const [userDrink, setUserDrink] = useState([])
   const [drinksOfUser, setDrinksOfUser] = useState([])
-  // console.log(allDrinks)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getDrinks = async () => {
     const res = await getPostApi()
-
     setDrinks(res.data.drinks)
   }
 
@@ -54,8 +53,18 @@ function DrinkContextComponent({ children }) {
   }
 
   useEffect(() => {
-    getDrinks()
-    getDrinksByUserId()
+    const fetchData = async () => {
+      try {
+        setIsLoading(true)
+        await Promise.all([getDrinks(), getDrinksByUserId()])
+        setIsLoading(false)
+      } catch (error) {
+        console.log('Error fetching data:', error)
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
   }, [])
 
   return (
@@ -65,13 +74,19 @@ function DrinkContextComponent({ children }) {
         userDrink,
         setUserDrink,
         getDrinks,
-        defalutDrinks,
+        defaultDrinks,
         drinksOfUser,
       }}
     >
-      {children}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        // เนื้อหาหลักของ component จะถูกแสดงเมื่อ isLoading เป็น false
+        children
+      )}
     </DrinkContext.Provider>
   )
 }
+
 export { DrinkContext }
 export default DrinkContextComponent

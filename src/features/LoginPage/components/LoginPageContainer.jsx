@@ -31,6 +31,7 @@ function LoginPageContainer() {
       setUser(meResult.data.user)
       toast.success('Login successfully')
       navigate('/')
+      window.location.reload()
     } catch (err) {
       toast.error(err.response.data.message)
     }
