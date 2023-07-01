@@ -15,7 +15,7 @@ function Leave({ leaveRoom }) {
       <ModalsReuse
         title={'ออกจากโต๊ะ?'}
         header={'แน่ใจนะว่าจะออกจากห้อง เปลี่ยนใจไหม'}
-        className="cursor-pointer"
+        className="cursor-pointer mt-4"
       >
         <div className="w-40 mx-auto"></div>
         <div className="flex">

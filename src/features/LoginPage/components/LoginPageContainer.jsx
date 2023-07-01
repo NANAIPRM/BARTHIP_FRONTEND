@@ -30,7 +30,12 @@ function LoginPageContainer() {
       const meResult = await getMe(loginResult.data.token)
       setUser(meResult.data.user)
       toast.success('Login successfully')
-      navigate('/')
+      console.log(meResult.data.user)
+      if (meResult.data.user.isAdmin) {
+        navigate('/admin')
+      } else {
+        navigate('/')
+      }
     } catch (err) {
       toast.error(err.response.data.message)
     }
