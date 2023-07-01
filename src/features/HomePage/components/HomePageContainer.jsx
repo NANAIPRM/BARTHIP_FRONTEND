@@ -94,7 +94,7 @@ export default function Home() {
                   <div className="relative w-24 top-14 mx-auto self-end  ">
                     <IiBoy className="w-24" />
                   </div>
-                  <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
+                  <div className="relative w-24 -top-7 right-4 mx-auto self-end  ">
                     <img
                       src={userDrink.image}
                       alt={userDrink.name}
