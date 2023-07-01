@@ -15,9 +15,6 @@ function ShopPageContainer() {
   const { Avatar } = useContext(AvatarContext)
   const { hat, setHat } = useContext(HatContext)
 
-
-
-
   const hdlAddHat = idx => {
     const list = [...hat]
     list.splice(idx, 1)
