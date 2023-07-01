@@ -136,7 +136,8 @@ function AdminEditProduct() {
           alt="upload picture"
           onError={(e) => setNopic(true)}
         />
-        {<IiHead className="w-14 h-14 " />}
+        <img src={product?.image} className="h-[160px] w-[160px]" />
+        {/* <IiHead /> */}
       </label>
       <label for="category">Choose category</label>
       <select name="category" id="category">

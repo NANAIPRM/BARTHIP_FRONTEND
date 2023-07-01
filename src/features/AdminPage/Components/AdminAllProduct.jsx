@@ -48,8 +48,8 @@ export default function AdminAllProduct() {
         <p className=" font-semibold">Description</p>
         <p className=" font-semibold">Price</p>
       </div>
-      <div className="text-2xl w-full bg-yellow-300">Drinks</div>
-      <div className="w-full  bg-yellow-300 text-center p-4">
+      <div className="text-2xl w-full ">Drinks</div>
+      <div className="w-full   text-center p-4">
         {allDrinks?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
             <div className="flex justify-center">
@@ -73,8 +73,8 @@ export default function AdminAllProduct() {
           </div>
         ))}
       </div>
-      <div className="text-2xl w-full  bg-blue-300">Avatars</div>
-      <div className="w-full  bg-blue-300 text-center p-4">
+      <div className="text-2xl w-full  ">Avatars</div>
+      <div className="w-full   text-center p-4">
         {Avatar?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
             <div className="flex justify-center">
@@ -98,8 +98,8 @@ export default function AdminAllProduct() {
           </div>
         ))}
       </div>
-      <div className="text-2xl w-full bg-pink-300">Hats</div>
-      <div className="w-full  bg-pink-300 text-center p-4">
+      <div className="text-2xl w-full ">Hats</div>
+      <div className="w-full   text-center p-4">
         {hat?.map((el, id) => (
           <div className="grid grid-cols-6 m-4 items-center">
             <div className="flex justify-center">
