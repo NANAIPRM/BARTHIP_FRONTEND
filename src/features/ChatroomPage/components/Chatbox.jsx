@@ -75,7 +75,7 @@ function Chatbox() {
           <div className=" h-[428px] mt-5 ">
             <div
               ref={chatElement}
-              className="overflow-y-scroll h-[470px]  hidscroll pb-10"
+              className="overflow-y-scroll h-[470px]  hidscroll pb-20"
             >
               <div className="my-1 px-2">
                 <p className="text-sm border rounded-lg shadow-sm bg-gray-200">

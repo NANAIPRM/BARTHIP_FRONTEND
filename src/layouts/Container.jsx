@@ -1,13 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import NavBar from './Navbar'
 import Footer from './Footer'
-import GoogleContextProvider from '../contexts/GoogleContextProvider'
+import Navbar from './NavBar'
 
 export default function Layout() {
   return (
     <div className="relative">
       <div className="fixed top-0 z-50">
-        <NavBar />
+        <Navbar />
       </div>
       <div>
         <Outlet />

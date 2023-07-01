@@ -9,6 +9,7 @@ import {
   DeleteDrinkByDrinkId,
   DeleteHatByHatId,
 } from '../../../api/post-api'
+
 export default function AdminAllProduct() {
   const { allDrinks } = useContext(DrinkContext)
   const { Avatar } = useContext(AvatarContext)
@@ -18,15 +19,17 @@ export default function AdminAllProduct() {
   const handleClickEditDrink = (id) => {
     navigate(`/admin/editdrink/${id}`)
   }
+
   const handleClickEditHat = (id) => {
     navigate(`/admin/edithat/${id}`)
   }
+
   const handleClickEditAvatar = (id) => {
     navigate(`/admin/editavatar/${id}`)
   }
 
   const handleDeleteDrink = (id) => {
-    DeleteAvatarByAvatarId(id)
+    DeleteDrinkByDrinkId(id)
     window.location.reload()
   }
 
@@ -50,8 +53,8 @@ export default function AdminAllProduct() {
       </div>
       <div className="text-2xl w-full ">Drinks</div>
       <div className="w-full   text-center p-4">
-        {allDrinks?.map((el, id) => (
-          <div className="grid grid-cols-6 m-4 items-center">
+        {allDrinks?.map((el) => (
+          <div className="grid grid-cols-6 m-4 items-center" key={el.id}>
             <div className="flex justify-center">
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
@@ -75,8 +78,8 @@ export default function AdminAllProduct() {
       </div>
       <div className="text-2xl w-full  ">Avatars</div>
       <div className="w-full   text-center p-4">
-        {Avatar?.map((el, id) => (
-          <div className="grid grid-cols-6 m-4 items-center">
+        {Avatar?.map((el) => (
+          <div className="grid grid-cols-6 m-4 items-center" key={el.id}>
             <div className="flex justify-center">
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
@@ -100,8 +103,8 @@ export default function AdminAllProduct() {
       </div>
       <div className="text-2xl w-full ">Hats</div>
       <div className="w-full   text-center p-4">
-        {hat?.map((el, id) => (
-          <div className="grid grid-cols-6 m-4 items-center">
+        {hat?.map((el) => (
+          <div className="grid grid-cols-6 m-4 items-center" key={el.id}>
             <div className="flex justify-center">
               <img src={el.image} alt="" className="w-[50px] h-[50px]  " />
             </div>
