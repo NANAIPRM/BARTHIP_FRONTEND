@@ -15,6 +15,7 @@ import { UpdateAvatarByUserId } from '../../../api/post-api'
 
 export default function Home() {
   const { user } = useAuth()
+
   const { userDrink, setUserDrink, defalutDrinks, drinksOfUser } =
     useContext(DrinkContext)
   const { userHat, setUserHat, hatsOfUser } = useContext(HatContext)
@@ -84,48 +85,51 @@ export default function Home() {
                     </button>
                   </form>
                 </div>
-
-                <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
-                  <p className="text-xl">เลือกเครื่องดื่มของคุณ</p>
-                  <div className="flex  w-full overflow-x-scroll">
-                    {Array.isArray(drinksOfUser) &&
-                      drinksOfUser?.map((el, idx) => (
-                        <DrinkBar
-                          key={idx}
-                          item={el}
-                          onClick={() => ChooseDrink(el)}
-                        />
-                      ))}
-                  </div>
-                  <div className="flex  w-full overflow-x-scroll">
-                    <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
-                      <p className="text-xl">เลือกหมวกของคุณ</p>
-                      <div className="flex">
-                        {hatsOfUser?.map((el, idx) => (
-                          <HatBar
+                {!user ? (
+                  <></>
+                ) : (
+                  <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
+                    <p className="text-xl">เลือกเครื่องดื่มของคุณ</p>
+                    <div className="flex  w-full overflow-x-scroll">
+                      {Array.isArray(drinksOfUser) &&
+                        drinksOfUser?.map((el, idx) => (
+                          <DrinkBar
                             key={idx}
                             item={el}
-                            onClick={() => ChooseHat(el)}
+                            onClick={() => ChooseDrink(el)}
                           />
                         ))}
+                    </div>
+                    <div className="flex  w-full overflow-x-scroll">
+                      <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
+                        <p className="text-xl">เลือกหมวกของคุณ</p>
+                        <div className="flex">
+                          {hatsOfUser?.map((el, idx) => (
+                            <HatBar
+                              key={idx}
+                              item={el}
+                              onClick={() => ChooseHat(el)}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex  w-full overflow-x-scroll">
+                      <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
+                        <p className="text-xl">เลือกอวตารของคุณ</p>
+                        <div className="flex">
+                          {AvatarsOfUser?.map((el, idx) => (
+                            <AvatarBar
+                              key={idx}
+                              item={el}
+                              onClick={() => ChooseAvatar(el)}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="flex  w-full overflow-x-scroll">
-                    <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
-                      <p className="text-xl">เลือกอวตารของคุณ</p>
-                      <div className="flex">
-                        {AvatarsOfUser?.map((el, idx) => (
-                          <AvatarBar
-                            key={idx}
-                            item={el}
-                            onClick={() => ChooseAvatar(el)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                )}
                 <div className="px-3 py-3">
                   <p className="text-xl underline">
                     {userDrink?.name || userDrink?.Drink?.name}
@@ -137,42 +141,60 @@ export default function Home() {
               </div>
 
               <div className="relative">
-                <button
-                  className="bg-green-300 rounded-full p-2"
-                  onClick={handleSaveAvatar}
-                >
-                  บันทึก Avatar
-                </button>
-                <img
-                  src="https://drinksonme.live/counter-page/counter.png"
-                  alt="counter"
-                  className="relative top-36 "
-                />
-                <div>
-                  <div className="relative w-24 top-1 mx-auto self-end  ">
+                {!user ? (
+                  <></>
+                ) : (
+                  <button
+                    className="bg-green-300 rounded-full p-2"
+                    onClick={handleSaveAvatar}
+                  >
+                    บันทึก Avatar
+                  </button>
+                )}
+                {!user ? (
+                  <>
+                    {' '}
                     <img
-                      src={userHat?.image || userHat?.Hat?.image}
-                      alt={userHat?.name || userHat?.Hat?.name}
-                      className="absolute top-5 left-5 w-[50px] z-10"
-                    />
-                    {/* <IiBoy className="w-24" /> */}
-                  </div>
-                  <div className="relative w-24 top-14 mx-auto self-end  ">
+                      src="https://drinksonme.live/counter-page/counter.png"
+                      alt="counter"
+                      className="relative top-36 "
+                    />{' '}
+                    <IiBoy className="w-24 mt-14 mx-auto" />
+                  </>
+                ) : (
+                  <>
                     <img
-                      src={userAvatar?.image || userAvatar?.Avatar?.image}
-                      alt={userAvatar?.name || userAvatar?.Avatar?.name}
-                      className="absolute top-0 w-[100px] z-[0] "
+                      src="https://drinksonme.live/counter-page/counter.png"
+                      alt="counter"
+                      className="relative top-36 "
                     />
-                    {/* <IiBoy className="w-24" /> */}
-                  </div>
-                  <div className="relative w-24 -top-7 right-4 mx-auto self-end  ">
-                    <img
-                      src={userDrink?.image || userDrink?.Drink?.image}
-                      alt={userDrink?.name || userDrink?.Drink?.name}
-                      className="absolute top-20 w-[40px] "
-                    />
-                  </div>
-                </div>
+                    <div>
+                      <div className="relative w-24 top-1 mx-auto self-end  ">
+                        <img
+                          src={userHat?.image || userHat?.Hat?.image}
+                          alt={userHat?.name || userHat?.Hat?.name}
+                          className="absolute top-5 left-5 w-[50px] z-10"
+                        />
+                        {/* <IiBoy className="w-24" /> */}
+                      </div>
+                      <div className="relative w-24 top-14 mx-auto self-end  ">
+                        <img
+                          src={userAvatar?.image || userAvatar?.Avatar?.image}
+                          alt={userAvatar?.name || userAvatar?.Avatar?.name}
+                          className="absolute top-0 w-[100px] z-[0] "
+                        />
+                        {/* <IiBoy className="w-24" /> */}
+                      </div>
+                      <div className="relative w-24 -top-7 right-4 mx-auto self-end  ">
+                        <img
+                          src={userDrink?.image || userDrink?.Drink?.image}
+                          alt={userDrink?.name || userDrink?.Drink?.name}
+                          className="absolute top-20 w-[40px] "
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
                 <Link to="/shop" className="absolute bottom-5 right-4 ">
                   <IiShopping className="w-28" />
                 </Link>
