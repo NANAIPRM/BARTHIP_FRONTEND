@@ -130,13 +130,13 @@ function AdminEditProduct() {
       >
         <img
           className={`absolute w-full h-full object-cover ${
-            product?.image ? 'hidden' : ''
+            noPic ? 'hidden' : ''
           }`}
           src={fileUrl}
           alt="upload picture"
           onError={(e) => setNopic(true)}
         />
-        <IiHead className="w-14 h-14 " />
+        {<IiHead className="w-14 h-14 " />}
       </label>
       <label for="category">Choose category</label>
       <select name="category" id="category">
