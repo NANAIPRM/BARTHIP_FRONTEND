@@ -29,7 +29,7 @@ function AdminPageContainer() {
 
   const handleBack = (e) => {
     e.preventDefault()
-    navigate('/adminproduct')
+    navigate('/admin')
     window.location.reload()
   }
   const handleUpload = async (e) => {
