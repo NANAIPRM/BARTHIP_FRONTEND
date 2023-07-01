@@ -30,17 +30,17 @@ export default function AdminAllProduct() {
 
   const handleDeleteDrink = (id) => {
     DeleteDrinkByDrinkId(id)
-    // window.location.reload()
+    window.location.reload()
   }
 
   const handleDeleteHat = (id) => {
     DeleteHatByHatId(id)
-    // window.location.reload()
+    window.location.reload()
   }
 
   const handleDeleteAvatar = (id) => {
     DeleteAvatarByAvatarId(id)
-    // window.location.reload()
+    window.location.reload()
   }
 
   return (
