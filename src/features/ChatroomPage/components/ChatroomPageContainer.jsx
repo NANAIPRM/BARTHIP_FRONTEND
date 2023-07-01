@@ -1,8 +1,16 @@
 import Button from '../../../components/button'
-import { IiFace, IiShopping, IiBoy, IiBeer, IiLogo } from '../../../icons'
+import {
+  IiFace,
+  IiShopping,
+  IiBoy,
+  IiBeer,
+  IiLogo,
+  IiBGDark,
+  IiBGcafe,
+} from '../../../icons'
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import UserAvatar from '../../../components/UserAvatar'
 import { useLocation } from 'react-router-dom'
@@ -23,6 +31,8 @@ export default function ChatroomPage() {
     }, 1000)
   }
 
+  const [bg, setBg] = useState(false)
+
   return (
     <>
       <div className="flex justify-center lg:px-0 ">
@@ -30,33 +40,29 @@ export default function ChatroomPage() {
           <div className="flex justify-center mb-3 relative">
             <IiLogo className="w-40" />
           </div>
-          <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto relative">
+          <div className="flex max-w-5xl lg:flex-row w-full mx-auto relative">
             <div className="left-4 top-0 flex items-center absolute">
               {room}
-              <IiFace className="h-5 ml-2" />
-            </div>
-            <div className=" w-full flex flex-col  px-0 sm:px-10 justify-center  ">
-              <div className="mt-8">
+              <IiFace className="h-5" />
+              <input
+                className="toggle bg-black"
+                type="checkbox"
+                onChange={() => setBg((p) => !p)}
+              />
+              <div className="flex">
                 <IiShopping className="w-24" />
               </div>
+            </div>
 
-              <div className="relative ">
-                <img
-                  src="https://drinksonme.live/counter-page/counter.png"
-                  alt="counter"
-                  className="relative top-36 "
-                />
-                <div>
-                  {/* <div className="relative w-24 top-14 mx-auto self-end  ">
-                    <IiBoy className="w-24" />
-                  </div>
-                  <div className="relative w-24 -top-8 right-5 mx-auto self-end  ">
-                    <img
-                      src={userDrink.image}
-                      alt={userDrink.name}
-                      className="absolute top-0 w-[40px] "
-                    />
-                  </div> */}
+            <div className=" w-full flex flex-col  px-0 sm:px-10 justify-center">
+              <div className="relative top-36 ">
+                {bg ? (
+                  <IiBGDark className="absolute bottom-32" />
+                ) : (
+                  <IiBGcafe className="absolute bottom-28" />
+                )}
+
+                <div className="mb-56">
                   <UserAvatar drink={userDrink} />
                 </div>
               </div>
