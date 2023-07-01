@@ -13,13 +13,15 @@ import { addHatByUserId } from '../../../api/post-api'
 function ShopPageContainer() {
   const { allDrinks } = useContext(DrinkContext)
   const { Avatar } = useContext(AvatarContext)
-  const { hat } = useContext(HatContext)
+  const { hat, setHat } = useContext(HatContext)
 
 
-  let token = localStorage.getItem('accessItem')
-  console.log(token)
+
 
   const hdlAddHat = idx => {
+    const list = [...hat]
+    list.splice(idx, 1)
+    setHat(list)
     addHatByUserId({ hatId: hat[idx].id, }).then(rs => {
       console.log(rs)
     })
