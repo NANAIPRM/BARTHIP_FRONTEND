@@ -20,7 +20,7 @@ export default function Home() {
     useContext(DrinkContext)
   const { userHat, setUserHat, hatsOfUser } = useContext(HatContext)
   const { userAvatar, setUserAvatar, AvatarsOfUser } = useContext(AvatarContext)
-
+  const [edit, setEdit] = useState(false)
   const [editName, setEditName] = useState('')
 
   useEffect(() => {
@@ -46,6 +46,8 @@ export default function Home() {
       console.log('Nickname updated successfully')
     } catch (error) {
       console.log('Error updating nickname:', error)
+    } finally {
+      e.target.firstChild.blur()
     }
   }
 
@@ -57,7 +59,6 @@ export default function Home() {
   const handleSaveAvatar = async () => {
     UpdateAvatarByUserId(input)
   }
-
   return (
     <>
       <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
@@ -68,10 +69,14 @@ export default function Home() {
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
             <div className=" w-full flex flex-col justify-center px-0 sm:px-10 relative mb-4">
               <div className="max-w-[450px] mx-auto">
+                <Link to={'/admin'}>admin</Link>
                 <div className="flex w-full justify-center  item-center">
                   <p className="text-3xl mr-2 ">สวัสดี...</p>
-                  <form action="" onSubmit={handleEditName} className="flex">
+                  <form onSubmit={(e) => handleEditName(e)} className="flex">
                     <input
+                      id="editName"
+                      onFocus={() => setEdit(true)}
+                      onBlur={() => setEdit(false)}
                       defaultValue={editName}
                       onChange={(e) => setEditName(e.target.value)}
                       type="text"
@@ -80,9 +85,15 @@ export default function Home() {
                       autoComplete="off"
                       className="bg-transparent max-w-[270px] h-full text-3xl focus:ring-transparent ring-offset-transparent border-hidden   "
                     />
-                    <button type="submit">
-                      <IiEdit className="w-[38px] h-[38px] mx-1" />
-                    </button>
+                    {edit ? (
+                      <button type="submit">
+                        <IiEdit className="w-[38px] h-[38px] mx-1" />
+                      </button>
+                    ) : (
+                      <label htmlFor="editName">
+                        <IiEdit className="w-[38px] h-[38px] mx-1" />
+                      </label>
+                    )}
                   </form>
                 </div>
                 {!user ? (

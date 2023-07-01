@@ -5,13 +5,14 @@ import useAuth from '../../../hooks/useAuth'
 function ProtectedRouteAdmin({ children }) {
   const { user } = useAuth()
   const Admin = user?.isAdmin
-  console.log(Admin)
 
-  if (!Admin) {
-    return <Navigate to="/" />
+  if (user) {
+    if (Admin) return <>{children}</>
+    else {
+      return <Navigate to="/" />
+    }
   }
-
-  return children
+  return <></>
 }
 
 export default ProtectedRouteAdmin
