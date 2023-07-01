@@ -29,3 +29,5 @@ export const DeleteDrinkByDrinkId = (id) => axios.delete(`product/drink/${id}`)
 export const DeleteAvatarByAvatarId = (id) =>
   axios.delete(`product/avatar/${id}`)
 export const DeleteHatByHatId = (id) => axios.delete(`product/hat/${id}`)
+export const UpdateAvatarByUserId = (input) =>
+  axios.patch(`product/userAvatar`, input, configWithAuthorization)

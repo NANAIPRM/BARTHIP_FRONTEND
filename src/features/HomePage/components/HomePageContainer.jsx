@@ -11,6 +11,7 @@ import { HatContext } from '../../../contexts/HatContextComponet'
 import { AvatarContext } from '../../../contexts/AvatarContextComponents'
 import HatBar from './HatBar'
 import AvatarBar from './AvatarBar'
+import { UpdateAvatarByUserId } from '../../../api/post-api'
 
 export default function Home() {
   const { user } = useAuth()
@@ -47,6 +48,15 @@ export default function Home() {
     }
   }
 
+  const input = {
+    drinkId: userDrink?.Drink?.id,
+    hatId: userHat?.Hat?.id,
+    avatarId: userAvatar?.Avatar?.id,
+  }
+  const handleSaveAvatar = async () => {
+    UpdateAvatarByUserId(input)
+  }
+
   return (
     <>
       <div className="flex justify-center items-center py-14 lg:py-0 px-0 mb-6">
@@ -78,13 +88,6 @@ export default function Home() {
                 <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
                   <p className="text-xl">เลือกเครื่องดื่มของคุณ</p>
                   <div className="flex  w-full overflow-x-scroll">
-                    {defalutDrinks.map((el, idx) => (
-                      <DrinkBar
-                        key={idx}
-                        item={el}
-                        onClick={() => ChooseDrink(el)}
-                      />
-                    ))}
                     {Array.isArray(drinksOfUser) &&
                       drinksOfUser?.map((el, idx) => (
                         <DrinkBar
@@ -134,6 +137,12 @@ export default function Home() {
               </div>
 
               <div className="relative">
+                <button
+                  className="bg-green-300 rounded-full p-2"
+                  onClick={handleSaveAvatar}
+                >
+                  บันทึก Avatar
+                </button>
                 <img
                   src="https://drinksonme.live/counter-page/counter.png"
                   alt="counter"
