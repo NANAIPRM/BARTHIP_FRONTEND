@@ -24,3 +24,12 @@ export const getPostApi = () => axios.get('/product/drink')
 export const getAvatarApi = () => axios.get('/product/avatar')
 export const gethatApi = () => axios.get('/product/hat')
 export const deletePostApi = (id) => axios.delete(`/post/${id}`)
+
+
+//Add productByUser ไปหาวิธีส่งTokenไปหลังบ้าน
+export const addHatByUserId = (input) => axios.post('product/userHat',input)
+export const addDrinkByUserId = (input) => axios.post('product/userDrink',input)
+export const addAvatarByUserId = (input) => axios.post('product/userAvatar',input)
+
+
+

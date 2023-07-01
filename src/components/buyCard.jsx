@@ -1,6 +1,6 @@
 import { IiBuyitem, IiMilktea } from '../icons'
 
-export default function BuyCard({ image, name, price }) {
+export default function BuyCard({ image, name, price, hdlAddhat }) {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative w-40 gap-4">
@@ -12,7 +12,7 @@ export default function BuyCard({ image, name, price }) {
         <div>{name}</div>
         <div>ราคา {price} บาท</div>
         <button className="w-20 cursor-pointer">
-          <IiBuyitem />
+          <IiBuyitem onClick={() => {hdlAddhat()}} />
         </button>
       </div>
     </>

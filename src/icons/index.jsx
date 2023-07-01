@@ -95,8 +95,8 @@ export function IiBuybox({ className }) {
   return <img src={iBuybox} className={className} alt="" />
 }
 import iBuyitem from '../assets/iBuyitem.svg'
-export function IiBuyitem({ className }) {
-  return <img src={iBuyitem} className={className} alt="" />
+export function IiBuyitem({ className, onClick }) {
+  return <img src={iBuyitem} className={className} onClick={onClick} alt="" />
 }
 import iChatBox from '../assets/iChatBox.svg'
 export function IiChatBox({ className }) {
