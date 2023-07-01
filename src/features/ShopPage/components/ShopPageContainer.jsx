@@ -8,7 +8,7 @@ import { HatContext } from '../../../contexts/HatContextComponet'
 
 function ShopPageContainer() {
   const { allDrinks } = useContext(DrinkContext)
-  console.log(allDrinks)
+  // console.log(allDrinks)
   const { Avatar } = useContext(AvatarContext)
   const { hat } = useContext(HatContext)
 

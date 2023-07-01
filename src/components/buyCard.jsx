@@ -3,9 +3,9 @@ import * as paymentService from '../api/payment-api'
 
 export default function BuyCard({ image, name, price, desciption, id }) {
   const handleClickPayment = async (id) => {
-    console.log(id)
+    // console.log(id)
     const response = await paymentService.payment({ id })
-    console.log(response.data.url)
+    // console.log(response.data.url)
     window.location.replace(response.data.url)
   }
 
