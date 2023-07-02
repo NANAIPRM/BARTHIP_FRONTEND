@@ -387,3 +387,51 @@ import iBGcafe from '../assets/iBGcafe.svg'
 export function IiBGcafe({ className }) {
   return <img src={iBGcafe} className={className} alt="" />
 }
+import iBought from '../assets/iBought.svg'
+export function IiBought({ className }) {
+  return <img src={iBought} className={className} alt="" />
+}
+import iCodeCamp from '../assets/iCodeCamp.svg'
+export function IiCodeCamp({ className }) {
+  return <img src={iCodeCamp} className={className} alt="" />
+}
+import iconLogo from '../assets/iconLogo.svg'
+export function IiconLogo({ className }) {
+  return <img src={iconLogo} className={className} alt="" />
+}
+import iDonate30 from '../assets/iDonate30.svg'
+export function IiDonate30({ className }) {
+  return <img src={iDonate30} className={className} alt="" />
+}
+import iDonate60 from '../assets/iDonate60.svg'
+export function IiDonate60({ className }) {
+  return <img src={iDonate60} className={className} alt="" />
+}
+import iDonate100 from '../assets/iDonate100.svg'
+export function IiDonate100({ className }) {
+  return <img src={iDonate100} className={className} alt="" />
+}
+import iDonate300 from '../assets/iDonate300.svg'
+export function IiDonate300({ className }) {
+  return <img src={iDonate300} className={className} alt="" />
+}
+import iLeaveTable from '../assets/iLeaveTable.svg'
+export function IiLeaveTable({ className }) {
+  return <img src={iLeaveTable} className={className} alt="" />
+}
+import iPEarth from '../assets/iPEarth.svg'
+export function IiPEarth({ className }) {
+  return <img src={iPEarth} className={className} alt="" />
+}
+import iPJiang from '../assets/iPJiang.svg'
+export function IiPJiang({ className }) {
+  return <img src={iPJiang} className={className} alt="" />
+}
+import iPVee from '../assets/iPVee.svg'
+export function IiPVee({ className }) {
+  return <img src={iPVee} className={className} alt="" />
+}
+import iRelearn from '../assets/iRelearn.svg'
+export function IiRelearn({ className }) {
+  return <img src={iRelearn} className={className} alt="" />
+}

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import useAuth from '../../../hooks/useAuth'
-import { IiBoy, IiEdit, IiLogo, IiShopping } from '../../../icons'
+import { IiBoy, IiconLogo, IiEdit, IiLogo, IiShopping } from '../../../icons'
 import JoinChatContainer from '../../ChatroomPage/components/JoinChatContainer'
 import DrinkBar from './DrinkBar'
 import { useEffect } from 'react'
@@ -66,9 +66,11 @@ export default function Home() {
             <IiLogo className="w-40 " />
           </div>
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
-            <div className=" w-full flex flex-col justify-center px-0 sm:px-10 relative mb-4">
+            <div className=" w-full flex flex-col mt-6 px-0 sm:px-10 relative mb-4">
               <div className="max-w-[450px] mx-auto">
-                <Link to={'/admin'}>admin</Link>
+                <Link to={'/admin'}>
+                  <IiconLogo className="w-20" />
+                </Link>
                 <div className="flex w-full justify-center  item-center">
                   <p className="text-3xl mr-2 ">สวัสดี...</p>
                   <form onSubmit={(e) => handleEditName(e)} className="flex">
@@ -154,11 +156,11 @@ export default function Home() {
                 >
                   บันทึก Avatar
                 </button>
-                <img
+                {/* <img
                   src="https://drinksonme.live/counter-page/counter.png"
                   alt="counter"
                   className="relative top-36 "
-                />
+                /> */}
                 <div>
                   <div className="relative w-24 top-1 mx-auto self-end  ">
                     <img
