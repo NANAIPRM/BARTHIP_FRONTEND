@@ -1,5 +1,5 @@
 import React from 'react'
-import { IiBigBox } from '../../../icons'
+import { IiCodeCamp, IiPEarth, IiPJiang, IiPVee } from '../../../icons'
 
 function Sponsors() {
   return (
@@ -9,19 +9,19 @@ function Sponsors() {
       </p>
       <div className="flex flex-col lg:flex-row justify-evenly">
         <div>
-          <IiBigBox className="w-[360px]" />
+          <IiPEarth className="w-[360px]" />
         </div>
         <div>
           {' '}
-          <IiBigBox className="w-[360px]" />
+          <IiCodeCamp className="w-[360px]" />
         </div>
         <div>
           {' '}
-          <IiBigBox className="w-[360px]" />
+          <IiPVee className="w-[360px]" />
         </div>
         <div>
           {' '}
-          <IiBigBox className="w-[360px]" />
+          <IiPJiang className="w-[360px]" />
         </div>
       </div>
       <p className="text-center lg:text-right">สนใจเป็น sponsors</p>

@@ -32,8 +32,8 @@ function AboutUs() {
           {' '}
           Whether you're looking to expand your network, seek advice, or simply
           have fun conversations, our chat bar community is the perfect place
-          for you. To get started, visit our website at [BarTip] Best regards,
-          [BarTip Team]
+          for you. To get started, visit our website at [BarTrip] Best regards,
+          [BarTrip Team]
         </p>{' '}
       </div>
     </ModalsReuse>
