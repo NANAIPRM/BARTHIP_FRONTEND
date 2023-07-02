@@ -379,3 +379,7 @@ import iThankYou from '../assets/iThankYou.svg'
 export function IiThankYou({ className }) {
   return <img src={iThankYou} className={className} alt="" />
 }
+import iBought from '../assets/iBought.svg'
+export function IiBought({ className }) {
+  return <img src={iBought} className={className} alt="" />
+}

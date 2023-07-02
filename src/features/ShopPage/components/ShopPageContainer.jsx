@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
-import { IiBuyitem, IiFace } from '../../../icons'
+import { IiBought, IiBuyitem, IiFace } from '../../../icons'
 import {
   addHatByUserId,
   addAvatarByUserId,
@@ -88,7 +88,7 @@ function ShopPageContainer() {
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
                 {el.UserHats[0]?.userId == user?.id ? (
-                  <IiFace />
+                  <IiBought className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
@@ -111,18 +111,21 @@ function ShopPageContainer() {
           {drink.map((el, idx) => (
             <>
               <div
-                className="flex flex-col justify-center items-center relative w-40 gap-4"
+                className="flex flex-col items-center relative w-40 gap-4"
                 key={idx}
               >
-                <img src="src/assets/iBoxbuy.svg" alt="Buybox" />
-                <div className="w-30 py-2 px-10 absolute top-5">
-                  <img src={el.image} className="w-[60px]" />
+                <div className="relative">
+                  <img src="src/assets/iBoxbuy.svg" alt="Buybox" />
+                  <div className="w-30 py-2 px-10 absolute top-5 left-2">
+                    <img src={el.image} className="w-[60px]" />
+                  </div>
                 </div>
+
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
                 {el.UserDrinks[0]?.userId == user?.id ? (
-                  <IiFace />
+                  <IiBought className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
@@ -145,7 +148,7 @@ function ShopPageContainer() {
           {avatar.map((el, idx) => (
             <>
               <div
-                className="flex flex-col justify-center items-center relative w-40 gap-4"
+                className="flex flex-col items-center relative w-40 gap-4"
                 key={idx}
               >
                 <img src="src/assets/iBoxbuy.svg" alt="Buybox" />
@@ -156,7 +159,7 @@ function ShopPageContainer() {
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
                 {el.UserAvatars[0]?.userId == user?.id ? (
-                  <IiFace />
+                  <IiBought className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
