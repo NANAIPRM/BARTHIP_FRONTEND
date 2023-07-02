@@ -23,9 +23,6 @@ export default function ChatroomPage() {
   const [userAvatar, setUserAvatar] = useState()
   const [userHat, setUserHat] = useState()
   const [userDrink, setUserDrink] = useState()
-  console.log(userAvatar)
-  console.log(userHat)
-  console.log(userDrink)
 
   const navigate = useNavigate()
   const location = useLocation()
