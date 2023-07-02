@@ -35,6 +35,7 @@ function LoginPageContainer() {
         navigate('/admin')
       } else {
         navigate('/')
+        window.location.reload()
       }
     } catch (err) {
       toast.error(err.response.data.message)
