@@ -27,9 +27,9 @@ export const deletePostApi = (id) => axios.delete(`/post/${id}`)
 
 
 //Add productByUser 
-export const addHatByUserId = (input) => axios.post('product/userHat',input,configWithAuthorization)
-export const addDrinkByUserId = (input) => axios.post('product/userDrink',input,configWithAuthorization)
-export const addAvatarByUserId = (input) => axios.post('product/userAvatar',input,configWithAuthorization)
+export const addHatByUserId = (input) => axios.post('product/hatKuy',input,configWithAuthorization)
+export const addDrinkByUserId = (input) => axios.post('product/drinkKuy',input,configWithAuthorization)
+export const addAvatarByUserId = (input) => axios.post('product/avatarKuy',input,configWithAuthorization)
 
 
 

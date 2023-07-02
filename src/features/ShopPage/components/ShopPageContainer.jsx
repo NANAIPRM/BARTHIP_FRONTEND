@@ -1,16 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
-import { IiBought, IiBuyitem, IiFace } from '../../../icons'
-import {
-  addHatByUserId,
-  addAvatarByUserId,
-  addDrinkByUserId,
-  getHatApi,
-  getPostApi,
-  getAvatarApi,
-} from '../../../api/post-api'
-import * as paymentService from '../../../api/payment-api'
+import { IiBought, IiBuyitem, IiHead } from '../../../icons'
+import * as productService from '../../../api/post-api'
+// import * as paymentService from '../../../api/payment-api'
 
 function ShopPageContainer() {
   const { user } = useContext(AuthContext)
@@ -21,13 +14,10 @@ function ShopPageContainer() {
   // ปุ่มกดซื้อProduct
   const hdlBuyHat = async (idx, id) => {
     try {
-      // console.log(hat[idx].id, 1)
-      await addHatByUserId({ hatId: hat[idx].id })
-      // console.log('3')
-      const rs = await getHatApi()
-      // console.log('2')
+      await productService.addHatByUserId({ hatId: hat[idx].id, status:"Paid" })
+      const rs = await productService.getHatApi()
       setHat(rs.data)
-      handleClickPayment(id)
+      // handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
@@ -35,10 +25,10 @@ function ShopPageContainer() {
 
   const hdlBuyDrink = async (idx, id) => {
     try {
-      await addDrinkByUserId({ drinkId: drink[idx].id })
-      const rs = await getPostApi()
+      await productService.addDrinkByUserId({ drinkId: drink[idx].id, status:"Paid" })
+      const rs = await productService.getPostApi()
       setDrink(rs.data)
-      handleClickPayment(id)
+      // handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
@@ -46,32 +36,32 @@ function ShopPageContainer() {
 
   const hdlBuyAvatar = async (idx, id) => {
     try {
-      await addAvatarByUserId({ avatarId: avatar[idx].id })
-      const rs = await getAvatarApi()
+      await productService.addAvatarByUserId({ avatarId: avatar[idx].id, status:"Paid" })
+      const rs = await productService.getAvatarApi()
       setAvatar(rs.data)
-      handleClickPayment(id)
+      // handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
   }
-  const handleClickPayment = async (id) => {
-    // console.log(id)
-    const response = await paymentService.payment({ id })
-    // console.log(response.data.url)
-    window.location.replace(response.data.url)
-  }
+  // const handleClickPayment = async (id) => {
+  //   const response = await paymentService.payment({ id })
+  //   window.location.replace(response.data.url)
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const hatResponse = await getHatApi()
+        const hatResponse = await productService.getHatApi()
+        console.log(hatResponse.data)
         setHat(hatResponse.data)
 
-        const drinkResponse = await getPostApi()
+        const drinkResponse = await productService.getPostApi()
         setDrink(drinkResponse.data)
 
-        const avatarResponse = await getAvatarApi()
+        const avatarResponse = await productService.getAvatarApi()
         setAvatar(avatarResponse.data)
+        
       } catch (error) {
         console.log(error)
       }
@@ -100,8 +90,8 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserHats[0]?.userId == user?.id ? (
-                  <IiBought className="w-20" />
+                {el.UserHats.find(o => o.userId == user?.id) ? (
+                  <IiHead className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
@@ -138,8 +128,8 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserDrinks[0]?.userId == user?.id ? (
-                  <IiBought className="w-20" />
+                {el.UserDrinks.find(o => o.userId == user?.id) == user?.id ? (
+                  <IiHead className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
@@ -172,8 +162,8 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserAvatars[0]?.userId == user?.id ? (
-                  <IiBought className="w-20" />
+                {el.UserAvatars.find(o => o.userId == user?.id) ? (
+                  <IiHead className="w-20" />
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
