@@ -10,6 +10,7 @@ import {
   getPostApi,
   getAvatarApi,
 } from '../../../api/post-api'
+import * as paymentService from '../../../api/payment-api'
 
 function ShopPageContainer() {
   const { user } = useContext(AuthContext)
@@ -18,34 +19,46 @@ function ShopPageContainer() {
   const [avatar, setAvatar] = useState([])
 
   // ปุ่มกดซื้อProduct
-  const hdlBuyHat = async (idx) => {
+  const hdlBuyHat = async (idx, id) => {
     try {
+      // console.log(hat[idx].id, 1)
       await addHatByUserId({ hatId: hat[idx].id })
+      // console.log('3')
       const rs = await getHatApi()
+      // console.log('2')
       setHat(rs.data)
+      handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
   }
 
-  const hdlBuyDrink = async (idx) => {
+  const hdlBuyDrink = async (idx, id) => {
     try {
       await addDrinkByUserId({ drinkId: drink[idx].id })
       const rs = await getPostApi()
       setDrink(rs.data)
+      handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
   }
 
-  const hdlBuyAvatar = async (idx) => {
+  const hdlBuyAvatar = async (idx, id) => {
     try {
       await addAvatarByUserId({ avatarId: avatar[idx].id })
       const rs = await getAvatarApi()
       setAvatar(rs.data)
+      handleClickPayment(id)
     } catch (err) {
       console.log(err)
     }
+  }
+  const handleClickPayment = async (id) => {
+    // console.log(id)
+    const response = await paymentService.payment({ id })
+    // console.log(response.data.url)
+    window.location.replace(response.data.url)
   }
 
   useEffect(() => {
@@ -92,11 +105,12 @@ function ShopPageContainer() {
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
-                    onClick={() => {
-                      hdlBuyHat(idx)
+                    onClick={(e) => {
+                      hdlBuyHat(idx, e.target.id)
+                      console.log(el.apiId)
                     }}
                   >
-                    <IiBuyitem />
+                    <IiBuyitem id={el.apiId} />
                   </button>
                 )}
               </div>
@@ -129,11 +143,11 @@ function ShopPageContainer() {
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
-                    onClick={() => {
-                      hdlBuyDrink(idx)
+                    onClick={(e) => {
+                      hdlBuyDrink(idx, e.target.id)
                     }}
                   >
-                    <IiBuyitem />
+                    <IiBuyitem id={el.apiId} />
                   </button>
                 )}
               </div>
@@ -163,11 +177,11 @@ function ShopPageContainer() {
                 ) : (
                   <button
                     className="w-20 cursor-pointer "
-                    onClick={() => {
-                      hdlBuyAvatar(idx)
+                    onClick={(e) => {
+                      hdlBuyAvatar(idx, e.target.id)
                     }}
                   >
-                    <IiBuyitem />
+                    <IiBuyitem id={el.apiId} />
                   </button>
                 )}
               </div>
