@@ -11,17 +11,36 @@ import { HatContext } from '../../../contexts/HatContextComponet'
 import { AvatarContext } from '../../../contexts/AvatarContextComponents'
 import HatBar from './HatBar'
 import AvatarBar from './AvatarBar'
-import { UpdateAvatarByUserId } from '../../../api/post-api'
+import {
+  UpdateAvatarByUserId,
+  GetFullAvatarByUserId,
+} from '../../../api/post-api'
 
 export default function Home() {
   const { user } = useAuth()
 
   const { userDrink, setUserDrink, defalutDrinks, drinksOfUser } =
     useContext(DrinkContext)
+
   const { userHat, setUserHat, hatsOfUser } = useContext(HatContext)
   const { userAvatar, setUserAvatar, AvatarsOfUser } = useContext(AvatarContext)
   const [edit, setEdit] = useState(false)
   const [editName, setEditName] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const rs = await GetFullAvatarByUserId()
+        setUserAvatar(rs.data.user[0].Avatar)
+        setUserDrink(rs.data.user[0].Drink)
+        setUserHat(rs.data.user[0].Hat)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   useEffect(() => {
     setEditName(user?.nickname || '')
@@ -67,9 +86,8 @@ export default function Home() {
             <IiLogo className="w-40 " />
           </div>
           <div className="flex max-w-5xl flex-col lg:flex-row w-full mx-auto">
-            <div className=" w-full flex flex-col justify-center px-0 sm:px-10 relative mb-4">
+            <div className=" w-full flex flex-col mt-6 px-0 sm:px-10 relative mb-4">
               <div className="max-w-[450px] mx-auto">
-                <Link to={'/admin'}>admin</Link>
                 <div className="flex w-full justify-center  item-center">
                   <p className="text-3xl mr-2 ">สวัสดี...</p>
                   <form onSubmit={(e) => handleEditName(e)} className="flex">
@@ -96,7 +114,10 @@ export default function Home() {
                     )}
                   </form>
                 </div>
-                {!user ? (
+                {!user ||
+                drinksOfUser.length === 0 ||
+                hatsOfUser.length === 0 ||
+                AvatarsOfUser === 0 ? (
                   <></>
                 ) : (
                   <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
@@ -141,6 +162,7 @@ export default function Home() {
                     </div>
                   </div>
                 )}
+
                 <div className="px-3 py-3">
                   <p className="text-xl underline">
                     {userDrink?.name || userDrink?.Drink?.name}
@@ -152,7 +174,10 @@ export default function Home() {
               </div>
 
               <div className="relative">
-                {!user ? (
+                {!user ||
+                drinksOfUser.length === 0 ||
+                hatsOfUser.length === 0 ||
+                AvatarsOfUser === 0 ? (
                   <></>
                 ) : (
                   <button
@@ -162,7 +187,10 @@ export default function Home() {
                     บันทึก Avatar
                   </button>
                 )}
-                {!user ? (
+                {!user ||
+                drinksOfUser.length === 0 ||
+                hatsOfUser.length === 0 ||
+                AvatarsOfUser === 0 ? (
                   <>
                     {' '}
                     <img

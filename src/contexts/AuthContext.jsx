@@ -7,6 +7,7 @@ const AuthContext = createContext()
 
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null)
+
   const [reload, setReload] = useState(false)
   useEffect(() => {
     let token = getAccessToken()

@@ -31,3 +31,5 @@ export const DeleteAvatarByAvatarId = (id) =>
 export const DeleteHatByHatId = (id) => axios.delete(`product/hat/${id}`)
 export const UpdateAvatarByUserId = (input) =>
   axios.patch(`product/userAvatar`, input, configWithAuthorization)
+export const GetFullAvatarByUserId = () =>
+  axios.get('product/meAvatar', configWithAuthorization)

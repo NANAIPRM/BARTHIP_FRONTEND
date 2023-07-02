@@ -10,16 +10,25 @@ import {
 } from '../../../icons'
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DrinkContext } from '../../../contexts/DrinkContextComponent'
 import UserAvatar from '../../../components/UserAvatar'
 import { useLocation } from 'react-router-dom'
 import socket from '../../../configs/socket'
 import { useNavigate } from 'react-router-dom'
 import Leave from '../../../layouts/Modals/Leave'
+import useAuth from '../../../hooks/useAuth'
+import { GetFullAvatarByUserId } from '../../../api/post-api'
 
 export default function ChatroomPage() {
-  const { userDrink } = useContext(DrinkContext)
+  const user = useAuth()
+  const [userAvatar, setUserAvatar] = useState()
+  const [userHat, setUserHat] = useState()
+  const [userDrink, setUserDrink] = useState()
+  console.log(userAvatar)
+  console.log(userHat)
+  console.log(userDrink)
+
   const navigate = useNavigate()
   const location = useLocation()
   const room = location?.state?.room
@@ -30,6 +39,20 @@ export default function ChatroomPage() {
       window.location.reload()
     }, 1000)
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const rs = await GetFullAvatarByUserId()
+        setUserAvatar(rs.data.user[0].Avatar.image)
+        setUserDrink(rs.data.user[0].Drink.image)
+        setUserHat(rs.data.user[0].Hat.image)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const [bg, setBg] = useState(false)
 
@@ -62,8 +85,33 @@ export default function ChatroomPage() {
                   <IiBGcafe className="absolute bottom-28" />
                 )}
 
-                <div className="mb-56">
-                  <UserAvatar drink={userDrink} />
+                <div className="mb-20">
+                  <div className="relative top-[-230px] left-[10px]">
+                    <div>
+                      <div className="relative w-24 top-1 mx-auto self-end  ">
+                        <img
+                          src={userHat}
+                          className="absolute top-5 left-5 w-[50px] z-10"
+                        />
+                        {/* <IiBoy className="w-24" /> */}
+                      </div>
+                      <div className="relative w-24 top-14 mx-auto self-end  ">
+                        <img
+                          src={userAvatar}
+                          alt={userAvatar?.name || userAvatar?.Avatar?.name}
+                          className="absolute top-0 w-[100px] z-[0] "
+                        />
+                        {/* <IiBoy className="w-24" /> */}
+                      </div>
+                      <div className="relative w-24 -top-7 right-4 mx-auto self-end  ">
+                        <img
+                          src={userDrink}
+                          alt={userDrink?.name || userDrink?.Drink?.name}
+                          className="absolute top-20 w-[40px] "
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 

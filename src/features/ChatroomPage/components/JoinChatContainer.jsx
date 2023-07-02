@@ -12,7 +12,8 @@ import { toast } from 'react-toastify'
 function JoinChatContainer() {
   const { user } = useAuth()
   const [onlineUser, setOnlineUser] = useState([])
-  // console.log(onlineUser)
+
+  console.log(user)
 
   const [room, setRoom] = useState('')
   const navigate = useNavigate()
@@ -33,6 +34,7 @@ function JoinChatContainer() {
   const sendRoom = () => {
     if (user) {
       socket.emit('room', room)
+
       socket.on('roomJoined', (data) => {
         if (!room || data.occupants > 2) {
           navigate('/')
