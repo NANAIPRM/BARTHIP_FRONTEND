@@ -11,8 +11,7 @@ import {
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
 import { useContext, useEffect, useState } from 'react'
-import { DrinkContext } from '../../../contexts/DrinkContextComponent'
-import UserAvatar from '../../../components/UserAvatar'
+
 import { useLocation } from 'react-router-dom'
 import socket from '../../../configs/socket'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +20,6 @@ import useAuth from '../../../hooks/useAuth'
 import { GetFullAvatarByUserId } from '../../../api/post-api'
 
 export default function ChatroomPage() {
-  const user = useAuth()
   const [userAvatar, setUserAvatar] = useState()
   const [userHat, setUserHat] = useState()
   const [userDrink, setUserDrink] = useState()
