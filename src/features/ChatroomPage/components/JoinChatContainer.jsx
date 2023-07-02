@@ -51,7 +51,12 @@ function JoinChatContainer() {
   const randRoom = () => {
     if (user) {
       socket.emit('randRoom')
+      // socket.on('userJoin', (room) => {
+      //   socket.emit('userJoined', room)
+      // })
+
       socket.on('roomJoined', (data) => {
+        console.log(data)
         const room = data.room
         if (!room) {
           navigate('/')
