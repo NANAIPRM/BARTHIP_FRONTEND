@@ -1,6 +1,6 @@
 import React from 'react'
 import Random from '../../../layouts/Modals/Random'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { IiBG, IiMessageBox } from '../../../icons'
 import { useState } from 'react'
 import socket from '../../../configs/socket'
@@ -12,8 +12,7 @@ import { toast } from 'react-toastify'
 function JoinChatContainer() {
   const { user } = useAuth()
   const [onlineUser, setOnlineUser] = useState([])
-
-  console.log(user)
+  const { onlineUserRoom, setOnlineUserRoom } = useAuth()
 
   const [room, setRoom] = useState('')
   const navigate = useNavigate()
@@ -36,9 +35,11 @@ function JoinChatContainer() {
       socket.emit('room', room)
 
       socket.on('roomJoined', (data) => {
+        console.log(data)
+        setOnlineUserRoom(data.onlineUserRoom)
         if (!room || data.occupants > 2) {
           navigate('/')
-        } else if (data.occupants < 2) {
+        } else if (data.occupants <= 2) {
           navigate('/chat', { state: { room } })
         }
       })
@@ -57,6 +58,7 @@ function JoinChatContainer() {
 
       socket.on('roomJoined', (data) => {
         console.log(data)
+        setOnlineUserRoom(data.onlineUserRoom)
         const room = data.room
         if (!room) {
           navigate('/')
@@ -83,7 +85,6 @@ function JoinChatContainer() {
   }, [room])
 
   const createRoom = async () => {
-    console.log('first', user)
     if (user) {
       console.log('user')
       const newRoom = Math.random().toString(36).substring(7)
@@ -91,6 +92,8 @@ function JoinChatContainer() {
       socket.emit('room', newRoom)
 
       socket.on('roomJoined', (data) => {
+        console.log(data)
+        setOnlineUserRoom(data.onlineUserRoom)
         if (data.occupants > 2 || !newRoom) {
           navigate('/')
         } else {

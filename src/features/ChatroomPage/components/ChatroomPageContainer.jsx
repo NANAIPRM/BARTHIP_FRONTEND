@@ -17,12 +17,21 @@ import socket from '../../../configs/socket'
 import { useNavigate } from 'react-router-dom'
 import Leave from '../../../layouts/Modals/Leave'
 import useAuth from '../../../hooks/useAuth'
-import { GetFullAvatarByUserId } from '../../../api/post-api'
+import {
+  GetFullAvatarByUserId,
+  GetFullAvatarByUserOnlineId,
+} from '../../../api/post-api'
 
 export default function ChatroomPage() {
+  const { user } = useAuth()
+  // console.log(user.id)
   const [userAvatar, setUserAvatar] = useState()
   const [userHat, setUserHat] = useState()
   const [userDrink, setUserDrink] = useState()
+  const { onlineUserRoom } = useAuth()
+  const [onlineAvatar, setOnlineAvatar] = useState()
+  const [onlineHat, setOnlineHat] = useState()
+  const [onlineDrink, setOnlineDrink] = useState()
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -48,7 +57,29 @@ export default function ChatroomPage() {
 
     fetchData()
   }, [])
+  const fetchData = async () => {
+    try {
+      // console.log(onlineUserRoom[onlineUserRoom.length - 1])
 
+      const id = onlineUserRoom.filter((el) => +el !== +user.id)[0]
+
+      // console.log(onlineUserRoom.filter((el) => +el !== +user.id))
+      const rs = await GetFullAvatarByUserOnlineId({
+        id,
+      })
+
+      setOnlineAvatar(rs.data.user.Avatar.image)
+      setOnlineDrink(rs.data.user.Drink.image)
+      setOnlineHat(rs.data.user.Hat.image)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  useEffect(() => {
+    // console.log(onlineUserRoom)
+
+    fetchData()
+  }, [onlineUserRoom])
   const [bg, setBg] = useState(false)
 
   return (
@@ -110,6 +141,32 @@ export default function ChatroomPage() {
                 </div>
               </div>
 
+              <div className="relative top-[-165px] left-[150px]">
+                <div>
+                  <div className="relative w-24 top-1 mx-auto self-end  ">
+                    <img
+                      src={onlineHat}
+                      className="absolute top-5 left-5 w-[50px] z-10"
+                    />
+                    {/* <IiBoy className="w-24" /> */}
+                  </div>
+                  <div className="relative w-24 top-14 mx-auto self-end  ">
+                    <img
+                      src={onlineAvatar}
+                      alt={onlineAvatar?.name || onlineAvatar?.Avatar?.name}
+                      className="absolute top-0 w-[100px] z-[0] "
+                    />
+                    {/* <IiBoy className="w-24" /> */}
+                  </div>
+                  <div className="relative w-24 -top-7 right-4 mx-auto self-end  ">
+                    <img
+                      src={onlineDrink}
+                      alt={onlineDrink?.name || onlineDrink?.Drink?.name}
+                      className="absolute top-20 w-[40px] "
+                    />
+                  </div>
+                </div>
+              </div>
               <div className="hidden lg:block mb-4 mt-8 text-center">
                 <br />
                 <p className="text-sm">

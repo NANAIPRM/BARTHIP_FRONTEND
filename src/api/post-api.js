@@ -33,3 +33,5 @@ export const UpdateAvatarByUserId = (input) =>
   axios.patch(`product/userAvatar`, input, configWithAuthorization)
 export const GetFullAvatarByUserId = () =>
   axios.get('product/meAvatar', configWithAuthorization)
+export const GetFullAvatarByUserOnlineId = (id) =>
+  axios.post('product/meAvatar', id)
