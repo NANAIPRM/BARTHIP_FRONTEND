@@ -11,6 +11,7 @@ import {
 import Sponsors from './Sponsors'
 import Chatbox from './Chatbox'
 import { useContext, useEffect, useState } from 'react'
+import CopyToClipboard from './CopyToClipboard'
 
 import { useLocation } from 'react-router-dom'
 import socket from '../../../configs/socket'
@@ -91,8 +92,8 @@ export default function ChatroomPage() {
           </div>
           <div className="flex max-w-5xl lg:flex-row w-full mx-auto relative">
             <div className="left-4 top-0 flex items-center absolute">
-              {room}
-              <IiFace className="h-5" />
+              <CopyToClipboard r={room} />
+              {/* <IiFace className="h-5" /> */}
               <input
                 className="toggle bg-black"
                 type="checkbox"
