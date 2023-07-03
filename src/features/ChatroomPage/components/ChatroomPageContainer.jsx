@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom'
 import Leave from '../../../layouts/Modals/Leave'
 import useAuth from '../../../hooks/useAuth'
 import { GetFullAvatarByUserId } from '../../../api/post-api'
+import CopyToClipboard from './CopyToClipboard'
 
 export default function ChatroomPage() {
   const [userAvatar, setUserAvatar] = useState()
@@ -60,8 +61,9 @@ export default function ChatroomPage() {
           </div>
           <div className="flex max-w-5xl lg:flex-row w-full mx-auto relative">
             <div className="left-4 top-0 flex items-center absolute">
-              {room}
-              <IiFace className="h-5" />
+              {/* {room} */}
+              <CopyToClipboard r={room} />
+              {/* <IiFace className="h-5" /> */}
               <input
                 className="toggle bg-black"
                 type="checkbox"
