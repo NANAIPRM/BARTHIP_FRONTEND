@@ -22,6 +22,7 @@ export default function Home() {
   const { userDrink, setUserDrink, defalutDrinks, drinksOfUser } =
     useContext(DrinkContext)
 
+  console.log(drinksOfUser)
   const { userHat, setUserHat, hatsOfUser } = useContext(HatContext)
   const { userAvatar, setUserAvatar, AvatarsOfUser } = useContext(AvatarContext)
   const [edit, setEdit] = useState(false)
@@ -41,6 +42,8 @@ export default function Home() {
 
     fetchData()
   }, [])
+
+  console.log(userDrink)
 
   useEffect(() => {
     setEditName(user?.nickname || '')
@@ -86,7 +89,7 @@ export default function Home() {
             <IiLogo className="w-40 " />
           </div>
           {user ? (
-            <div className="flex max-w-5xl flex-col  lg:flex-row w-full mx-auto">
+            <div className="flex max-w-5xl flex-col  items-center lg:flex-row w-full mx-auto">
               <div className=" w-full flex flex-col mt-6 px-0 sm:px-10 relative mb-4">
                 <div className="max-w-[450px] mx-auto">
                   <div className="flex w-full justify-center  item-center">
@@ -116,9 +119,9 @@ export default function Home() {
                     </form>
                   </div>
                   {!user ||
-                  drinksOfUser.length === 0 ||
-                  hatsOfUser.length === 0 ||
-                  AvatarsOfUser === 0 ? (
+                  (drinksOfUser.length === 0 &&
+                    hatsOfUser.length === 0 &&
+                    AvatarsOfUser.length === 0) ? (
                     <></>
                   ) : (
                     <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
@@ -166,19 +169,23 @@ export default function Home() {
 
                   <div className="px-3 py-3">
                     <p className="text-xl underline">
-                      {userDrink?.name || userDrink?.Drink?.name}
+                      {userDrink?.Drink?.name ||
+                        userAvatar?.Avatar?.name ||
+                        userHat?.Hat?.name}
                     </p>
                     <p className="mt-2">
-                      {userDrink?.description || userDrink?.Drink?.description}
+                      {userDrink?.Drink?.description ||
+                        userHat?.Hat?.description ||
+                        userAvatar?.Avatar?.description}
                     </p>
                   </div>
                 </div>
 
                 <div className="relative">
                   {!user ||
-                  drinksOfUser.length === 0 ||
-                  hatsOfUser.length === 0 ||
-                  AvatarsOfUser === 0 ? (
+                  (drinksOfUser.length === 0 &&
+                    hatsOfUser.length === 0 &&
+                    AvatarsOfUser.length === 0) ? (
                     <></>
                   ) : (
                     <button
@@ -189,9 +196,9 @@ export default function Home() {
                     </button>
                   )}
                   {!user ||
-                  drinksOfUser.length === 0 ||
-                  hatsOfUser.length === 0 ||
-                  AvatarsOfUser === 0 ? (
+                  (drinksOfUser.length === 0 &&
+                    hatsOfUser.length === 0 &&
+                    AvatarsOfUser.length === 0) ? (
                     <>
                       {' '}
                       <img
@@ -273,9 +280,9 @@ export default function Home() {
                     </form>
                   </div>
                   {!user ||
-                  drinksOfUser.length === 0 ||
-                  hatsOfUser.length === 0 ||
-                  AvatarsOfUser === 0 ? (
+                  (drinksOfUser.length === 0 &&
+                    hatsOfUser.length === 0 &&
+                    AvatarsOfUser.length === 0) ? (
                     <></>
                   ) : (
                     <div className="rounded-2xl shadow-lg py-4 px-6 text-center mt-6">
@@ -323,10 +330,14 @@ export default function Home() {
 
                   <div className="px-3 py-3">
                     <p className="text-xl underline">
-                      {userDrink?.name || userDrink?.Drink?.name}
+                      {userDrink?.Drink?.name ||
+                        userAvatar?.Avatar?.name ||
+                        userHat?.Hat?.name}
                     </p>
                     <p className="mt-2">
-                      {userDrink?.description || userDrink?.Drink?.description}
+                      {userDrink?.Drink?.description ||
+                        userHat?.Hat?.description ||
+                        userAvatar?.Avatar?.description}
                     </p>
                   </div>
                 </div>
@@ -374,7 +385,7 @@ export default function Home() {
                           />
                           {/* <IiBoy className="w-24" /> */}
                         </div>
-                        <div className="relative w-24 top-14 mx-auto self-end  ">
+                        <div className="relaive w-24 top-14 mx-auto self-end  ">
                           <img
                             src={userAvatar?.image || userAvatar?.Avatar?.image}
                             alt={userAvatar?.name || userAvatar?.Avatar?.name}

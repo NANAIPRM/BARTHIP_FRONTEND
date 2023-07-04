@@ -11,6 +11,8 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { register } from '../../../api/auth-api'
 import validateRegister from './validate/validate-registor'
+import useAuth from '../../../hooks/useAuth'
+import Loading from '../../../components/Loading'
 
 const registerInput = {
   nickname: '',

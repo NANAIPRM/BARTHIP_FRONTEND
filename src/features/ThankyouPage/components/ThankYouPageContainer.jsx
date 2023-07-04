@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IiThankYou } from '../../../icons'
 import { useSearchParams } from 'react-router-dom'
 import { PostContext } from '../../../contexts/AdminPostContextProvider'
@@ -9,10 +9,9 @@ import { useContext } from 'react'
 function ThankYouPageContainer() {
   const [search] = useSearchParams()
   const idSession = search.get('session_id')
+  const navigate = useNavigate()
   console.log(idSession)
   const [isFirstFetch, setIsFirstFetch] = useState(true)
-
-
 
   //   const dataPayment = async () => {
   //     const res = await agencyService.createPaymentData();
@@ -39,6 +38,11 @@ function ThankYouPageContainer() {
       setIsFirstFetch(false)
     }
   }, [isFirstFetch, idSession])
+
+  const onClickBackHomePage = () => {
+    navigate('/')
+    window.location.reload()
+  }
   return (
     <div>
       <div className="flex justify-center items-center">
@@ -51,7 +55,7 @@ function ThankYouPageContainer() {
 
       <div className="flex justify-center items-center">
         <Link
-          to="/"
+          onClick={onClickBackHomePage}
           className="w-40 flex justify-center border-2 border-black rounded-md"
         >
           กลับหน้าหลัก

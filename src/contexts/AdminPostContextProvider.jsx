@@ -6,10 +6,8 @@ const PostContext = createContext()
 
 function PostContextProvider({ children }) {
   const [post, setPost] = useState(null)
-  const [idProduct, setIdProduct] = useState(null)
-  console.log(idProduct)
 
-  useEffect(() => { }, [])
+  useEffect(() => {}, [])
   async function postFn(postInput) {
     const res = await postApi(postInput)
   }
@@ -19,7 +17,7 @@ function PostContextProvider({ children }) {
   }
 
   return (
-    <PostContext.Provider value={{ post, postFn, editFn, idProduct, setIdProduct }}>
+    <PostContext.Provider value={{ post, postFn, editFn }}>
       {children}
     </PostContext.Provider>
   )
