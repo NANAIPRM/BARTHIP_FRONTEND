@@ -1,8 +1,44 @@
-import React from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IiThankYou } from '../../../icons'
+import { useSearchParams } from 'react-router-dom'
+import { PostContext } from '../../../contexts/AdminPostContextProvider'
+import * as paymentService from '../../../api/payment-api'
+import { useContext } from 'react'
 
 function ThankYouPageContainer() {
+  const [search] = useSearchParams()
+  const idSession = search.get('session_id')
+  console.log(idSession)
+  const [isFirstFetch, setIsFirstFetch] = useState(true)
+
+
+
+  //   const dataPayment = async () => {
+  //     const res = await agencyService.createPaymentData();
+  //     console.log("--------success---------", res);
+  //   };
+  const listenSuccessSession = useCallback(async () => {
+    try {
+      if (!isFirstFetch) {
+        return
+      }
+      const res = await paymentService.paymentData(idSession)
+      console.log(res)
+      console.log(idSession)
+
+      console.log('res callback')
+    } catch (error) {
+      console.log(error)
+    }
+  }, [isFirstFetch])
+
+  useEffect(() => {
+    if (isFirstFetch && idSession) {
+      listenSuccessSession()
+      setIsFirstFetch(false)
+    }
+  }, [isFirstFetch, idSession])
   return (
     <div>
       <div className="flex justify-center items-center">

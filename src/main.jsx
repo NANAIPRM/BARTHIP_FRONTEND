@@ -10,7 +10,7 @@ import AvatarContextComponent from './contexts/AvatarContextComponents.jsx'
 import HatContextComponet from './contexts/HatContextComponet.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthContextProvider>
       <DrinkContextComponent>
         <GoogleContextProvider>
@@ -24,5 +24,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </GoogleContextProvider>
       </DrinkContextComponent>
     </AuthContextProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

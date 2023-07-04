@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { getPostApi, getDrinkByUserId } from '../api/post-api'
+import { getDrinkApi, getDrinkByUserId } from '../api/post-api'
 
 const DrinkContext = createContext()
 
@@ -43,7 +43,7 @@ function DrinkContextComponent({ children }) {
   const [isLoading, setIsLoading] = useState(true)
 
   const getDrinks = async () => {
-    const res = await getPostApi()
+    const res = await getDrinkApi()
     setDrinks(res.data.drinks)
   }
 

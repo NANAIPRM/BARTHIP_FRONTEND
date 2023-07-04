@@ -1,7 +1,7 @@
 import React from 'react'
 import { createContext } from 'react'
 import { useState } from 'react'
-import { gethatApi, getHatByUserId } from '../api/post-api'
+import { getHatApi, getHatByUserId } from '../api/post-api'
 import { useEffect } from 'react'
 
 const HatContext = createContext()
@@ -12,7 +12,7 @@ function HatContextComponet({ children }) {
   const [hatsOfUser, setHatsOfUser] = useState([])
 
   const getHats = async () => {
-    const res = await gethatApi()
+    const res = await getHatApi()
     setHat(res.data.hats)
   }
 

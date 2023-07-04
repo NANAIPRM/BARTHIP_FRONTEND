@@ -18,9 +18,9 @@ export const getHatByUserId = () =>
 
 export const getAvatarByUserId = () =>
   axios.get('product/userAvatar', configWithAuthorization)
-export const getPostApi = () => axios.get('/product/drink')
+export const getDrinkApi = () => axios.get('/product/drink')
 export const getAvatarApi = () => axios.get('/product/avatar')
-export const gethatApi = () => axios.get('/product/hat')
+export const getHatApi = () => axios.get('/product/hat')
 export const deletePostApi = (id) => axios.delete(`/post/${id}`)
 export const getHatByHatId = (id) => axios.get(`product/hat/${id}`)
 export const getAvatarByAvatarId = (id) => axios.get(`product/avatar/${id}`)
@@ -35,3 +35,5 @@ export const GetFullAvatarByUserId = () =>
   axios.get('product/meAvatar', configWithAuthorization)
 export const GetFullAvatarByUserOnlineId = (id) =>
   axios.post('product/meAvatar', id)
+
+// export const addDrinkByUserId = (input) => axios.post('/product/drinkUser',input)
