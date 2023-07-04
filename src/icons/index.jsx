@@ -401,19 +401,47 @@ export function IiconLogo({ className }) {
 }
 import iDonate30 from '../assets/iDonate30.svg'
 export function IiDonate30({ className }) {
-  return <img src={iDonate30} className={className} alt="" />
+  return (
+    <img
+      src={iDonate30}
+      className={className}
+      alt=""
+      id="price_1NPSJxKltfnBEaa8kZmqKMUo"
+    />
+  )
 }
 import iDonate60 from '../assets/iDonate60.svg'
 export function IiDonate60({ className }) {
-  return <img src={iDonate60} className={className} alt="" />
+  return (
+    <img
+      src={iDonate60}
+      className={className}
+      alt=""
+      id="price_1NPSKSKltfnBEaa8AJstWsNY"
+    />
+  )
 }
 import iDonate100 from '../assets/iDonate100.svg'
 export function IiDonate100({ className }) {
-  return <img src={iDonate100} className={className} alt="" />
+  return (
+    <img
+      src={iDonate100}
+      className={className}
+      alt=""
+      id="price_1NPSKrKltfnBEaa84Tot377d"
+    />
+  )
 }
 import iDonate300 from '../assets/iDonate300.svg'
 export function IiDonate300({ className }) {
-  return <img src={iDonate300} className={className} alt="" />
+  return (
+    <img
+      src={iDonate300}
+      className={className}
+      alt=""
+      id="price_1NPSLDKltfnBEaa8PX6dp0jz"
+    />
+  )
 }
 import iLeaveTable from '../assets/iLeaveTable.svg'
 export function IiLeaveTable({ className }) {

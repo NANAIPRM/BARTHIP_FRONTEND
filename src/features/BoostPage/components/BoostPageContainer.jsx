@@ -13,10 +13,17 @@ import {
 
 function BoostPageContainer() {
   const navigate = useNavigate()
-  const handleClickBuyBoost = () => {
-    navigate('/payment')
+  const handleClickBuyBoost = (id) => {
+    handleClickPayment(id)
+    // navigate('/payment')
   }
 
+  const handleClickPayment = async (id) => {
+    // console.log(id)
+    const response = await paymentService.payment({ id })
+    // console.log(response.data.url)
+    window.location.replace(response.data.url)
+  }
   return (
     <>
       <div className="max-w-5xl flex flex-col justify-center mx-auto">
@@ -65,19 +72,35 @@ function BoostPageContainer() {
         <div className="flex flex-col mx-auto">
           <h1 className="text-xl">Donate</h1>
           <div className="flex flex-col lg:flex-row justify-evenly">
-            <button onClick={handleClickBuyBoost}>
+            <button
+              onClick={() =>
+                handleClickBuyBoost('price_1NPSJxKltfnBEaa8kZmqKMUo')
+              }
+            >
               {' '}
               <IiDonate30 className="w-[360px]" />
             </button>
-            <button onClick={handleClickBuyBoost}>
+            <button
+              onClick={() =>
+                handleClickBuyBoost('price_1NPSKSKltfnBEaa8AJstWsNY')
+              }
+            >
               {' '}
               <IiDonate60 className="w-[360px]" />
             </button>
-            <button onClick={handleClickBuyBoost}>
+            <button
+              onClick={() =>
+                handleClickBuyBoost('price_1NPSKrKltfnBEaa84Tot377d')
+              }
+            >
               {' '}
               <IiDonate100 className="w-[360px]" />
             </button>
-            <button onClick={handleClickBuyBoost}>
+            <button
+              onClick={() =>
+                handleClickBuyBoost('price_1NPSLDKltfnBEaa8PX6dp0jz')
+              }
+            >
               {' '}
               <IiDonate300 className="w-[360px]" />
             </button>

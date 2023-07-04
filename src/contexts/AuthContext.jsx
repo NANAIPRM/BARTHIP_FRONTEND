@@ -9,6 +9,7 @@ function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null)
   const [onlineUserRoom, setOnlineUserRoom] = useState([])
 
+  const [isLoading, setLoading] = useState(false)
   const [reload, setReload] = useState(false)
   useEffect(() => {
     let token = getAccessToken()
@@ -26,7 +27,15 @@ function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, logout, onlineUserRoom, setOnlineUserRoom }}
+      value={{
+        user,
+        setUser,
+        logout,
+        onlineUserRoom,
+        setOnlineUserRoom,
+        isLoading,
+        setLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

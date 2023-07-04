@@ -6,6 +6,7 @@ import { IiBoxbuy, IiLogin, IiMessageBox, IiTee, IiX } from '../../../icons'
 import validateLogin from './validate/validate-login'
 import { addAccessToken } from '../../../utils/localStorage'
 import useAuth from '../../../hooks/useAuth'
+import Loading from '../../../components/Loading'
 const loginInput = {
   email: '',
   password: '',
@@ -15,11 +16,12 @@ function LoginPageContainer() {
   const [input, setInput] = useState(loginInput)
   const navigate = useNavigate()
   const [error, setError] = useState('')
-  const { user, setUser, setReload } = useAuth()
+  const { user, setUser, setReload, isLoading, setLoading } = useAuth()
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
+      setLoading(true)
       const result = validateLogin(input)
       if (result) {
         return setError(result)
@@ -31,6 +33,7 @@ function LoginPageContainer() {
       setUser(meResult.data.user)
       toast.success('Login successfully')
       console.log(meResult.data.user)
+      setLoading(false)
       if (meResult.data.user.isAdmin) {
         navigate('/admin')
       } else {
@@ -48,6 +51,7 @@ function LoginPageContainer() {
 
   return (
     <div className="flex justify-center items-center h-screen">
+      {isLoading ? <Loading /> : <></>}
       <IiBoxbuy className="relative mx-auto w-[500px]" />
       <div className="w-[20vw] mx-auto flex flex-col justify-center items-center py-8 absolute">
         <Link to="/">
