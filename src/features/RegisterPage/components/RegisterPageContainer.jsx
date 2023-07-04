@@ -22,6 +22,7 @@ const registerInput = {
 function RegisterPageContainer() {
   const [input, setInput] = useState(registerInput)
   const [error, setError] = useState('')
+  const { isLoading, setLoading } = useAuth()
 
   const hdlChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value })
@@ -30,6 +31,7 @@ function RegisterPageContainer() {
   const hdlSubmit = async (e) => {
     try {
       e.preventDefault()
+      setLoading(true)
       const result = validateRegister(input)
       if (result) {
         return setError(result)
@@ -39,11 +41,14 @@ function RegisterPageContainer() {
       toast.success('register successfully')
     } catch (err) {
       toast.error(err.response.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <div className="flex justify-center items-center h-screen">
+      {isLoading ? <Loading /> : <></>}
       <IiChatBoxNew className="relative mx-auto w-[328px]" />
       <form
         className="w-[20vw] mx-auto flex flex-col justify-center items-center py-8 absolute"
