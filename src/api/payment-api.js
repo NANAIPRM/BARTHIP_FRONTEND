@@ -1,7 +1,6 @@
 import axios from './axios'
 
 export const payment = (id) => {
-  console.log(id)
   return axios.post('/order/checkout', id)
 }
 export const paymentData = (idSession) => {
