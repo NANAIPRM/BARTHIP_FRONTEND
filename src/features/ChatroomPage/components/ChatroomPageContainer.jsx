@@ -38,6 +38,9 @@ export default function ChatroomPage() {
   const location = useLocation()
   const room = location?.state?.room
   const leaveRoom = async () => {
+    setOnlineAvatar(null)
+    setOnlineDrink(null)
+    setOnlineHat(null)
     await socket.emit('leaveRoom', room)
     setTimeout(() => {
       navigate('/')
@@ -58,6 +61,7 @@ export default function ChatroomPage() {
 
     fetchData()
   }, [])
+
   const fetchData = async () => {
     try {
       // console.log(onlineUserRoom[onlineUserRoom.length - 1])
@@ -77,8 +81,6 @@ export default function ChatroomPage() {
     }
   }
   useEffect(() => {
-    // console.log(onlineUserRoom)
-
     fetchData()
   }, [onlineUserRoom])
   const [bg, setBg] = useState(false)
@@ -113,7 +115,7 @@ export default function ChatroomPage() {
                 )}
 
                 <div className="mb-20">
-                  <div className="relative top-[-230px] left-[10px]">
+                  <div className="relative top-[-230px] left-[-100px]">
                     <div>
                       <div className="relative w-24 top-1 mx-auto self-end  ">
                         <img
@@ -142,7 +144,7 @@ export default function ChatroomPage() {
                 </div>
               </div>
 
-              <div className="relative top-[-165px] left-[150px]">
+              <div className="relative top-[-165px] left-[100px]">
                 <div>
                   <div className="relative w-24 top-1 mx-auto self-end  ">
                     <img
