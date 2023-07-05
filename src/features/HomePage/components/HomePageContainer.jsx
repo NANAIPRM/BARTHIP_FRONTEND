@@ -89,7 +89,7 @@ export default function Home() {
             <IiLogo className="w-40 " />
           </div>
           {user ? (
-            <div className="flex max-w-5xl flex-col  items-center lg:flex-row w-full mx-auto">
+            <div className="flex max-w-5xl flex-col   lg:flex-row w-full mx-auto">
               <div className=" w-full flex flex-col mt-6 px-0 sm:px-10 relative mb-4">
                 <div className="max-w-[450px] mx-auto">
                   <div className="flex w-full justify-center  item-center">
