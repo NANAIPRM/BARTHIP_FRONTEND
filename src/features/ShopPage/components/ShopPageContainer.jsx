@@ -2,10 +2,9 @@ import { useState, useEffect, useContext } from 'react'
 // import BuyCard from '../../../components/buyCard'
 import * as productService from '../../../api/post-api'
 
-
 // import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
-import * as paymentService from "../../../api/payment-api"
+import * as paymentService from '../../../api/payment-api'
 import { IiBuyitem, IiBought } from '../../../icons'
 
 function ShopPageContainer() {
@@ -13,18 +12,15 @@ function ShopPageContainer() {
   const [drink, setDrink] = useState([])
   const [hat, setHat] = useState([])
   const [avatar, setAvatar] = useState([])
-  
 
   const handleClickPayment = async (input) => {
     console.log(input)
     const response = await paymentService.payment(input)
     window.location.replace(response.data.url)
-
   }
 
   const hdlBuyDrink = async (idx) => {
     try {
-
       paymentService.createOrder({ drinkId: drink[idx].id })
       // await productService.addDrinkByUserId({ drinkId: drink[idx].id, status: "Paid" })
       handleClickPayment({ apiId: drink[idx].apiId, drinkId: drink[idx].id })
@@ -37,7 +33,6 @@ function ShopPageContainer() {
   }
   const hdlBuyHat = async (idx) => {
     try {
-
       paymentService.createOrder({ hatId: hat[idx].id })
       // await productService.addDrinkByUserId({ drinkId: drink[idx].id, status: "Paid" })
       handleClickPayment({ apiId: hat[idx].apiId, hatId: hat[idx].id })
@@ -50,7 +45,6 @@ function ShopPageContainer() {
   }
   const hdlBuyAvatar = async (idx) => {
     try {
-
       paymentService.createOrder({ avatarId: avatar[idx].id })
       // await productService.addDrinkByUserId({ drinkId: drink[idx].id, status: "Paid" })
       handleClickPayment({ apiId: avatar[idx].apiId, avatarId: avatar[idx].id })
@@ -62,16 +56,14 @@ function ShopPageContainer() {
     }
   }
 
-
-
   useEffect(() => {
-    productService.getDrinkApi().then(rs => {
+    productService.getDrinkApi().then((rs) => {
       setDrink(rs.data)
     })
-    productService.getHatApi().then(rs => {
+    productService.getHatApi().then((rs) => {
       setHat(rs.data)
     })
-    productService.getAvatarApi().then(rs => {
+    productService.getAvatarApi().then((rs) => {
       setAvatar(rs.data)
     })
   }, [])
@@ -79,7 +71,6 @@ function ShopPageContainer() {
   return (
     <>
       <div className="h-full flex flex-col justify-center items-center">
-
         <div className="flex flex-wrap  bg-yellow-300 justify-center w-full mt-20">
           <h1 className="w-full m-4 font-semibold text-2xl">Drinks</h1>
           {drink?.map((el, idx) => (
@@ -93,16 +84,21 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserDrinks.find(omg => omg.userId == user?.id) ? <IiBought className="w-20" /> : <button className="w-20 cursor-pointer" onClick={(e) => {
-                  hdlBuyDrink(idx, e.target.id)
-                  console.log(e.target.id)
-                }}>
-                  <IiBuyitem id={el.apiId} />
-                </button>}
-
+                {el.UserDrinks.find((omg) => omg.userId == user?.id) ? (
+                  <IiBought className="w-20" />
+                ) : (
+                  <button
+                    className="w-20 cursor-pointer"
+                    onClick={(e) => {
+                      hdlBuyDrink(idx, e.target.id)
+                      console.log(e.target.id)
+                    }}
+                  >
+                    <IiBuyitem id={el.apiId} />
+                  </button>
+                )}
               </div>
             </>
-
           ))}
         </div>
 
@@ -119,16 +115,21 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserHats.find(omg => omg.userId == user?.id) ? <IiBought className="w-20" /> : <button className="w-20 cursor-pointer" onClick={(e) => {
-                  hdlBuyHat(idx, e.target.id)
-                  console.log(e.target.id)
-                }}>
-                  <IiBuyitem id={el.apiId} />
-                </button>}
-
+                {el.UserHats.find((omg) => omg.userId == user?.id) ? (
+                  <IiBought className="w-20" />
+                ) : (
+                  <button
+                    className="w-20 cursor-pointer"
+                    onClick={(e) => {
+                      hdlBuyHat(idx, e.target.id)
+                      console.log(e.target.id)
+                    }}
+                  >
+                    <IiBuyitem id={el.apiId} />
+                  </button>
+                )}
               </div>
             </>
-
           ))}
         </div>
 
@@ -145,19 +146,23 @@ function ShopPageContainer() {
                 <div>{el.name}</div>
                 <div>{el.description}</div>
                 <div>ราคา {el.price} บาท</div>
-                {el.UserAvatars.find(omg => omg.userId == user?.id) ? <IiBought className="w-20" /> : <button className="w-20 cursor-pointer" onClick={(e) => {
-                  hdlBuyAvatar(idx, e.target.id)
-                  console.log(e.target.id)
-                }}>
-                  <IiBuyitem id={el.apiId} />
-                </button>}
-
+                {el.UserAvatars.find((omg) => omg.userId == user?.id) ? (
+                  <IiBought className="w-20" />
+                ) : (
+                  <button
+                    className="w-20 cursor-pointer"
+                    onClick={(e) => {
+                      hdlBuyAvatar(idx, e.target.id)
+                      console.log(e.target.id)
+                    }}
+                  >
+                    <IiBuyitem id={el.apiId} />
+                  </button>
+                )}
               </div>
             </>
-
           ))}
         </div>
-
       </div>
     </>
   )
