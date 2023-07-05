@@ -10,6 +10,7 @@ import {
   IiLogo,
   IiTick,
 } from '../../../icons'
+import * as paymentService from '../../../api/payment-api'
 
 function BoostPageContainer() {
   const navigate = useNavigate()
