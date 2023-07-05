@@ -216,7 +216,7 @@ export default function Home() {
                         className="relative top-36 "
                       />
                       <div>
-                        <div className="relative w-24 top-1 mx-auto self-end  ">
+                        <div className="relative w-24 top-2 mx-auto self-end  ">
                           <img
                             src={userHat?.image || userHat?.Hat?.image}
                             alt={userHat?.name || userHat?.Hat?.name}

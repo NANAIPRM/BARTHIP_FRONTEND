@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ModalsGoogleLogin from './ModalsGoogleLogin'
 import { useNavigate } from 'react-router-dom'
-import { IiGoogle, IiHead, IiLogin, IiTick } from '../../icons'
+import { IiGoogle, IiLogin, IiRegister, IiTick } from '../../icons'
 import useGoogle from '../../hooks/useGoogle'
 import { GoogleLogin } from 'react-google-login'
 import { GOOGLE_CLIENT_ID } from '../../configs/env'
@@ -79,7 +79,7 @@ function Login() {
           className="flex flex-col items-center mt-2"
           onClick={handleClickRegister}
         >
-          <IiHead className="w-20" />
+          <IiRegister className="w-20" />
           <p>REGISTER</p>
         </div>
       </ModalsGoogleLogin>

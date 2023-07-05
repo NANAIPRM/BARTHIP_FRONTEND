@@ -106,7 +106,7 @@ function JoinChatContainer() {
   }
 
   return (
-    <div className="bg-yellow-300  mx-auto relative rounded-md">
+    <div className="  mx-auto relative rounded-md">
       <div className="flex justify-center mt-0 lg:mt-4">
         {user && (
           <p className="text-xl">{onlineUser?.length} Users are Online</p>
