@@ -14,15 +14,15 @@ import * as paymentService from '../../../api/payment-api'
 
 function BoostPageContainer() {
   const navigate = useNavigate()
-  const handleClickBuyBoost = (id) => {
-    handleClickPayment(id)
-    // navigate('/payment')
-  }
+  // const handleClickBuyBoost = (id) => {
+  //   handleClickPayment(id)
+  //   // navigate('/payment')
+  // }
 
-  const handleClickPayment = async (id) => {
-    // console.log(id)
-    const response = await paymentService.payment({ id })
-    // console.log(response.data.url)
+  const handleClickPayment = async (input) => {
+    console.log(input)
+    const response = await paymentService.payment({ apiId: input })
+    console.log(response)
     window.location.replace(response.data.url)
   }
   return (
@@ -73,35 +73,19 @@ function BoostPageContainer() {
         <div className="flex flex-col mx-auto">
           <h1 className="text-xl">Donate</h1>
           <div className="flex flex-col lg:flex-row justify-evenly">
-            <button
-              onClick={() =>
-                handleClickBuyBoost('price_1NPSJxKltfnBEaa8kZmqKMUo')
-              }
-            >
+            <button onClick={(e) => handleClickPayment(e.target.id)}>
               {' '}
               <IiDonate30 className="w-[360px]" />
             </button>
-            <button
-              onClick={() =>
-                handleClickBuyBoost('price_1NPSKSKltfnBEaa8AJstWsNY')
-              }
-            >
+            <button onClick={(e) => handleClickPayment(e.target.id)}>
               {' '}
               <IiDonate60 className="w-[360px]" />
             </button>
-            <button
-              onClick={() =>
-                handleClickBuyBoost('price_1NPSKrKltfnBEaa84Tot377d')
-              }
-            >
+            <button onClick={(e) => handleClickPayment(e.target.id)}>
               {' '}
               <IiDonate100 className="w-[360px]" />
             </button>
-            <button
-              onClick={() =>
-                handleClickBuyBoost('price_1NPSLDKltfnBEaa8PX6dp0jz')
-              }
-            >
+            <button onClick={(e) => handleClickPayment(e.target.id)}>
               {' '}
               <IiDonate300 className="w-[360px]" />
             </button>
