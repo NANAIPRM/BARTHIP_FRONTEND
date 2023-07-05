@@ -47,6 +47,10 @@ export default function ChatroomPage() {
       window.location.reload()
     }, 1000)
   }
+
+  const handleRefresh = () => {
+    window.location.reload()
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -184,7 +188,7 @@ export default function ChatroomPage() {
           </div>
           <div className="flex flex-col items-center mt-3">
             <p className="text-sm mb-1">หากระบบก่งก๊ง กดปุ่ม Sync เล้ย</p>
-            <div className="w-40">
+            <div onClick={() => handleRefresh()} className="w-40">
               <Button text="Sync" />
             </div>
           </div>
