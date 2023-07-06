@@ -14,7 +14,7 @@ function Chatbox() {
 
   const chatElement = useRef()
   useEffect(() => {
-    // chatElement.current?.lastChild?.scrollIntoView()
+    chatElement.current.scrollIntoView({behavior: "smooth", block: "nearest"})
   }, [messageList])
   useEffect(() => {
     socket.on('messageReturn', (data) => {
@@ -72,12 +72,9 @@ function Chatbox() {
       <div className="py-2 relative">
         <IiChatBox className="relative w-full " />
         <div className="absolute z-20 top-6 px-10 py-2">
-          <div className=" h-[428px] mt-5 ">
-            <div
-              ref={chatElement}
-              className="overflow-y-scroll h-[470px]  hidscroll pb-20"
-            >
-              <div className="my-1 px-2">
+          <div className="overflow-y-scroll h-[470px]">
+            <ul className="space-y-2">
+              {/* <div className="my-1 px-2">
                 <p className="text-sm border rounded-lg shadow-sm bg-gray-200">
                   "🤟 เพื่อความปลอดภัยในการใช้งาน
                   เราขอแนะนำให้งดส่งข้อมูลส่วนตัวให้กับคนแปลกหน้า
@@ -90,7 +87,7 @@ function Chatbox() {
                   "👻 หากพบตัวละครที่กลายเป็นผี
                   จะหมายถึงยูสเซอร์ที่ไม่แอคทีฟแล้ว สามารถกดปุ่มไล่ผีได้เลย !"
                 </p>
-              </div>
+              </div> */}
               {messageList.map((message, index) =>
                 message.id === user.id ? (
                   <div
@@ -120,7 +117,8 @@ function Chatbox() {
                   </div>
                 )
               )}
-            </div>
+              <li ref={chatElement}></li>
+            </ul>
           </div>
 
           {/* <div className="h-4 mt-2 px-2">is texting</div> */}
