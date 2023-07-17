@@ -29,18 +29,21 @@ export default function AdminAllProduct() {
   }
 
   const handleDeleteDrink = (id) => {
-    DeleteDrinkByDrinkId(id)
-    window.location.reload()
+    console.log(id)
+    DeleteDrinkByDrinkId(+id)
+    // window.location.reload()
   }
 
   const handleDeleteHat = (id) => {
-    DeleteHatByHatId(id)
-    window.location.reload()
+    console.log(id)
+    DeleteHatByHatId(+id)
+    // window.location.reload()
   }
 
   const handleDeleteAvatar = (id) => {
-    DeleteAvatarByAvatarId(id)
-    window.location.reload()
+    console.log(id)
+    DeleteAvatarByAvatarId(+id)
+    // window.location.reload()
   }
 
   return (

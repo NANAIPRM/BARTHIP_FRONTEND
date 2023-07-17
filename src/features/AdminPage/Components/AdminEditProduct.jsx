@@ -22,19 +22,20 @@ function AdminEditProduct() {
 
   useEffect(() => {
     const path = window.location.pathname
-    console.log(productId)
+
     const fetchData = async () => {
       try {
         let response = null
         if (path.includes('hat')) {
+          console.log(productId)
           response = await getHatByHatId(productId)
-          console.log(response)
+          console.log('--------', response)
         } else if (path.includes('avatar')) {
           response = await getAvatarByAvatarId(productId)
-          console.log(response)
+          console.log('--------', response)
         } else if (path.includes('drink')) {
           response = await getDrinkByDrinkId(productId)
-          console.log(response)
+          console.log('--------', response)
         }
         if (response) {
           setProduct(
@@ -110,7 +111,7 @@ function AdminEditProduct() {
 
     const res = await editPostApi(formData, endpoint)
     console.log(res)
-    navigate('/adminproduct')
+    navigate('/admin')
     window.location.reload()
   }
 

@@ -13,7 +13,7 @@ function HatContextComponet({ children }) {
 
   const getHats = async () => {
     const res = await getHatApi()
-    setHat(res.data.hats)
+    setHat(res.data)
   }
 
   const getHatsByUserId = async () => {

@@ -44,7 +44,7 @@ function DrinkContextComponent({ children }) {
 
   const getDrinks = async () => {
     const res = await getDrinkApi()
-    setDrinks(res.data.drinks)
+    setDrinks(res.data)
   }
 
   const getDrinksByUserId = async () => {

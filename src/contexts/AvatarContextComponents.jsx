@@ -12,7 +12,7 @@ function AvatarContextComponent({ children }) {
 
   const getAvatars = async () => {
     const res = await getAvatarApi()
-    setAvatar(res.data.avatars)
+    setAvatar(res.data)
   }
 
   const getAvatarsByUserId = async () => {
